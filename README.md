@@ -1,4 +1,7 @@
 # cmds
+Enter python venv:
+
+`. venv/bin/activate`
 
 Run server:
 
