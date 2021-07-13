@@ -1,12 +1,24 @@
 <script lang="ts">
-    import Button, { Label } from '@smui/button';
+
+    import {fade} from 'svelte/transition'
+    import {push} from 'svelte-spa-router'
+    import { personalizationStore } from '../stores';
+
+    const { init } = personalizationStore
+
+    function handleClick() {
+        $init = true; // user has passed the Welcome page
+        push('/ps')
+    }
+
 </script>
 
-<main>
+<main in:fade="{{duration: 500}}">
+
+    <h1>Welcome!</h1>
 <div class="container">
             <div class="panel-cell text">
                 <div id="main-text">
-                    <h1>Welcome!</h1>
                     <p>
                         This is the intro page. It contains the introduction to the Latin Quarter experience, some
                         static intro text, and some
@@ -15,7 +27,7 @@
                     <p>
                         From this intro, the user clicks "Start" to enter the personalization survey.
                     </p>
-                    <div class="btn">START</div>
+                    <button class="btn" on:click={handleClick}>START</button>
 
                 </div>
             </div>
@@ -33,7 +45,7 @@
     main {
         background-color: var(--panel-bg);
         min-height: 800px;
-        padding-top: 50px;
+        margin-top: 60px;
     }
 
     #carousel {
@@ -45,9 +57,9 @@
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
-        justify-content: center;
+        justify-content: start;
         align-items: flex-start;
-        align-content: center;
+        align-content: start;
         padding: 50px;
     }
     .panel-cell {

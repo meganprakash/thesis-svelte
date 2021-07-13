@@ -10,6 +10,7 @@
 		height: 70px;
 		border-top: 1px var(--header) solid;
 		position: relative;
+		background-color: var(--header-bg);
 	}
 
 	#footer {

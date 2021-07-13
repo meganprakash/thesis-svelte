@@ -63,13 +63,13 @@ If you're building a single-page app (SPA) with multiple routes, sirv needs to b
 This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
 
 ```bash
-node scripts/setupTypeScript.js
+node scripts/setupTypeScript.scripts
 ```
 
 Or remove the script via:
 
 ```bash
-rm scripts/setupTypeScript.js
+rm scripts/setupTypeScript.scripts
 ```
 
 ## Deploying to the web
