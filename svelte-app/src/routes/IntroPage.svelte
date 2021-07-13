@@ -45,7 +45,7 @@
     main {
         background-color: var(--panel-bg);
         min-height: 800px;
-        margin-top: 60px;
+        padding-top: 50px;
     }
 
     #carousel {

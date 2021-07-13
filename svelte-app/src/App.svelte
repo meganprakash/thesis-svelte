@@ -9,14 +9,6 @@
 </script>
 
 <Header/>
-
-<!-- Navigation links -->
-<!--<ul>
-	<li><a href="#/">Home</a></li>
-	<li><a href="#/graph">Cytoscape</a></li>
-</ul>-->
-
-<!-- Show the router -->
 <Router {routes} />
 <Footer/>
 

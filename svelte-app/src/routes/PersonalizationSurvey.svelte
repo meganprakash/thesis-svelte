@@ -3,6 +3,9 @@
     import {fade} from 'svelte/transition'
     import RangeSlider from "svelte-range-slider-pips";
     import {personalizationStore} from '../stores';
+    import { onMount } from "svelte";
+
+    onMount(() => {window.scrollTo(0, 0)})
 
     const {submitted, userRole, userColorHex, userInitials} = personalizationStore
 
@@ -45,16 +48,16 @@
         $userRole = calculateRole()
         $userInitials = initialsChoice
         $userColorHex = colorChoice
-        // push('$nextpage')
+        push('/role')
     }
 
 </script>
 
-{console.log("personalizationStore: \n ",
+{(console.log("personalizationStore: \n ",
     "\nsubmitted: ", $submitted,
     "\nuserRole: ", $userRole,
     "\nuserInitials: ", $userInitials,
-    "\nuserColorHex: ", $userColorHex)}
+    "\nuserColorHex: ", $userColorHex),'')}
 
 <main in:fade="{{duration: 500}}">
 

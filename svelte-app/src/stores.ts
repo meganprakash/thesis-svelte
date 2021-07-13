@@ -23,8 +23,8 @@ class PersonalizationStore {
         public init: Writable<boolean> = writable(false), // if false, user should be at the welcome page
         public submitted: Writable<boolean> = writable(false), // if false, user should be at the survey page
         public userRole: Writable<string> = writable(null),
-        public userInitials: Writable<string> = writable(null),
-        public userColorHex: Writable<string> = writable(null) // include the #
+        public userInitials: Writable<string> = writable("--"),
+        public userColorHex: Writable<string> = writable("#555") // include the #
     ) { }
 
     // get fullName() {
