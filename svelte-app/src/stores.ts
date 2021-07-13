@@ -27,19 +27,6 @@ class PersonalizationStore {
         public userColorHex: Writable<string> = writable(null) // include the #
     ) { }
 
-     public toString() {
-        const vals = {
-            "init": this.init,
-            "submitted": this.submitted,
-            "userRole": this.userRole,
-            "userInitials": this.userInitials,
-            "userColorHex": this.userColorHex,
-        }
-
-        return JSON.stringify(vals)
-
-    }
-
     // get fullName() {
     //     // Use derived to access writable values and export as readonly
     //     return derived(

@@ -6,10 +6,6 @@
 
     const {submitted, userRole, userColorHex, userInitials} = personalizationStore
 
-    import Textfield from '@smui/textfield';
-    import HelperText from '@smui/textfield/helper-text/index';
-    import CharacterCounter from '@smui/textfield/character-counter/index';
-
     const color = '#263336'
     const barColor = '#388ca8'
     const sliderLabels = ["Not at all", "A little bit", "Somewhat", "Very", "Extremely"];
@@ -25,8 +21,8 @@
     Calculate the desired role from user's survey responses
     TODO make this real
      */
-    function setRole() {
-        $userRole = "MC"
+    function calculateRole() {
+        return "MC"
     }
 
     // TODO TODO TODO
@@ -46,13 +42,19 @@
 
     function handleNext() {
         $submitted = true;
-        setRole()
-        console.log("yee")
-        // decide the outcome of roles
+        $userRole = calculateRole()
+        $userInitials = initialsChoice
+        $userColorHex = colorChoice
         // push('$nextpage')
     }
 
 </script>
+
+{console.log("personalizationStore: \n ",
+    "\nsubmitted: ", $submitted,
+    "\nuserRole: ", $userRole,
+    "\nuserInitials: ", $userInitials,
+    "\nuserColorHex: ", $userColorHex)}
 
 <main in:fade="{{duration: 500}}">
 
@@ -131,7 +133,7 @@
     }
 
     #dot-container {
-        height: 200px;
+        height: 150px;
         padding-right: 30px;
         float: left;
         display:flex;
@@ -140,6 +142,7 @@
 
     #color-picker {
         padding-top: 20px;
+        width: 100%
     }
 
     .color-tile {
