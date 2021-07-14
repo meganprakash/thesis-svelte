@@ -1,15 +1,19 @@
 <script>
     // Import the router component
-    import Router from 'svelte-spa-router'
+    import Router, {replace} from 'svelte-spa-router'
     // Import the list of routes
     import routes from './routes'
-
     import Header from './routes/components/Header.svelte'
     import Footer from './routes/components/Footer.svelte'
+
+    function conditionsFailed(event) {
+        console.error('(Router) User missing initialization data', event.detail)
+        replace('/')
+    }
 </script>
 
 <Header/>
-<Router {routes} />
+<Router {routes} on:conditionsFailed={conditionsFailed}/>
 <Footer/>
 
 <!-- Global styles for the app -->
