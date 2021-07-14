@@ -1,6 +1,7 @@
 <script lang="ts">
     import {fade} from 'svelte/transition'
     import {personalizationStore} from '../stores';
+    import Carousel from './components/carousel.svelte'
     import {onMount} from "svelte";
 
     onMount(() => {
@@ -16,7 +17,6 @@
     // carousel items
     // TODO make the carousel component
 
-    // TODO also add an avatar in the title row, to the left of the h1 text
 
 
 </script>
@@ -46,10 +46,7 @@
             </div>
         </div>
         <div class="panel-cell img">
-            <div id="carousel">
-                <p> This is the photo carousel. Each blurb in the carousel ends with a button to select it.
-                </p>
-            </div>
+           <Carousel bind:role={$userRole}/>
         </div>
 
     </div>
