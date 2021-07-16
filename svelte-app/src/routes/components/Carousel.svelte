@@ -3,10 +3,13 @@
     import {Slidy} from 'svelte-slidy'
     import {Moment, mcMoments} from "../../ts/role_moments";
     import {stateStore} from '../../stores'
+    import {push} from "svelte-spa-router";
+
+    const {momentId} = stateStore
 
     export let role = "--"
     // TODO receive callback for changing the bg of the parent (once i want to implement it);
-    // TODO show sound icon maybe
+    // TODO show sound icon maybe, add some shadows to the edge of the carousel pane?
 
     let name = 'Slidy',
         index // current id in the Slidy carousel, reactive to <Slidy bind:index />
@@ -20,7 +23,7 @@
         wrap: {
             id: 'slidy',
             width: '100%',
-            height: '500px',
+            height: '100%',
             padding: '0',
             align: 'center',
             alignmargin: 0,
@@ -54,8 +57,8 @@
     // submit() saves the moment in StateStore then moves to global view
     function handleSubmit() {
         console.log("(Carousel) Selected index ", index)
-        stateStore.momentId = index
-        // TODO move to the global view
+        $momentId = index
+        push("/gr")
     }
 
 </script>
@@ -96,7 +99,10 @@
 
     #slidy-container {
         display: inline-block;
-        width: 100%
+        width: 100%;
+        background: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(17,17,17,1) 100%);
+        z-index: 2;
+
     }
 
     .slide {
@@ -139,6 +145,8 @@
         font-weight: bold;
         font-family: var(--text-font);
         font-size: 25pt;
+        -webkit-box-shadow: 0px 0px 14px 12px #111;
+        box-shadow: 0px 0px 14px 12px #111;
     }
 
 
@@ -149,6 +157,8 @@
         font-weight: bold;
         font-family: var(--text-font);
         font-size: 25pt;
+        -webkit-box-shadow: 0px 0px 14px 12px #111;
+        box-shadow: 0px 0px 14px 12px #111;
     }
 
     .spinner {
