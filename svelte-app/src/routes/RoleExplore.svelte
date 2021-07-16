@@ -10,15 +10,6 @@
 
     const {userRole, userInitials, userColorHex} = personalizationStore
 
-    // display the content according to the role. load from JSON then send to components?
-
-    // text blurb
-
-    // carousel items
-    // TODO make the carousel component
-
-
-
 </script>
 
 <main in:fade="{{duration: 500}}">

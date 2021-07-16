@@ -3,6 +3,11 @@
     import {fade} from 'svelte/transition'
     import {push} from 'svelte-spa-router'
     import { personalizationStore } from '../stores';
+    import {onMount} from "svelte";
+
+    onMount(() => {
+        window.scrollTo(0, 0)
+    })
 
     const { init } = personalizationStore
 

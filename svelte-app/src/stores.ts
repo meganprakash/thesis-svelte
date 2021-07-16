@@ -49,3 +49,11 @@ export const personalizationStore = new PersonalizationStore();
 StateStore holds ...
 
  */
+
+class StateStore {
+    constructor(
+        public momentId: Writable<number> = writable(null) //
+    ) {}
+}
+
+export const stateStore = new StateStore();
