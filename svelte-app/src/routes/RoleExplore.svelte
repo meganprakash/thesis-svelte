@@ -1,7 +1,7 @@
 <script lang="ts">
     import {fade} from 'svelte/transition'
     import {personalizationStore} from '../stores';
-    import Carousel from './components/carousel.svelte'
+    import Carousel from './components/Carousel.svelte'
     import {onMount} from "svelte";
 
     onMount(() => {

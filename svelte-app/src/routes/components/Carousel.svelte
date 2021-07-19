@@ -1,7 +1,6 @@
 <script>
-    import {get} from 'svelte/store'
     import {Slidy} from 'svelte-slidy'
-    import {Moment, mcMoments} from "../../ts/role_moments";
+    import {mcMoments} from "../../ts/role_moments";
     import {stateStore} from '../../stores'
     import {push} from "svelte-spa-router";
 
@@ -9,7 +8,7 @@
 
     export let role = "--"
     // TODO receive callback for changing the bg of the parent (once i want to implement it);
-    // TODO show sound icon maybe, add some shadows to the edge of the carousel pane?
+    // TODO show sound icon maybe,Moment,  add some shadows to the edge of the carousel pane?
 
     let name = 'Slidy',
         index // current id in the Slidy carousel, reactive to <Slidy bind:index />

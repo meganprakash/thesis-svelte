@@ -80,13 +80,6 @@
 
 	}
 
-
-    a {
-        color: var(--button-text);
-        text-decoration: none;
-    }
-
-
     :global .btn {
         border-radius: 50px;
         width: auto;
