@@ -55,11 +55,6 @@
         margin-left: 30px;
     }
 
-    #carousel {
-        width: 100%;
-        background-color: black;
-    }
-
     #title-container {
         display: inline-flex;
         align-items: center;

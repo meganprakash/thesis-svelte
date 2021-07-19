@@ -75,6 +75,9 @@
                 <p>
                     {item.blurb}
                 </p>
+                <p>
+                    <button class="btn" id="select-btn" on:click={handleSubmit}>SELECT</button>
+                </p>
             </article>
         </div>
 
@@ -87,7 +90,6 @@
     </Slidy>
 
     <!-- TODO <audio> element that plays the current audio! use the index prop -->
-    <button class="btn" on:click={handleSubmit}>SUBMIT</button>
 </div>
 
 
@@ -96,6 +98,14 @@
         height: 800px;
         background-color: #16296b;
     }
+
+    #select-btn {
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 30px;
+        display: inline-block;
+    }
+
 
     #slidy-container {
         display: inline-block;
