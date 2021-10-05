@@ -7,7 +7,7 @@ import World from './routes/World.svelte'
 import {wrap} from 'svelte-spa-router/wrap'
 import {get} from 'svelte/store'
 import {personalizationStore} from './stores'
-import {stateStore} from "./stores";
+import {storyManager} from "./ts/StoryManager";
 
 // Export the route definition object
 export default {
@@ -35,12 +35,12 @@ export default {
     '/gr': wrap({
         component: World,
 
-        conditions: [ // has the user been through the personalization page?
+        conditions: [ // has the user been through the RoleExplore page?
             (detail) => {
                 return get(personalizationStore.submitted)
             },
             (detail) => {
-            return get(stateStore.momentId) != null
+            return get(storyManager.currentStory) != null
             }
         ]
     }),

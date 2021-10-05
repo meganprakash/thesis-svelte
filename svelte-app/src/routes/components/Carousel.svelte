@@ -1,10 +1,10 @@
 <script>
     import {Slidy} from 'svelte-slidy'
     import {mcMoments} from "../../ts/role_moments";
-    import {stateStore} from '../../stores'
+    import {storyManager} from "../../ts/StoryManager";
     import {push} from "svelte-spa-router";
 
-    const {momentId} = stateStore
+    const {currentStory} = storyManager
 
     export let role = "--"
     // TODO receive callback for changing the bg of the parent (once i want to implement it);
@@ -53,10 +53,10 @@
         }
     }
 
-    // submit() saves the moment in StateStore then moves to global view
+    // submit() saves the story selection in StoryManager then moves to graph view
     function handleSubmit() {
         console.log("(Carousel) Selected index ", index)
-        $momentId = index
+        $currentStory = index
         push("/gr")
     }
 

@@ -1,5 +1,12 @@
 import { derived, writable, Writable } from "svelte/store";
 
+/********
+
+Svelte stores are singletons that components can subscribe to.
+Components are notified and can dynamically update accordingly.
+
+ ********/
+
 /*
 
 PersonalizationStore holds the role and avatar personalization for the user.
@@ -7,9 +14,9 @@ PersonalizationStore holds the role and avatar personalization for the user.
 bool init = True iff the user has been to the Personalization page
 bool submitted = True iff the user has completed their personalization
 
-Role userRole = MC or DJ
-String userInitials = 3 chars, all caps
-FOO userColor = color for avatar
+ userRole = MC or DJ
+userInitials = 3 chars, all caps
+userColor = color for avatar
 
 use as:
 import { personalizationStore } from 'stores'
@@ -26,16 +33,6 @@ class PersonalizationStore {
         public userInitials: Writable<string> = writable("--"),
         public userColorHex: Writable<string> = writable("#555") // include the #
     ) { }
-
-    // get fullName() {
-    //     // Use derived to access writable values and export as readonly
-    //     return derived(
-    //         [this.firstname, this.lastname],
-    //         ([$firstName, $lastName]) => {
-    //             return $firstName + " " + $lastName
-    //         }
-    //     )
-    // }
 }
 
 // Export a singleton
@@ -43,17 +40,3 @@ export const personalizationStore = new PersonalizationStore();
 
 // Allow for multiple stores (good for contexts)
 // export const createMyFormStore = () => new MyFormStore();
-
-/*
-
-StateStore holds ...
-
- */
-
-class StateStore {
-    constructor(
-        public momentId: Writable<number> = writable(null) //
-    ) {}
-}
-
-export const stateStore = new StateStore();

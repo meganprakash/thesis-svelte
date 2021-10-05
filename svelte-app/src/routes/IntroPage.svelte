@@ -3,6 +3,7 @@
     import {fade} from 'svelte/transition'
     import {push} from 'svelte-spa-router'
     import { personalizationStore } from '../stores';
+    import {storyManager} from "../ts/StoryManager";
     import {onMount} from "svelte";
 
     onMount(() => {
@@ -10,9 +11,11 @@
     })
 
     const { init } = personalizationStore
+    const {audioPaused} = storyManager
 
     function handleClick() {
         $init = true; // user has passed the Welcome page
+        $audioPaused = false;
         push('/ps')
     }
 

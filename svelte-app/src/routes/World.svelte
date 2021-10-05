@@ -3,11 +3,10 @@
     import {fade} from 'svelte/transition'
     import {push} from 'svelte-spa-router'
     import { personalizationStore } from '../stores';
-    import { stateStore } from "../stores";
     import {onMount} from "svelte";
     import Graph from './components/Graph.svelte'
+    import StoryPanel from "./components/StoryPanel.svelte";
 
-    const {momentId} = stateStore
 
     onMount(() => {
         window.scrollTo(0, 0)
@@ -18,7 +17,11 @@
     }
 
 </script>
+<!--
 
+World.svelte is a page that contains the interaction graph and the modal showing story content.
+
+-->
 <main> <!-- make the modal fade in slower than the graph -->
 
     <div id="graph-container"  in:fade="{{duration: 50}}">
@@ -26,7 +29,7 @@
     </div>
 
     <div id="story-container"  in:fade="{{delay: 200, duration: 50}}">
-        <h2>this is moment {$momentId}</h2>
+       <StoryPanel/>
     </div>
 
 </main>

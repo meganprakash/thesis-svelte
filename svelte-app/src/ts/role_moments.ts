@@ -3,7 +3,8 @@
 Content for the RoleExplore.svelte page. Each role has a set of moments, which correspond to a name, id number,
     image, blurb, and audio.
 
-TODO how to manage background music? audio component in App.svelte, but have to be able to pause it
+ TODO generate dynamically from StoryManager list of all content
+
  */
 
 // Moment content for the Carousel in RoleExplore.svelte
@@ -32,10 +33,3 @@ export const mcMoments = [
 
     new Moment(3, "Moment Title 3", "static/foo.png", "This is the moment blurb", "static/foo.mp3")
 ]
-
-// Global content obj. Encode the text and ids for traversing the graph
-/*
-
-
-
- */
