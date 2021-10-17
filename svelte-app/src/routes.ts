@@ -6,7 +6,7 @@ import RoleExplore from './routes/RoleExplore.svelte'
 import World from './routes/World.svelte'
 import {wrap} from 'svelte-spa-router/wrap'
 import {get} from 'svelte/store'
-import {personalizationStore} from './stores'
+import {personalizationStore} from './PersonalizationStore'
 import {storyManager} from "./ts/StoryManager";
 
 // Export the route definition object

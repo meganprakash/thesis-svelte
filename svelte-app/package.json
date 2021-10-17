@@ -18,6 +18,7 @@
     "@smui/textfield": "^4.2.0",
     "@tsconfig/svelte": "^2.0.0",
     "@types/cytoscape": "^3.14.17",
+    "@types/cytoscape-popper": "^2.0.0",
     "attractions": "^3.3.0",
     "postcss": "^8.3.5",
     "rollup": "^2.3.4",
@@ -36,9 +37,12 @@
   "dependencies": {
     "@smui/button": "^4.2.0",
     "@smui/card": "^4.2.0",
+    "@types/node": "^16.1.0",
     "cytoscape": "^3.19.0",
+    "cytoscape-popper": "^2.0.0",
     "sirv-cli": "^1.0.0",
     "svelte-slidy": "^2.7.1",
-    "svelte-spa-router": "^3.2.0"
+    "svelte-spa-router": "^3.2.0",
+    "tippy.js": "^6.3.2"
   }
 }

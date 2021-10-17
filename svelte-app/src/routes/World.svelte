@@ -2,7 +2,7 @@
 
     import {fade} from 'svelte/transition'
     import {push} from 'svelte-spa-router'
-    import { personalizationStore } from '../stores';
+    import { personalizationStore } from '../PersonalizationStore';
     import {onMount} from "svelte";
     import Graph from './components/Graph.svelte'
     import StoryPanel from "./components/StoryPanel.svelte";
@@ -24,13 +24,13 @@ World.svelte is a page that contains the interaction graph and the modal showing
 -->
 <main> <!-- make the modal fade in slower than the graph -->
 
+    <div id="story-container"  in:fade="{{delay: 200, duration: 50}}">
+        <StoryPanel/>
+    </div>
     <div id="graph-container"  in:fade="{{duration: 50}}">
         <Graph/>
     </div>
 
-    <div id="story-container"  in:fade="{{delay: 200, duration: 50}}">
-       <StoryPanel/>
-    </div>
 
 </main>
 
@@ -46,21 +46,19 @@ World.svelte is a page that contains the interaction graph and the modal showing
         width: 100%;
         height: 100%;
         display: inline-block;
-        background-color: #5c00f3;
     }
 
     #story-container {
-        width: 30%;
+        width: 40%;
+        height: 70%;
         min-width: 300px;
         max-width: 450px;
-        height: 70%;
-        position: absolute;
         display: inline-block;
-        top: 40px;
-        left: 40px;
+        vertical-align: middle;
         background-color: var(--modal-bg);
         border-radius: 7px;
         padding: 30px;
+        margin: 40px;
         z-index: 1;
     }
 

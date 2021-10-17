@@ -1,6 +1,6 @@
 <script>
     import {Slidy} from 'svelte-slidy'
-    import {mcMoments} from "../../ts/role_moments";
+    import {mcMoments} from "../../ts/RoleMomentsContent";
     import {storyManager} from "../../ts/StoryManager";
     import {push} from "svelte-spa-router";
 

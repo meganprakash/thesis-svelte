@@ -8,3 +8,12 @@
 <h1> Hello I'm StoryPanel </h1>
 <p>this is story {$currentStory}</p>
 <p>the current story step is {$currentStoryStep}</p>
+
+<style>
+    h1 {
+        padding: 0;
+        margin: 0;
+        font-size: 28px;
+    } 
+
+</style>

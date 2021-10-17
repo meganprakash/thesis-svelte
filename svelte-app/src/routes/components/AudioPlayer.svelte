@@ -6,13 +6,15 @@
         the top-level App.svelte.
      */
 
+    // TODO make this a bubble in the header bar that has a mute button!
+
     import {onMount} from "svelte";
     import {storyManager} from "../../ts/StoryManager";
     const {currentAudioPath, audioPaused} = storyManager
     $: console.log("currentAudioPath = ", $currentAudioPath)
 
     let paused = $audioPaused
-    let volume = 0.3
+    let volume = 0.5
 
     onMount(() => {
         console.log("AudioPlayer is mounted");

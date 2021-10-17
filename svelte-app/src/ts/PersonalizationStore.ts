@@ -1,11 +1,4 @@
-import { derived, writable, Writable } from "svelte/store";
-
-/********
-
-Svelte stores are singletons that components can subscribe to.
-Components are notified and can dynamically update accordingly.
-
- ********/
+import { writable, Writable } from "svelte/store";
 
 /*
 
