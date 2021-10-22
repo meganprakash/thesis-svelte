@@ -51,7 +51,6 @@ class StoryManager {
         ]
 
     constructor(
-        public foo: string = '',
         public currentStory: Writable<string> = writable("init"),
         public currentStoryStep: Writable<number> = writable(0),
         public currentAudioPath: Writable<string> = writable(""), // TODO set ambient audio
@@ -64,20 +63,18 @@ class StoryManager {
     }
 
     public changeCurrentStory(newStory:string) {
-        console.log(this.foo)
-        this.foo = "bar"
-        console.log('[StoryManager.ts] currentStory: ', this.currentStory)
-        this.currentStory = writable(newStory)
-        this.currentStoryStep = writable(0)
+        this.currentStory.set(newStory)
+        this.currentStoryStep.set(0)
+
+        console.log('[StoryManager.ts] currentStory: ', get(this.currentStory))
         // this.currentAudioPath.set( $audio_path )
     }
 
     public clearCurrentStory() {
-        console.log(this.foo)
-        this.foo = "init"
+        this.currentStory.set("init")
+        this.currentStoryStep.set(0)
+
         console.log("[clearCurrentStory] currentStory: ", get(this.currentStory))
-        this.currentStory = writable("init")
-        this.currentStoryStep = writable(0)
         // this.currentAudioPath.set( $ambient_audio )
     }
 

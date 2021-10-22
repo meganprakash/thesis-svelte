@@ -99,7 +99,7 @@
 
             cy.elements().classes('faded');
 
-            const activeNodes = cy.nodes().filter(function(node){ console.log(node); return node.data('stories')[story] != undefined})
+            const activeNodes = cy.nodes().filter(function(node){ return node.data('stories')[story] != undefined})
             const activeEdges = cy.edges().filter(function(edge){ return edge.data("story") == story})
 
             activeNodes.classes("active-node")
