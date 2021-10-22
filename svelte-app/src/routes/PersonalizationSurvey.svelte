@@ -2,7 +2,7 @@
     import {push} from 'svelte-spa-router'
     import {fade} from 'svelte/transition'
     import RangeSlider from "svelte-range-slider-pips";
-    import {personalizationStore} from '../PersonalizationStore';
+    import {personalizationStore} from '../ts/PersonalizationStore';
     import { onMount } from "svelte";
 
     onMount(() => {window.scrollTo(0, 0)})

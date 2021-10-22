@@ -11,7 +11,7 @@
     import {onMount} from "svelte";
     import {storyManager} from "../../ts/StoryManager";
     const {currentAudioPath, audioPaused} = storyManager
-    $: console.log("currentAudioPath = ", $currentAudioPath)
+    $: console.log("currentAudioPath set to ", $currentAudioPath)
 
     let paused = $audioPaused
     let volume = 0.5
@@ -19,6 +19,7 @@
     onMount(() => {
         console.log("AudioPlayer is mounted");
         currentAudioPath.set("static/audio/GoStetsa.mp3")
+        console.log("Set GoStetsa as current audio")
     })
 
 </script>

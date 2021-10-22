@@ -2,7 +2,7 @@
 
     import {fade} from 'svelte/transition'
     import {push} from 'svelte-spa-router'
-    import { personalizationStore } from '../PersonalizationStore';
+    import { personalizationStore } from '../ts/PersonalizationStore';
     import {storyManager} from "../ts/StoryManager";
     import {onMount} from "svelte";
 

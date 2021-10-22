@@ -1,4 +1,5 @@
-import {writable, Writable} from "svelte/store";
+import {writable, Writable, get} from "svelte/store";
+import {write} from "fs";
 
 /*
 
@@ -13,48 +14,70 @@ class StoryManager {
     // TODO create this from some usable story format
     readonly GraphData: Array<any> =
         [
-            { // node a
-                data: {id: 'a hello world', foo: 'bar'}
+            {
+                data: {id: 'djredalert', name: 'DJ Red Alert', stories: {'a': true, 'b': true}}
             },
-            { // node b
-                data: {id: 'b'}
-            },
-
-            { // node b
-                data: {id: 'c'}
-            },
-            { // edge ab
-                data: {id: 'ab', source: 'a hello world', target: 'b'}
+            {
+                data: {id: 'iou', name: 'IOU Dancers', stories: {'c': true}}
             },
 
-            { // edge ab
-                data: {id: 'ab2', source: 'a hello world', target: 'b'}
+            {
+                data: {id: 'krsone', name: "KRS One", stories: {'a': true}}
             },
-
-            { // edge ab
-                data: {id: 'bc', source: 'c', target: 'b'}
+            {
+                data: {id: 'mellemel', name: "Melle Mel", stories: {'a': true, 'b': true}}
+            },
+            {
+                data: {id: 'publicenemy', name: "Public Enemy", stories: {'b': true, 'c': true}}
+            },
+            {
+                data: {id: '0', name: '0', source: 'krsone', target: 'djredalert', story: 'a', step: 0}
+            },
+            {
+                data: {id: '1', name: '1', source: 'krsone', target: 'mellemel', story: 'a', step: 1}
+            },
+            {
+                data: {id: '5', name: '5', source: 'krsone', target: 'djredalert', story: 'a', step: 2}
+            },
+            {
+                data: {id: '2', name: '2', source: 'mellemel', target: 'publicenemy', story: 'b', step: 0}
+            },
+            {
+                data: {id: '3', name: '3', source: 'publicenemy', target: 'djredalert', story: 'b', step: 1}
+            },
+            {
+                data: {id: '4', name: '4', source: 'publicenemy', target: 'iou', story: 'c', step: 2}
             }
         ]
 
     constructor(
-        public currentStory: Writable<string> = writable(null),
+        public foo: string = '',
+        public currentStory: Writable<string> = writable("init"),
         public currentStoryStep: Writable<number> = writable(0),
-        public currentAudioPath: Writable<string> = writable(""),
+        public currentAudioPath: Writable<string> = writable(""), // TODO set ambient audio
         public audioPaused: Writable<boolean> = writable(true),
         public individualMode: Writable<boolean> = writable(true) // true: inactive edges hidden
     ) {
+        this.currentStory = writable('init')
         console.log("StoryManager constructed")
+        console.log("StoryManager: ", this)
     }
 
     public changeCurrentStory(newStory:string) {
-        this.currentStory.set(newStory)
-        this.currentStoryStep.set(0)
+        console.log(this.foo)
+        this.foo = "bar"
+        console.log('[StoryManager.ts] currentStory: ', this.currentStory)
+        this.currentStory = writable(newStory)
+        this.currentStoryStep = writable(0)
         // this.currentAudioPath.set( $audio_path )
     }
 
     public clearCurrentStory() {
-        this.currentStory.set(null)
-        this.currentStoryStep.set(null)
+        console.log(this.foo)
+        this.foo = "init"
+        console.log("[clearCurrentStory] currentStory: ", get(this.currentStory))
+        this.currentStory = writable("init")
+        this.currentStoryStep = writable(0)
         // this.currentAudioPath.set( $ambient_audio )
     }
 

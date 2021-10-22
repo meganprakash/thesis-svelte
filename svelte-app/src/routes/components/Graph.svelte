@@ -12,18 +12,37 @@
     // import tippy from 'tippy.js';
     // import 'tippy.js/dist/tippy.css';
 
+    const {currentStory, currentStoryStep} = storyManager
+    $: console.log("[Graph.svelte] currentStory: ", $currentStory)
 
     // annoyingly, I couldn't get this to import with fs
     let graphStyle = `
     node {
         background-color: green;
-        label: data(id);
+        label: data(name);
         color: white;
+        width: 8px;
+        height: 8px;
+        font-size: 10;
+    }
+    .active-node {
+        background-color: yellow;
     }
     edge {
         curve-style: bezier;
         label: data(id);
         color: white;
+        width: 1px;
+        font-size: 6;
+    }
+    .active-edge {
+        color: yellow;
+    }
+    .faded {
+        opacity: 0.4;
+    }
+    .invisible {
+        opacity: 0;
     }
     `
 
@@ -40,7 +59,7 @@
             elements: storyManager.GraphData,
             layout: {
                 name: 'cose',
-
+                idealEdgeLength: 20
             },
             zoom: 0.8,
             minZoom: 0.8,
@@ -57,10 +76,43 @@
         // https://github.com/cytoscape/cytoscape.js-popper
         // TODO use tippy to draw tooltips when user hovers on elements
 
-        // TODO this is where to add more cy listeners
+        ///// listeners //////
+        cy.unbind("tap");
+        cy.bind('tap',function(evt){
+            if (evt.target === cy) {
+                console.log('tapped on background')
+                clearStory()
+            } else if (evt.target.isEdge()) {
+                const edge = evt.target;
+                console.log('tapped edge ' + edge.id());
+                selectStoryFromEdge(edge)
+            } else if (evt.target.isNode()) {
+                console.log('node tap handler not implemented yet, sorry')
+            }
+        });
+
+        ///// helpers //////
+        function selectStoryFromEdge(edge) {
+            // user clicks edge, new story starts and unrelated edges fade
+            const story = edge.data("story")
+            storyManager.changeCurrentStory(story)
+
+            cy.elements().classes('faded');
+
+            const activeNodes = cy.nodes().filter(function(node){ console.log(node); return node.data('stories')[story] != undefined})
+            const activeEdges = cy.edges().filter(function(edge){ return edge.data("story") == story})
+
+            activeNodes.classes("active-node")
+            activeEdges.classes("active-edge")
+
+        }
+
+        function clearStory() {
+            cy.elements().classes('')
+            storyManager.clearCurrentStory()
+        }
     }
 
-    // TODO more cy manipulate functions here, hover handlers etc
 
 </script>
 

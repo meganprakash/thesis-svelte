@@ -1,8 +1,6 @@
 <script lang="ts">
 
     import {fade} from 'svelte/transition'
-    import {push} from 'svelte-spa-router'
-    import { personalizationStore } from '../PersonalizationStore';
     import {onMount} from "svelte";
     import Graph from './components/Graph.svelte'
     import StoryPanel from "./components/StoryPanel.svelte";
