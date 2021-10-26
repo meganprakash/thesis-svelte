@@ -1,5 +1,4 @@
 import {writable, Writable, get} from "svelte/store";
-import {write} from "fs";
 
 /*
 
@@ -12,43 +11,7 @@ class StoryManager {
 
     // Static array of Cytoscape graph data, is NOT used reactively
     // TODO create this from some usable story format
-    readonly GraphData: Array<any> =
-        [
-            {
-                data: {id: 'djredalert', name: 'DJ Red Alert', stories: {'a': true, 'b': true}}
-            },
-            {
-                data: {id: 'iou', name: 'IOU Dancers', stories: {'c': true}}
-            },
 
-            {
-                data: {id: 'krsone', name: "KRS One", stories: {'a': true}}
-            },
-            {
-                data: {id: 'mellemel', name: "Melle Mel", stories: {'a': true, 'b': true}}
-            },
-            {
-                data: {id: 'publicenemy', name: "Public Enemy", stories: {'b': true, 'c': true}}
-            },
-            {
-                data: {id: '0', name: '0', source: 'krsone', target: 'djredalert', story: 'a', step: 0}
-            },
-            {
-                data: {id: '1', name: '1', source: 'krsone', target: 'mellemel', story: 'a', step: 1}
-            },
-            {
-                data: {id: '5', name: '5', source: 'krsone', target: 'djredalert', story: 'a', step: 2}
-            },
-            {
-                data: {id: '2', name: '2', source: 'mellemel', target: 'publicenemy', story: 'b', step: 0}
-            },
-            {
-                data: {id: '3', name: '3', source: 'publicenemy', target: 'djredalert', story: 'b', step: 1}
-            },
-            {
-                data: {id: '4', name: '4', source: 'publicenemy', target: 'iou', story: 'c', step: 2}
-            }
-        ]
 
     constructor(
         public currentStory: Writable<string> = writable("init"),

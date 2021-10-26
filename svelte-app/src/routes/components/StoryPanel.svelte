@@ -8,6 +8,7 @@
 <h1> Hello I'm StoryPanel </h1>
 <p>this is story {$currentStory}</p>
 <p>the current story step is {$currentStoryStep}</p>
+<button class="btn">NEXT</button>
 
 <style>
     h1 {

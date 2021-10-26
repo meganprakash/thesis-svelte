@@ -9,17 +9,20 @@
     import {onMount} from "svelte";
     import {storyManager} from "../../ts/StoryManager";
     import popper from 'cytoscape-popper';
+    import {storyContent} from "../../ts/StoryContent";
     // import tippy from 'tippy.js';
     // import 'tippy.js/dist/tippy.css';
 
     const {currentStory, currentStoryStep} = storyManager
     $: console.log("[Graph.svelte] currentStory: ", $currentStory)
 
+    const {GraphData} = storyContent
+
     // annoyingly, I couldn't get this to import with fs
     let graphStyle = `
     node {
         background-color: green;
-        label: data(name);
+        label: data(id);
         color: white;
         width: 8px;
         height: 8px;
@@ -44,6 +47,10 @@
     .invisible {
         opacity: 0;
     }
+    .current-edge {
+        color:white;
+        width:1.5px;
+    }
     `
 
     onMount(() => {
@@ -56,7 +63,7 @@
         const cy = cytoscape({
             container: document.getElementById('cytoscape'), // container to render in
 
-            elements: storyManager.GraphData,
+            elements: storyContent.GraphData,
             layout: {
                 name: 'cose',
                 idealEdgeLength: 20
