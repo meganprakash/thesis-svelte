@@ -12,7 +12,7 @@ by StoryManager and Graph??????
 export namespace StoryType {
 
     export class StoryCollection {
-       // key = story title
+       // key = story title to detect name collisions
         Stories: Map<string, StoryType.Story>;
 
         constructor() {

@@ -93,57 +93,64 @@ class StoryContent {
                 ""
             )
         )
+
+        this.GraphData = this.generateGraphData();
+        console.log("[StoryContent()] GraphData = ", this.GraphData)
     }
 
     // make GraphData for Cytoscape from StoryData
     // Format: https://js.cytoscape.org/#notation/elements-json
+    // making a 1D array of actor data and storystep data objects
     // actor data:  {id: 'djredalert', stories: {'a': true, 'b': true}}
     //      id: displayed on node; stories: the names of the stories that the actor is in
-    // storystep data: {id: '0', source: 'krsone', target: 'djredalert', story: 'a', step: 0}
+    //
+    // storystep data: {id: '0', source: 'krsone', target: 'djredalert', story: 'a'}
     //      id: the name of the storystep; story: the story that owns this step
-    generateGraphData() {
+    generateGraphData(): object[] {
+        let actorData = new Map<string, {}>(); // keyed by id to check for collisions
+        let storyStepData = new Map<string, {}>(); // ^ ditto
 
+        for (const [storyTitle, story] of this.StoryData.Stories.entries()) {
+
+            for (const step of story.StorySteps) {
+                ////// modify actor nodes data to reflect this storyStep ////////
+                // if actorData doesn't have the target actor, add them to the Map with
+                //      appropriate stories property value
+                if (!actorData.has(step.Target)) {
+                    actorData.set(step.Target,
+                        {id:step.Target, stories:{[storyTitle]: true}})
+                } else {
+                    actorData.get(step.Target)[storyTitle] = true;
+                }
+
+                if (!actorData.has(step.Source)) {
+                    actorData.set(step.Source,
+                        {id:step.Source, stories:{[storyTitle]: true}})
+                } else {
+                    actorData.get(step.Source)[storyTitle] = true;
+                }
+
+                ////// modify storystep edges data to reflect this storyStep /////////
+                if (storyStepData.has(step.Title)) {
+                    console.log("[generateGraphData] ERROR: storyStepData already has step with id = ", step.Title)
+                }
+                storyStepData.set(step.Title, {
+                    id:step.Title,
+                    source:step.Source,
+                    target:step.Target,
+                    story:storyTitle,
+                })
+
+            }
+        }
+
+        console.log("[generateGraphData] finished actorData: ", actorData)
+        console.log("[generateGraphData] finished storyStepData: ", storyStepData)
+
+        let nodeObjs = Array.from(actorData.values())
+        let edgeObjs = Array.from(storyStepData.values())
+        return nodeObjs.concat(edgeObjs)
     }
-
-
-    //
-    // readonly GraphData =
-    //     [
-    //         {
-    //             data: {id: 'djredalert', name: 'DJ Red Alert', stories: {'a': true, 'b': true}}
-    //         },
-    //         {
-    //             data: {id: 'iou', name: 'IOU Dancers', stories: {'c': true}}
-    //         },
-    //
-    //         {
-    //             data: {id: 'krsone', name: "KRS One", stories: {'a': true}}
-    //         },
-    //         {
-    //             data: {id: 'mellemel', name: "Melle Mel", stories: {'a': true, 'b': true}}
-    //         },
-    //         {
-    //             data: {id: 'publicenemy', name: "Public Enemy", stories: {'b': true, 'c': true}}
-    //         },
-    //         {
-    //             data: {id: '0', name: '0', source: 'krsone', target: 'djredalert', story: 'a', step: 0}
-    //         },
-    //         {
-    //             data: {id: '1', name: '1', source: 'krsone', target: 'mellemel', story: 'a', step: 1}
-    //         },
-    //         {
-    //             data: {id: '5', name: '5', source: 'krsone', target: 'djredalert', story: 'a', step: 2}
-    //         },
-    //         {
-    //             data: {id: '2', name: '2', source: 'mellemel', target: 'publicenemy', story: 'b', step: 0}
-    //         },
-    //         {
-    //             data: {id: '3', name: '3', source: 'publicenemy', target: 'djredalert', story: 'b', step: 1}
-    //         },
-    //         {
-    //             data: {id: '4', name: '4', source: 'publicenemy', target: 'iou', story: 'c', step: 2}
-    //         }
-    //     ]
 
 }
 
