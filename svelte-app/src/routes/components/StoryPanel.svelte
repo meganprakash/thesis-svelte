@@ -1,14 +1,28 @@
 <script lang="ts">
 
     import {storyManager} from "../../ts/StoryManager";
-    const {currentStory} = storyManager
-    const {currentStoryStep} = storyManager
+    const {currentStory, currentStoryStep, currentStoryStepIdx} = storyManager
+
+    $: console.log("[StoryPanel] currentStory is now ", $currentStory)
+    $: console.log("[StoryPanel] currentStoryStepIdx is now ", $currentStoryStepIdx)
+
+    function next() {
+        storyManager.nextStoryStep();
+    }
+
 </script>
 
-<h1> Hello I'm StoryPanel </h1>
-<p>this is story {$currentStory}</p>
-<p>the current story step is {$currentStoryStep}</p>
-<button class="btn">NEXT</button>
+{#if $currentStory}
+    <h1>Story {$currentStory.Title}</h1>
+    <p>the current story step is {$currentStoryStep.Title} with idx {$currentStoryStepIdx}</p>
+    <p>the DJ content of this story step is {$currentStoryStep.DJText}</p>
+    <button class="btn" on:click={next}>NEXT</button>
+{:else}
+    <h1>No story selected</h1>
+    <p>This is where intro content goes</p>
+    <p>Click in the graph to select a story</p>
+{/if}
+
 
 <style>
     h1 {

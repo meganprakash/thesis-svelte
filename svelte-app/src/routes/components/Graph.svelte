@@ -10,10 +10,11 @@
     import {storyManager} from "../../ts/StoryManager";
     import popper from 'cytoscape-popper';
     import {storyContent} from "../../ts/StoryContent";
+    import {StoryType} from "../../ts/StoryTypes";
     // import tippy from 'tippy.js';
     // import 'tippy.js/dist/tippy.css';
 
-    const {currentStory, currentStoryStep} = storyManager
+    const {currentStory, currentStoryStep, individualMode} = storyManager
     $: console.log("[Graph.svelte] currentStory: ", $currentStory)
 
     const {GraphData} = storyContent
@@ -37,9 +38,16 @@
         color: white;
         width: 1px;
         font-size: 6;
+        target-arrow-shape: triangle;
     }
     .active-edge {
         color: yellow;
+    }
+    .current-step {
+        color: white;
+        line-color: yellow;
+        target-arrow-color: yellow;
+        width: 2px;
     }
     .faded {
         opacity: 0.4;
@@ -47,11 +55,9 @@
     .invisible {
         opacity: 0;
     }
-    .current-edge {
-        color:white;
-        width:1.5px;
-    }
     `
+
+    let cy = null;
 
     onMount(() => {
         console.log("Graph component mounted")
@@ -60,7 +66,7 @@
     function startCy() {
         // https://js.cytoscape.org/#getting-started/initialisation
         // TODO instead move this to GraphUIManager and import it here
-        const cy = cytoscape({
+         cy = cytoscape({
             container: document.getElementById('cytoscape'), // container to render in
 
             elements: storyContent.GraphData,
@@ -75,6 +81,7 @@
             userPanningEnabled: false,
             boxSelectionEnabled: false,
             autoungrabify: true,
+            autounselectify: true
         });
 
         cy.style(graphStyle);
@@ -98,26 +105,47 @@
             }
         });
 
-        ///// helpers //////
-        function selectStoryFromEdge(edge) {
-            // user clicks edge, new story starts and unrelated edges fade
-            const story = edge.data("story")
-            storyManager.changeCurrentStory(story)
+    }
 
+    $: if ($currentStory == null && cy) {
+        cy.elements().classes('')
+    } else if (cy) {
+        console.log("hello reactivity")
+        highlightStoryStep($currentStory, $currentStoryStep)
+    }
+
+    function highlightStoryStep(story:StoryType.Story, step:StoryType.StoryStep) {
+        console.log("[highlightStoryStep]: ", story, step)
+        // fade all edges or make them disappear if individual mode
+        if ($individualMode == true) {
+            cy.elements().classes('invisible')
+        } else {
             cy.elements().classes('faded');
-
-            const activeNodes = cy.nodes().filter(function(node){ return node.data('stories')[story] != undefined})
-            const activeEdges = cy.edges().filter(function(edge){ return edge.data("story") == story})
-
-            activeNodes.classes("active-node")
-            activeEdges.classes("active-edge")
-
         }
 
-        function clearStory() {
-            cy.elements().classes('')
-            storyManager.clearCurrentStory()
-        }
+        const activeNodes = cy.nodes().filter(function(node){ return node.data('stories')[story.Title] != undefined})
+        const activeEdges = cy.edges().filter(function(edge){ return edge.data("story") == story.Title})
+        activeNodes.classes("active-node")
+        activeEdges.classes("active-edge")
+
+        // highlight the current storystep
+        const thisStep = cy.edges().filter(function(edge) { return edge.data('id') == step.Title})
+        thisStep.classes("current-step")
+
+        // TODO show user avatar
+
+    }
+
+
+    ///// helpers //////
+    function selectStoryFromEdge(edge) {
+        // user clicks edge, new story starts and unrelated edges fade
+        const story = edge.data("story")
+        storyManager.changeCurrentStory(story)
+    }
+
+    function clearStory() {
+        storyManager.clearCurrentStory()
     }
 
 

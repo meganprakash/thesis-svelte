@@ -23,8 +23,12 @@ export namespace StoryType {
             if (this.Stories.has(story.Title)) {
                 console.log("[addStoryToCollection] ERROR: StoryCollection already has a story with title = ", story.Title)
             } else {
-                this.Stories[story.Title] = story
+                this.Stories.set(story.Title, story)
             }
+        }
+
+        public getStory(title:string): StoryType.Story {
+            return this.Stories.get(title)
         }
     }
 
@@ -58,8 +62,11 @@ export namespace StoryType {
         AudioPath: string
         ImagePath: string
 
-        constructor(Title: string, Source:string, Target:string, DJText: string, MCText: string, AudioPath: string, ImagePath: string) {
+
+        constructor(Title: string, Source: string, Target: string, DJText: string, MCText: string, AudioPath: string, ImagePath: string) {
             this.Title = Title;
+            this.Source = Source;
+            this.Target = Target;
             this.DJText = DJText;
             this.MCText = MCText;
             this.AudioPath = AudioPath;

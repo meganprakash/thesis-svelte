@@ -4,7 +4,7 @@
     import {storyManager} from "../../ts/StoryManager";
     import {push} from "svelte-spa-router";
 
-    const {currentStory} = storyManager
+    const {individualStoryChoice} = storyManager
 
     export let role = "--"
     // TODO receive callback for changing the bg of the parent (once i want to implement it);
@@ -56,7 +56,9 @@
     // submit() saves the story selection in StoryManager then moves to graph view
     function handleSubmit() {
         console.log("(Carousel) Selected index ", index)
-        $currentStory = index
+        $individualStoryChoice = index
+        // $currentStory = index
+        ////// TODO!!!!!! FIX THIS FN ////////
         push("/gr")
     }
 

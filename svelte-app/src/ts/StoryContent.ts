@@ -14,17 +14,19 @@ is generated at runtime as an object consumed by the Cytoscape library.
 class StoryContent {
 
     //// Source of truth for app story content! ////
-    readonly StoryData = new StoryType.StoryCollection();
+    readonly StoryCollection = new StoryType.StoryCollection();
     readonly GraphData = [];
 
     constructor() {
+        console.log("StoryContent constructed")
+
         const story1 = new StoryType.Story(
             "Story 1",
             "Hello DJ! This is the first story",
             "Hello MC! This is the first story",
             [],
             "",
-            this.StoryData)
+            this.StoryCollection)
 
         story1.appendStepToStory(
             new StoryType.StoryStep(
@@ -68,7 +70,7 @@ class StoryContent {
             "Hello MC! This is the second story",
             [],
             "",
-            this.StoryData)
+            this.StoryCollection)
 
         story2.appendStepToStory(
             new StoryType.StoryStep(
@@ -93,7 +95,7 @@ class StoryContent {
                 ""
             )
         )
-
+        console.log("[StoryContent()] StoryData = ", this.StoryCollection)
         this.GraphData = this.generateGraphData();
         console.log("[StoryContent()] GraphData = ", this.GraphData)
     }
@@ -104,13 +106,13 @@ class StoryContent {
     // actor data:  {id: 'djredalert', stories: {'a': true, 'b': true}}
     //      id: displayed on node; stories: the names of the stories that the actor is in
     //
-    // storystep data: {id: '0', source: 'krsone', target: 'djredalert', story: 'a'}
+    // storystep data: {id: 'redalert-to-krs-one', source: 'krsone', target: 'djredalert', story: 'a'}
     //      id: the name of the storystep; story: the story that owns this step
     generateGraphData(): object[] {
         let actorData = new Map<string, {}>(); // keyed by id to check for collisions
         let storyStepData = new Map<string, {}>(); // ^ ditto
 
-        for (const [storyTitle, story] of this.StoryData.Stories.entries()) {
+        for (const [storyTitle, story] of this.StoryCollection.Stories) {
 
             for (const step of story.StorySteps) {
                 ////// modify actor nodes data to reflect this storyStep ////////
@@ -120,14 +122,14 @@ class StoryContent {
                     actorData.set(step.Target,
                         {id:step.Target, stories:{[storyTitle]: true}})
                 } else {
-                    actorData.get(step.Target)[storyTitle] = true;
+                    actorData.get(step.Target)["stories"][storyTitle] = true;
                 }
 
                 if (!actorData.has(step.Source)) {
                     actorData.set(step.Source,
                         {id:step.Source, stories:{[storyTitle]: true}})
                 } else {
-                    actorData.get(step.Source)[storyTitle] = true;
+                    actorData.get(step.Source)["stories"][storyTitle] = true;
                 }
 
                 ////// modify storystep edges data to reflect this storyStep /////////
@@ -147,8 +149,8 @@ class StoryContent {
         console.log("[generateGraphData] finished actorData: ", actorData)
         console.log("[generateGraphData] finished storyStepData: ", storyStepData)
 
-        let nodeObjs = Array.from(actorData.values())
-        let edgeObjs = Array.from(storyStepData.values())
+        let nodeObjs = Array.from(actorData.values()).map(obj => ({data:obj}))
+        let edgeObjs = Array.from(storyStepData.values()).map(obj => ({data:obj}))
         return nodeObjs.concat(edgeObjs)
     }
 

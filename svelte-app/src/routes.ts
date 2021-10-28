@@ -40,7 +40,7 @@ export default {
                 return get(personalizationStore.submitted)
             },
             (detail) => {
-            return get(storyManager.currentStory) != null
+            return get(storyManager.individualStoryChoice) != null
             }
         ]
     }),
