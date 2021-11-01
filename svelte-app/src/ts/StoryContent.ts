@@ -9,6 +9,8 @@ for the content in this experience. The moments in RoleMoments.svelte are
 pulled from this object. The GraphData to display in Graph.svelte
 is generated at runtime as an object consumed by the Cytoscape library.
 
+Paths are relative to public/index.html, so please start from root ("content/foo.jpg" with no leading slash)
+
  */
 
 class StoryContent {
@@ -25,6 +27,7 @@ class StoryContent {
             "Hello DJ! This is the first story",
             "Hello MC! This is the first story",
             [],
+            "",
             "",
             this.StoryCollection)
 
@@ -69,6 +72,7 @@ class StoryContent {
             "Hello DJ! This is the second story",
             "Hello MC! This is the second story",
             [],
+            "",
             "",
             this.StoryCollection)
 

@@ -1,6 +1,7 @@
 import {writable, Writable, get} from "svelte/store";
 import {storyContent} from "./StoryContent";
-import type {StoryType} from "./StoryTypes";
+import {StoryType} from "./StoryTypes";
+import {personalizationStore} from "./PersonalizationStore";
 
 /*
 
@@ -31,7 +32,7 @@ class StoryManager {
         this.currentStoryStepIdx.set(0)
         this.currentStoryStep.set(story.StorySteps[0])
 
-        console.log('[StoryManager.ts] currentStory: ', get(this.currentStory))
+        console.log('[storyMananger.changeCurrentStory] currentStory: ', get(this.currentStory))
         // this.currentAudioPath.set( $audio_path ) // TODO actually do this in audioplayer
     }
 
@@ -45,7 +46,7 @@ class StoryManager {
 
     public nextStoryStep() {
         let story = get(this.currentStory)
-        console.log("[nextStoryStep] steps len = ", story.StorySteps.length)
+        console.log("[storyMananger.nextStoryStep] steps len = ", story.StorySteps.length)
         if (get(this.currentStoryStepIdx) < story.StorySteps.length - 1) {
             this.currentStoryStepIdx.update(n => n + 1)
             this.currentStoryStep.set(story.StorySteps[get(this.currentStoryStepIdx)])
@@ -54,6 +55,23 @@ class StoryManager {
             this.currentStoryStepIdx.set(0)
             this.currentStoryStep.set(null)
         }
+    }
+
+    public getMoments(): StoryType.Moment[] {
+        // for each story, get the id, printable title, photo, summary by role, audio
+        let moments = [] as StoryType.Moment[]
+        let collection = storyContent.StoryCollection
+
+        for (const [storyTitle, story] of collection.Stories) {
+            let m = new StoryType.Moment(storyTitle,
+                get(personalizationStore.userRole) == "MC" ? story.SummaryMC : story.SummaryDJ,
+                story.KeyAudioPath, story.KeyImagePath
+            )
+            moments.push(m)
+        }
+        console.log("[storyManager.getMoments] moments: ", moments)
+
+        return moments
     }
 
 }

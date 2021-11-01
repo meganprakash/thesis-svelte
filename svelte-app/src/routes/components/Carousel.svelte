@@ -1,22 +1,24 @@
 <script>
     import {Slidy} from 'svelte-slidy'
-    import {mcMoments} from "../../ts/RoleMomentsContent";
     import {storyManager} from "../../ts/StoryManager";
     import {push} from "svelte-spa-router";
 
     const {individualStoryChoice} = storyManager
 
     export let role = "--"
-    // TODO receive callback for changing the bg of the parent (once i want to implement it);
-    // TODO show sound icon maybe,Moment,  add some shadows to the edge of the carousel pane?
+
+    // 1. Check for MC vs DJ
+    // 2. For each story, get title, image, summary, audio from StoryContent
+    // 3. Put it into 'mcMoments' format for Slidy, add $currentAudio control
+    // 4. Set the $currentStory assignment
 
     let name = 'Slidy',
         index // current id in the Slidy carousel, reactive to <Slidy bind:index />
 
-    console.log(mcMoments)
+    console.log(storyManager.getMoments())
 
     const slidy = {
-        slides: mcMoments,
+        slides: storyManager.getMoments(),
         timeout: 1000,
         index: 0,
         wrap: {
@@ -54,11 +56,9 @@
     }
 
     // submit() saves the story selection in StoryManager then moves to graph view
-    function handleSubmit() {
-        console.log("(Carousel) Selected index ", index)
-        $individualStoryChoice = index
-        // $currentStory = index
-        ////// TODO!!!!!! FIX THIS FN ////////
+    function handleSubmit(id) {
+        console.log("(Carousel) Selected story ", index, " which is title = '", id, "'")
+        storyManager.changeCurrentStory(id)
         push("/gr")
     }
 
@@ -68,16 +68,16 @@
 <!-- <link rel="preload" as="audio" href="https://cdn.com/small-file.mp4"> -->
 
 <div id="slidy-container">
-    <Slidy {...slidy} bind:index let:item key={(item)=>("slide + " + item.id)}>
+    <Slidy {...slidy} bind:index let:item key={(item)=>("slide + " + item.Title)}>
         <div class="slide">
-            <img alt="{item.title}" src="{item.photoPath}"/>
+            <img alt="{item.Title}" src="{item.ImagePath}"/>
             <article>
-                <h2>{item.title}</h2>
+                <h2>{item.Title}</h2>
                 <p>
-                    {item.blurb}
+                    {item.Summary}
                 </p>
                 <p>
-                    <button class="btn" id="select-btn" on:click={handleSubmit}>SELECT</button>
+                    <button class="btn" id="select-btn" on:click={() => handleSubmit(item.Title)}>SELECT</button>
                 </p>
             </article>
         </div>
@@ -90,7 +90,6 @@
         </span>
     </Slidy>
 
-    <!-- TODO <audio> element that plays the current audio! use the index prop -->
 </div>
 
 

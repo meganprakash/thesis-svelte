@@ -38,13 +38,15 @@ export namespace StoryType {
         SummaryMC:string
         StorySteps:StoryStep[]
         KeyAudioPath:string // play in role_moments.svelte
+        KeyImagePath:string
 
-        constructor(Title: string, SummaryDJ: string, SummaryMC: string, StorySteps: StoryType.StoryStep[], KeyAudioPath: string, Collection:StoryCollection = null) {
+        constructor(Title: string, SummaryDJ: string, SummaryMC: string, StorySteps: StoryType.StoryStep[], KeyAudioPath: string, KeyImagePath:string, Collection:StoryCollection = null) {
             this.Title = Title;
             this.SummaryDJ = SummaryDJ;
             this.SummaryMC = SummaryMC;
             this.StorySteps = StorySteps;
             this.KeyAudioPath = KeyAudioPath;
+            this.KeyImagePath = KeyImagePath
             if (Collection !== null) Collection.addStoryToCollection(this)
         }
 
@@ -73,5 +75,19 @@ export namespace StoryType {
             this.ImagePath = ImagePath;
         }
     }
+
+    export class Moment {
+        Title: string
+        Summary: string
+        AudioPath: string
+        ImagePath: string
+        constructor(title: string, summary:string, audioPath: string, imagePath:string) {
+            this.Title = title
+            this.Summary = summary
+            this.ImagePath = imagePath
+            this.AudioPath = audioPath
+        }
+    }
+
 
 }
