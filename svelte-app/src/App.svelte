@@ -22,7 +22,6 @@
 <Header/>
 <Router {routes} on:conditionsFailed={conditionsFailed}/>
 <Footer/>
-<AudioPlayer/>
 
 <!-- Global styles for the app -->
 <svelte:head>

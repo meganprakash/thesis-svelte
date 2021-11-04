@@ -10,6 +10,8 @@
 
     import {onMount} from "svelte";
     import {storyManager} from "../../ts/StoryManager";
+    import Icon from "svelte-awesome";
+    import {music} from "svelte-awesome/icons"
     const {currentAudioPath, audioPaused} = storyManager
     $: console.log("currentAudioPath set to ", $currentAudioPath)
 
@@ -22,8 +24,36 @@
         console.log("Set GoStetsa as current audio")
     })
 
+    // add volume #, + and - buttons
 </script>
-
+<div id="audio-container">
     <audio autoplay hidden src="{$currentAudioPath}" bind:paused bind:volume>
         <track kind="captions" />
     </audio>
+    <div class="inline"><Icon data={music} scale="1.5"/></div><div id="now-playing" class="inline">song name here!</div>
+</div>
+
+<style>
+    #audio-container {
+        border-radius: 3px;
+        display: inline-block;
+        float: right;
+        position: relative;
+        margin-right: 30px;
+        margin-top: 40px;
+
+        color: white;
+        font-family: var(--text-font);
+    }
+
+    #now-playing {
+        font-size: 12pt;
+        color: #ddd;
+    }
+
+    .inline {
+        display: inline-block;
+        float: left;
+        padding-right: 10px;
+    }
+</style>

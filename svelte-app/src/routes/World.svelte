@@ -22,10 +22,10 @@ World.svelte is a page that contains the interaction graph and the modal showing
 -->
 <main> <!-- make the modal fade in slower than the graph -->
 
-    <div id="story-container"  in:fade="{{delay: 200, duration: 50}}">
+    <div id="story-container"  in:fade="{{delay: 100, duration: 50}}">
         <StoryPanel/>
     </div>
-    <div id="graph-container"  in:fade="{{duration: 50}}">
+    <div id="graph-container">
         <Graph/>
     </div>
 

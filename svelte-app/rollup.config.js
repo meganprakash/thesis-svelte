@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
+import globals from 'rollup-plugin-node-globals';
 
 
 const svelteConfig = require('./svelte.config.js');  // it has to be a CommonJS import
@@ -49,6 +50,7 @@ export default {
 				dev: !production
 			}
 		}),
+
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
 		css({ output: 'bundle.css' }),
@@ -78,7 +80,9 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		production && terser(),
+
+		globals()
 	],
 	watch: {
 		clearScreen: false

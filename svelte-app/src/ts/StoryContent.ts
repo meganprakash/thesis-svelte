@@ -27,8 +27,8 @@ class StoryContent {
             "Hello DJ! This is the first story",
             "Hello MC! This is the first story",
             [],
-            "",
-            "",
+            "static/GoStetsa.mp3",
+            "static/foo.png",
             this.StoryCollection)
 
         story1.appendStepToStory(
@@ -73,7 +73,7 @@ class StoryContent {
             "Hello MC! This is the second story",
             [],
             "",
-            "",
+            "static/foo.png",
             this.StoryCollection)
 
         story2.appendStepToStory(
