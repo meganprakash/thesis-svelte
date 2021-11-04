@@ -152,6 +152,7 @@
         cy.edges().unbind("mouseout")
         cy.edges().bind("mouseout", (e) => {
             cy.edges().removeClass("hover-edge")
+            cy.nodes().removeClass("hover-node")
         })
 
         cy.unbind("tap");
