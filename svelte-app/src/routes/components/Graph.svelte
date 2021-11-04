@@ -41,11 +41,11 @@
         font-size: 5;
         text-events: no;
     }
-    .active-node {
+    .active-story-node {
         background-color: #ddd;
     }
     .hover-node {
-        background-color: cyan;
+        background-color: #eee;
     }
     edge {
         curve-style: bezier;
@@ -55,25 +55,27 @@
         target-arrow-shape: triangle;
         text-events: no;
     }
-    .active-edge {
-        color: yellow;
+    .faded {
+        opacity: 0.4;
+        events: no;
+    }
+    .invisible {
+        opacity: 0;
+        events: no;
+    }
+    .active-story-edge {
+        color: white;
     }
     .hover-edge {
-        line-color: #eee;
-        target-arrow-color: #eee;
+        line-color: white;
+        target-arrow-color: white;
+        label: data(id);
     }
     .current-step {
         color: white;
         line-color: yellow;
         target-arrow-color: yellow;
         width: 2px;
-    }
-    .faded {
-        opacity: 0.4;
-    }
-    .invisible {
-        opacity: 0;
-        events: no;
     }
     `
 
@@ -126,32 +128,30 @@
         ////////// graph element listeners ////////////
         cytoscape.use(popper);
 
-        // add DOM element for labels on edges
-        let tips = document.createElement("div")
-
-        // use Popper to place the label on an edge on mouseover
         cy.elements().unbind('mouseover')
         cy.edges().on("mouseover", (e) => {
             e.target.addClass("hover-edge")
-            e.target.popperRef = e.target.popper({
-                content: () => {
-                    tips.innerHTML = e.target.data("id")
-                    tips.id = "tooltip"
-                    tooltipContainer.appendChild(tips)
-                    return tips
-                },
-                popper: {
-                    placement: "bottom",
-                    removeOnDestroy: true
-                }
-            })
+
+            // if no story selected, then highlight the whole story and put title in modal
+            if ($currentStory == null) {
+                let storyTitle = e.target.data("story")
+                console.log("[mouseover] story=", storyTitle)
+                const storyNodes = cy.nodes().filter(function (node) {
+                    return node.data('stories')[storyTitle] != undefined
+                })
+                const storyEdges = cy.edges().filter(function (edge) {
+                    return edge.data("story") == storyTitle
+                })
+
+                storyNodes.addClass("hover-node")
+                storyEdges.addClass("hover-edge")
+            }
         })
 
         // on mouseout, remove the label, which is destroyed by Popper
         cy.edges().unbind("mouseout")
         cy.edges().bind("mouseout", (e) => {
-            tooltipContainer.removeChild(tips)
-            e.target.removeClass("hover-edge")
+            cy.edges().removeClass("hover-edge")
         })
 
         cy.unbind("tap");
@@ -195,8 +195,8 @@
         const activeEdges = cy.edges().filter(function (edge) {
             return edge.data("story") == story.Title
         })
-        activeNodes.classes("active-node")
-        activeEdges.classes("active-edge")
+        activeNodes.classes("active-story-node")
+        activeEdges.classes("active-story-edge")
 
         // highlight the current storystep
         const thisStep = cy.edges().filter(function (edge) {
@@ -246,14 +246,6 @@
         width: 100%;
         height: 100%;
         display: block;
-    }
-
-    #tooltip-container {
-        color: #ddd;
-        font-family: var(--text-font);
-        font-size: 12pt;
-        font-weight: bold;
-        font-style: italic;
     }
 
     #dot-container {
