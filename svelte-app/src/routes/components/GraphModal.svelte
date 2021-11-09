@@ -1,7 +1,7 @@
 <script>
     export let message;
 
-    // TODO idk how to make a button in here close the modal
+    // https://github.com/flekschas/svelte-simple-modal
 </script>
 
 <main>

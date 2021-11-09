@@ -11,32 +11,46 @@ World.svelte is a page that contains the interaction graph and the modal showing
     import StoryPanel from "./components/StoryPanel.svelte";
     import Modal from 'svelte-simple-modal';
     import GraphModal from "./components/GraphModal.svelte";
-    import { bind } from 'svelte-simple-modal';
-    import { storyManager } from "../ts/StoryManager";
-    const { individualMode } = storyManager
+    import {bind} from 'svelte-simple-modal';
+    import {storyManager} from "../ts/StoryManager";
+    import {push} from "svelte-spa-router";
+
+    const {individualMode} = storyManager
 
     let individualIntro = 'These are the instructions for the individual mode'
     let globalIntro = 'These are the instructions for the global mode. You played ' +
         'through one narrative, but the Latin Quarter was full of overlapping stories,' +
         'creations, and innovations.'
 
-    $: showModal = bind(GraphModal, { message : $individualMode ? individualIntro : globalIntro})
+    $: showModal = bind(GraphModal, {message: $individualMode ? individualIntro : globalIntro})
 
     onMount(() => {
         window.scrollTo(0, 0)
     })
 
+    function done() {
+        push('/end')
+    }
+
 </script>
 <main> <!-- make the modal fade in slower than the graph -->
 
-    <div id="story-container"  in:fade="{{delay: 100, duration: 50}}">
+    <div id="story-container" in:fade="{{delay: 100, duration: 50}}">
         <StoryPanel/>
+
+        {#if !$individualMode}
+            <div id="done">
+                <button id="done-btn" class="btn" on:click={done}>EXIT THE CLUB</button>
+            </div>
+        {/if}
     </div>
     <div id="graph-container">
         <Graph/>
     </div>
-    <Modal show={showModal}>
-    </Modal>
+    <div id="modal-container">
+        <Modal show={showModal}>
+        </Modal>
+    </div>
 
 </main>
 
@@ -46,6 +60,21 @@ World.svelte is a page that contains the interaction graph and the modal showing
         display: flex;
         height: 80%;
         position: relative;
+    }
+
+    #done {
+        display: block;
+        position: absolute;
+        bottom: 20px;
+        align-self: center;
+    }
+
+    #done-btn {
+        background-color: #333;
+        color: #ddd;
+        font-weight: normal;
+        outline: 1px solid #ddd;
+        width: 100%;
     }
 
     #graph-container {
@@ -66,6 +95,7 @@ World.svelte is a page that contains the interaction graph and the modal showing
         padding: 30px;
         margin: 40px;
         z-index: 1;
+        position: relative;
     }
 
 

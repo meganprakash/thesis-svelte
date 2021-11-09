@@ -22,6 +22,7 @@
     const {userInitials, userColorHex} = personalizationStore
 
     const {currentStory, currentStoryStep, individualMode} = storyManager
+    individualMode.set(true)
     $: console.log("[Graph.svelte] currentStory: ", $currentStory)
 
     const {GraphData} = storyContent

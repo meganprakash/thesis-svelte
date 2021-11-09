@@ -4,6 +4,7 @@ import NotFound from './routes/NotFound.svelte'
 import PersonalizationSurvey from './routes/PersonalizationSurvey.svelte'
 import RoleExplore from './routes/RoleExplore.svelte'
 import World from './routes/World.svelte'
+import OutroPage from "./routes/OutroPage.svelte";
 import {wrap} from 'svelte-spa-router/wrap'
 import {get} from 'svelte/store'
 import {personalizationStore} from './ts/PersonalizationStore'
@@ -44,6 +45,17 @@ export default {
             }
         ]
     }),
+
+    '/end': wrap({
+        component: OutroPage,
+
+        conditions: [ // has the user been through the RoleExplore page?
+            (detail) => {
+                return get(personalizationStore.submitted)
+            },
+        ]
+    }),
+
     // Catch-all, must be last
     '*': NotFound,
 }
