@@ -6,8 +6,6 @@
         the top-level App.svelte.
      */
 
-    // TODO make this a bubble in the header bar that has a mute button!
-
     import {onMount} from "svelte";
     import {storyManager} from "../../ts/StoryManager";
     import Icon from "svelte-awesome";

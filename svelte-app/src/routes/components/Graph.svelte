@@ -18,8 +18,6 @@
     import {personalizationStore} from '../../ts/PersonalizationStore';
     import {createPopper} from "@popperjs/core";
     import { fade } from 'svelte/transition';
-    import tippy from 'tippy.js';
-    import 'tippy.js/dist/tippy.css';
 
     const {userInitials, userColorHex} = personalizationStore
 
@@ -69,7 +67,6 @@
     .hover-edge {
         line-color: white;
         target-arrow-color: white;
-        label: data(id);
     }
     .current-step {
         color: white;
@@ -132,10 +129,9 @@
         cy.edges().on("mouseover", (e) => {
             e.target.addClass("hover-edge")
 
-            // if no story selected, then highlight the whole story and put title in modal
+            // if no story selected, then highlight the whole story path
             if ($currentStory == null) {
                 let storyTitle = e.target.data("story")
-                console.log("[mouseover] story=", storyTitle)
                 const storyNodes = cy.nodes().filter(function (node) {
                     return node.data('stories')[storyTitle] != undefined
                 })
@@ -146,6 +142,8 @@
                 storyNodes.addClass("hover-node")
                 storyEdges.addClass("hover-edge")
             }
+
+            // TODO put story title in modal!
         })
 
         // on mouseout, remove the label, which is destroyed by Popper
@@ -157,8 +155,10 @@
 
         cy.unbind("tap");
         cy.bind('tap', function (evt) {
+            if ($individualMode == true) {
+                return // disable clicking in the graph in individual (tutorial) mode
+            }
             if (evt.target === cy) {
-                console.log('tapped on background')
                 clearStory()
             } else if (evt.target.isEdge() && $currentStory == null) {
                 const edge = evt.target;

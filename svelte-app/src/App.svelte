@@ -5,7 +5,6 @@
     import routes from './routes'
     import Header from './routes/components/Header.svelte'
     import Footer from './routes/components/Footer.svelte'
-    import AudioPlayer from "./routes/components/AudioPlayer.svelte";
 
     function conditionsFailed(event) {
         console.error('(Router) User missing initialization data', event.detail)
