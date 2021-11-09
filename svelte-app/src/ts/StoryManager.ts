@@ -54,6 +54,9 @@ class StoryManager {
             this.currentStory.set(null)
             this.currentStoryStepIdx.set(0)
             this.currentStoryStep.set(null)
+            if (get(this.individualMode) == true) {
+                this.individualMode.set(false)
+            }
         }
     }
 
