@@ -14,12 +14,12 @@
 <style>
     main {
         color: #eee;
-        margin-top: 12px;
-        display: inline-block;
+        margin-top: 24px;
+        display: block;
     }
 
     .quote {
-        font-family: var(--title-font);
+        font-family: var(--allcaps-font);
         font-weight: bold;
         font-size: 18px;
         line-height: 200%;
@@ -29,7 +29,7 @@
 
     .attr {
         font-family: var(--allcaps-font);
-        font-size: 18px;
+        font-size: 17px;
         font-weight: bold;
         text-transform: uppercase;
         line-height: 150%;

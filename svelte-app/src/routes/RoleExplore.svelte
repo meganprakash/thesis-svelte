@@ -85,6 +85,8 @@
         align-items: center;
         justify-content: center;
         display: inline-flex;
+        position: relative;
+        top: 6px;
     }
 
     .container {
