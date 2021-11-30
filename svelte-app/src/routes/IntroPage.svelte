@@ -5,6 +5,7 @@
     import {personalizationStore} from '../ts/PersonalizationStore';
     import {storyManager} from "../ts/StoryManager";
     import {onMount} from "svelte";
+    import BlockQuote from "./components/BlockQuote.svelte";
 
     onMount(() => {
         window.scrollTo(0, 0)
@@ -35,19 +36,20 @@
                 <p>
                     Hip-hop is a form of music and culture that began on the streets of inner city New York City and has
                     since grown into a worldwide cultural phenomenon, a multibillion-dollar industry, and a global
-                    medium for self-expression. In its early days, hip-hop music was only played late at night on
+                    medium for self-expression. <p>In its early days, hip-hop music was only played late at night on
                     underground radio stations. However, in 1985, a small nightclub in Times Square ignited hip-hop’s
                     “Golden Era” by attracting the hottest MCs, DJs, dancers, and record labels, along with anyone who
-                    wanted to witness the hip-hop movement at its loudest. That club was the Latin Quarter.
+                    wanted to witness the hip-hop movement at its loudest.</p>
+                <p>That club was the Latin Quarter.
                 </p>
-                <p><b>Turn on sound for the best experience.</b></p>
-                    <div class="quote"> “I used to work at Burger King / But after takin’ orders / I used to take the PATH /
-                        to Latin Quarters ‘cross the waters.”
-                <br/>- Queen Latifah, singer-songwriter, rapper, actress, and producer
-                    <br/>“Jersey” New Jersey Drive Vol.1 (Tommy Boy) 1995 </div>
+                <BlockQuote
+                        attr="— Queen Latifah"
+                        desc="“Jersey” New Jersey Drive Vol.1 (Tommy Boy), 1995"
+                        quote='“I used to work at Burger King / But after takin’ orders /<br> I used to take the PATH /
+                                        to Latin Quarters ‘cross the waters."'/>
                 <button class="btn" on:click={handleClick}>START</button>
-
             </div>
+
         </div>
         <div class="panel-cell img">
             <div id="carousel">
@@ -64,6 +66,10 @@
         background-color: var(--panel-bg);
         min-height: 800px;
         padding-top: 50px;
+    }
+
+    BlockQuote {
+        display: flex;
     }
 
     #carousel {

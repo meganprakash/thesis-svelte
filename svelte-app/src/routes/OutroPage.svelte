@@ -6,6 +6,7 @@
     import {storyManager} from "../ts/StoryManager";
     import {onMount} from "svelte";
     import {npcManager} from "../ts/NPCManager";
+    import BlockQuote from "./components/BlockQuote.svelte";
 
     onMount(() => {
         window.scrollTo(0, 0)
@@ -35,15 +36,22 @@
                     music
 
                 </p>
-                <h2>“You have to understand this—there can’t be no other club like the L.Q. ... It was an oasis of
+                <BlockQuote
+                        quote="“You have to understand this—there can’t be no other club like the L.Q. ... It was an oasis of
                     creativity. … You couldn’t get up there fronting you were somebody else. If you were fronting, you
-                    would wait outside.”
-                    <br><i>- KRS-One, legendary MC and producer</i>
-                </h2>
-                <h2>“Music got conscious, music got boisterous. It was outspoken. It was no more time trying to pacify
-                    things. We wanted to really make some sense.”
-                    <br><i>- Positive K</i>
-                </h2>
+                    would wait outside.”"
+                        attr="— KRS—One"
+                        desc="legendary MC and producer"
+                />
+
+                <p> </p>
+
+                <BlockQuote
+                        quote="“Music got conscious, music got boisterous. It was outspoken. It was no more time trying to pacify
+                    things. We wanted to really make some sense.”"
+                        attr="— Positive K"
+                        desc="MC and songwriter"
+                />
             </div>
         </div>
         <div class="panel-cell img">

@@ -4,6 +4,7 @@
     import RangeSlider from "svelte-range-slider-pips";
     import {personalizationStore} from '../ts/PersonalizationStore';
     import {onMount} from "svelte";
+    import BlockQuote from "./components/BlockQuote.svelte";
 
     onMount(() => {
         window.scrollTo(0, 0)
@@ -22,14 +23,6 @@
         {item: 'the origin of hip-hop', v: [2]}
     ]
 
-    /*
-    Calculate the desired role from user's survey responses
-    TODO make this real
-     */
-    function calculateRole() {
-        return "MC"
-    }
-
     // accessible color palette
     let colors = [
         "#8a3ffc",
@@ -44,7 +37,6 @@
 
     function handleNext() {
         $submitted = true;
-        $userRole = calculateRole()
         $userInitials = initialsChoice
         $userColorHex = colorChoice
         push('/role')
@@ -73,15 +65,18 @@
                     In this online experience, you’ll see a birds-eye view of some of the biggest moments of this era
                     and be able to retrace the steps of hip-hop greats.
                 </p>
-                <h2>“No matter how big a rap star you were, no matter what your legendary status was, no matter if you were new and up-and-coming, we all hung out there because of the one common goal we all had, which was our love for hip-hop.”
-                <br><i>- Mix Master Ice, DJ of UTFO</i></h2>
+                <BlockQuote
+                        quote="“No matter how big a rap star you were, no matter what your legendary status was, no matter if you were new and up-and-coming, we all hung out there because of the one common goal we all had, which was our love for hip-hop.”"
+                        attr="— Mix Master Ice"
+                        desc="DJ of UTFO"
 
+                />
             </div>
         </div>
         <div class="panel-cell img">
             <div id="slider-cell">
 
-                <h2> It can get crowded in the club! Customize a simple avatar to identify yourself:
+                <h2>Customize a simple avatar to identify yourself
                 </h2>
 
                 <!-- color picker + initials -->
@@ -138,6 +133,10 @@
         display: inline-block;
         margin: 5px 10px 5px 0;
         cursor: pointer;
+    }
+
+    .btn {
+        margin-top: 12px;
     }
 
     #dot {

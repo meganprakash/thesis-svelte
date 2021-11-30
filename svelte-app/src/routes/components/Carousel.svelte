@@ -5,12 +5,9 @@
 
     const {individualStoryChoice} = storyManager
 
-    export let role = "--"
-
-    // 1. Check for MC vs DJ
-    // 2. For each story, get title, image, summary, audio from StoryContent
-    // 3. Put it into 'mcMoments' format for Slidy, add $currentAudio control
-    // 4. Set the $currentStory assignment
+    // For each story, get title, image, summary, audio from StoryContent
+    // Put it into 'mcMoments' format for Slidy, add $currentAudio control
+    // Set the $currentStory assignment
 
     let name = 'Slidy',
         index // current id in the Slidy carousel, reactive to <Slidy bind:index />
@@ -26,7 +23,7 @@
             width: '100%',
             height: '100%',
             padding: '0',
-            align: 'center',
+            align: 'start',
             alignmargin: 0,
         },
         slide: {
@@ -68,6 +65,7 @@
 <!-- <link rel="preload" as="audio" href="https://cdn.com/small-file.mp4"> -->
 
 <div id="slidy-container">
+    <h2>Browse the moments, then choose one to explore.</h2><br>
     <Slidy {...slidy} bind:index let:item key={(item)=>("slide + " + item.Title)}>
         <div class="slide">
             <img alt="{item.Title}" src="{item.ImagePath}"/>
@@ -120,7 +118,7 @@
         display: flex;
         flex-flow: column;
         text-align: center;
-        align-content: center;
+        align-content: left;
         height: 100%;
         border-radius: 1rem;
     }

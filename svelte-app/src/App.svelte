@@ -52,7 +52,7 @@
         --button-onpress: #1257a1;
         --button-text: #fff;
 
-        --modal-bg: #16296b;
+        --modal-bg: #1c2133;
 
         --text-font: 'Lato', sans-serif;
     }
@@ -85,16 +85,6 @@
         line-height: 1.7;
 
 	}
-
-    :global .quote {
-        color: #eee;
-        font-family: var(--text-font);
-        font-weight: bold;
-        font-size: 14pt;
-        font-style: italic;
-        letter-spacing: 2px;
-        line-height: 120%;
-    }
 
     :global .btn {
         border-radius: 50px;
