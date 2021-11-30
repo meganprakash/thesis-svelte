@@ -86,6 +86,16 @@
 
 	}
 
+    :global .quote {
+        color: #eee;
+        font-family: var(--text-font);
+        font-weight: bold;
+        font-size: 14pt;
+        font-style: italic;
+        letter-spacing: 2px;
+        line-height: 120%;
+    }
+
     :global .btn {
         border-radius: 50px;
         width: auto;

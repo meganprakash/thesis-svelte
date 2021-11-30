@@ -24,8 +24,7 @@ class StoryContent {
 
         const story1 = new StoryType.Story(
             "Story 1",
-            "Hello DJ! This is the first story",
-            "Hello MC! This is the first story",
+            "Hello! This is the first story",
             [],
             "static/GoStetsa.mp3",
             "static/foo.png",
@@ -36,8 +35,7 @@ class StoryContent {
                 "StoryStep 1-1",
                 "DJ Red Alert",
                 "KRS-One",
-                "I'm a DJ at step 1-1",
-                "I'm an MC at step 1-1",
+                "I'm at step 1-1",
                 "",
                 ""
             )
@@ -48,8 +46,7 @@ class StoryContent {
                 "StoryStep 1-2",
                 "DJ Red Alert",
                 "KRS-One",
-                "I'm a DJ at step 1-2",
-                "I'm an MC at step 1-2",
+                "I'm a at step 1-2",
                 "",
                 ""
             )
@@ -60,8 +57,7 @@ class StoryContent {
                 "StoryStep 1-3",
                 "KRS-One",
                 "Public Enemy",
-                "I'm a DJ at step 1-3",
-                "I'm an MC at step 1-3",
+                "I'm at step 1-3",
                 "",
                 ""
             )
@@ -69,8 +65,7 @@ class StoryContent {
 
         const story2 = new StoryType.Story(
             "Story 2",
-            "Hello DJ! This is the second story",
-            "Hello MC! This is the second story",
+            "Hello! This is the second story",
             [],
             "",
             "static/foo.png",
@@ -81,8 +76,7 @@ class StoryContent {
                 "StoryStep 2-1",
                 "Melle Mel",
                 "KRS-One",
-                "I'm a DJ at step 2-1",
-                "I'm an MC at step 2-1",
+                "I'm  at step 2-1",
                 "",
                 ""
             )
@@ -93,8 +87,7 @@ class StoryContent {
                 "StoryStep 2-2",
                 "KRS-One",
                 "Melle Mel",
-                "I'm a DJ at step 2-2",
-                "I'm an MC at step 2-2",
+                "I'm at step 2-2",
                 "",
                 ""
             )

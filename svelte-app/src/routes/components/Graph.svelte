@@ -18,12 +18,14 @@
     import {personalizationStore} from '../../ts/PersonalizationStore';
     import {createPopper} from "@popperjs/core";
     import { fade } from 'svelte/transition';
+    import {npcManager} from "../../ts/NPCManager";
 
     const {userInitials, userColorHex} = personalizationStore
 
     const {currentStory, currentStoryStep, individualMode} = storyManager
     individualMode.set(true)
     $: console.log("[Graph.svelte] currentStory: ", $currentStory)
+    $: if($individualMode == false) {npcManager.startNPCanimation()}
 
     const {GraphData} = storyContent
 
@@ -99,7 +101,6 @@
 
     function startCy() {
         // https://js.cytoscape.org/#getting-started/initialisation
-        // TODO instead move this to GraphUIManager and import it here
         cy = cytoscape({
             container: document.getElementById('cytoscape'), // container to render in
 
@@ -143,8 +144,6 @@
                 storyNodes.addClass("hover-node")
                 storyEdges.addClass("hover-edge")
             }
-
-            // TODO put story title in modal!
         })
 
         // on mouseout, remove the label, which is destroyed by Popper
@@ -166,7 +165,7 @@
                 console.log('tapped edge ' + edge.id());
                 selectStoryFromEdge(edge)
             } else if (evt.target.isNode() && $currentStory == null) {
-                console.log('node tap handler not implemented yet, sorry')
+                console.log('node tap handler not implemented, sorry')
             }
         });
 
@@ -209,9 +208,17 @@
         attachAvatar(thisStep)
     }
 
+    // remove all NPC avatars if present, then generate and place new ones to match
+    //   the current state from NPCManager
+    function updateNPCAvatars() {
+
+
+        // styling active edges
+
+    }
+
     // get DOM element for the user's avatar,
     //      use Popper to stick it on the current edge
-    // TODO svelte transition to smoothly animate it?
     function attachAvatar(edge) {
         myAvatar.style.display = ""
         myAvatarPopper.state.elements.reference = edge.popperRef()

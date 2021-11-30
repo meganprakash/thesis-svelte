@@ -17,10 +17,14 @@ World.svelte is a page that contains the interaction graph and the modal showing
 
     const {individualMode} = storyManager
 
-    let individualIntro = 'These are the instructions for the individual mode'
-    let globalIntro = 'These are the instructions for the global mode. You played ' +
-        'through one narrative, but the Latin Quarter was full of overlapping stories,' +
-        'creations, and innovations.'
+    let individualIntro = 'This is the virtual Latin Quarter club, where you will read about the historical moment and watch how the connections play out. On the left, you’ll see the story, while on the right you’ll see the bird’s eye view of the club and the path that the story takes.\n' +
+        '\n' +
+        'Click “Next” to proceed through the story.\n'
+    let globalIntro = 'The Latin Quarter wasn’t a single timeline of stories; it was a space of constant connection and creation. The stories were simultaneous and interwoven.\n' +
+        '\n' +
+        'You’ll now see the full view of the club: the major MCs and DJs and the ways their paths intertwined. Hover over the connections in the map to browse the stories, and click on a story to explore it.\n' +
+        '\n' +
+        'When you’re done exploring and ready to leave the club, click EXIT THE CLUB.\n'
 
     $: showModal = bind(GraphModal, {message: $individualMode ? individualIntro : globalIntro})
 

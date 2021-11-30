@@ -3,9 +3,11 @@
     import {fade} from 'svelte/transition'
     import RangeSlider from "svelte-range-slider-pips";
     import {personalizationStore} from '../ts/PersonalizationStore';
-    import { onMount } from "svelte";
+    import {onMount} from "svelte";
 
-    onMount(() => {window.scrollTo(0, 0)})
+    onMount(() => {
+        window.scrollTo(0, 0)
+    })
 
     const {submitted, userRole, userColorHex, userInitials} = personalizationStore
 
@@ -27,9 +29,6 @@
     function calculateRole() {
         return "MC"
     }
-
-    // TODO TODO TODO
-    // have to implement an avatar picker, allow 3 letters and a color
 
     // accessible color palette
     let colors = [
@@ -57,54 +56,39 @@
     "\nsubmitted: ", $submitted,
     "\nuserRole: ", $userRole,
     "\nuserInitials: ", $userInitials,
-    "\nuserColorHex: ", $userColorHex),'')}
+    "\nuserColorHex: ", $userColorHex), '')}
 
 <main in:fade="{{duration: 500}}">
 
-    <h1>Before you enter the club...</h1>
+    <h1>Be yourself</h1>
     <div class="container">
         <div class="panel-cell text">
             <div id="main-text">
                 <p>
-                    This is the intro page. It contains the introduction to the Latin Quarter experience, some
-                    static intro text, and some
-                    dynamically laid out images.
+                    Hip-hop culture is a collective creation, and the Latin Quarter was the epitome of this philosophy.
+                    Every Friday and Saturday night, partiers and performers convened in Times Square
                 </p>
                 <p>
-                    From this intro, the user clicks "Start" to enter the personalization survey.
+                    There are MCs, DJs, dancers, the crowd, fashion....
+                    In this online experience, you’ll see a birds-eye view of some of the biggest moments of this era
+                    and be able to retrace the steps of hip-hop greats.
                 </p>
+                <h2>“No matter how big a rap star you were, no matter what your legendary status was, no matter if you were new and up-and-coming, we all hung out there because of the one common goal we all had, which was our love for hip-hop.”
+                <br><i>- Mix Master Ice, DJ of UTFO</i></h2>
 
             </div>
         </div>
         <div class="panel-cell img">
             <div id="slider-cell">
 
-                <h2> Rate your familiarity with the following:
+                <h2> It can get crowded in the club! Customize a simple avatar to identify yourself:
                 </h2>
-
-                {#each prompts as prompt}
-                    <div class="slider">
-                        {prompt.item} : {prompt.v}
-                        <div style="
-                    --range-slider: {color};
-                    --range-range: {barColor};
-                    --range-range-inactive: {barColor};
-                    --range-handle: {barColor};
-                    --range-handle-focus: {barColor}"
-                        >
-                            <RangeSlider float id="color-pips" bind:values={prompt.v}
-                                         range="min" max={4} pips pipstep={1}
-                                         formatter={ v => sliderLabels[v] }
-                            />
-                        </div>
-                    </div>
-                {/each}
 
                 <!-- color picker + initials -->
                 <div id="color-picker">
                     <div id="dot-container">
                             <span id="dot"
-                            style="background-color: {colorChoice}">{initialsChoice}</span>
+                                  style="background-color: {colorChoice}">{initialsChoice}</span>
                     </div>
                     <h2>PICK A COLOR</h2>
                     <div id="colors">
@@ -139,7 +123,7 @@
         height: 150px;
         padding-right: 30px;
         float: left;
-        display:flex;
+        display: flex;
         align-items: center;
     }
 

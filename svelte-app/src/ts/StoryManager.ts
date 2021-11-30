@@ -66,10 +66,7 @@ class StoryManager {
         let collection = storyContent.StoryCollection
 
         for (const [storyTitle, story] of collection.Stories) {
-            let m = new StoryType.Moment(storyTitle,
-                get(personalizationStore.userRole) == "MC" ? story.SummaryMC : story.SummaryDJ,
-                story.KeyAudioPath, story.KeyImagePath
-            )
+            let m = new StoryType.Moment(storyTitle, story.Summary,story.KeyAudioPath, story.KeyImagePath)
             moments.push(m)
         }
         console.log("[storyManager.getMoments] moments: ", moments)

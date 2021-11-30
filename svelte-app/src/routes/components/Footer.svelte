@@ -1,7 +1,10 @@
 <script lang="ts">
 </script>
 <main>
-	<div id="footer"> this is the footer information </div>
+	<div id="footer">
+		© 2021, Megan Prakash.
+		<br> email: meganp at mit dot edu
+	</div>
 
 </main>
 

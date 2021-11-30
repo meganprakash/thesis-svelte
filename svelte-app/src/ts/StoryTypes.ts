@@ -34,16 +34,14 @@ export namespace StoryType {
 
     export class Story {
         Title:string
-        SummaryDJ:string
-        SummaryMC:string
+        Summary:string
         StorySteps:StoryStep[]
         KeyAudioPath:string // play in role_moments.svelte
         KeyImagePath:string
 
-        constructor(Title: string, SummaryDJ: string, SummaryMC: string, StorySteps: StoryType.StoryStep[], KeyAudioPath: string, KeyImagePath:string, Collection:StoryCollection = null) {
+        constructor(Title: string, Summary: string, StorySteps: StoryType.StoryStep[], KeyAudioPath: string, KeyImagePath:string, Collection:StoryCollection = null) {
             this.Title = Title;
-            this.SummaryDJ = SummaryDJ;
-            this.SummaryMC = SummaryMC;
+            this.Summary = Summary;
             this.StorySteps = StorySteps;
             this.KeyAudioPath = KeyAudioPath;
             this.KeyImagePath = KeyImagePath
@@ -59,18 +57,16 @@ export namespace StoryType {
         Title: string
         Source: string
         Target: string
-        DJText: string
-        MCText: string
+        Text: string
         AudioPath: string
         ImagePath: string
 
 
-        constructor(Title: string, Source: string, Target: string, DJText: string, MCText: string, AudioPath: string, ImagePath: string) {
+        constructor(Title: string, Source: string, Target: string, Text: string, AudioPath: string, ImagePath: string) {
             this.Title = Title;
             this.Source = Source;
             this.Target = Target;
-            this.DJText = DJText;
-            this.MCText = MCText;
+            this.Text = Text;
             this.AudioPath = AudioPath;
             this.ImagePath = ImagePath;
         }
@@ -88,6 +84,4 @@ export namespace StoryType {
             this.AudioPath = audioPath
         }
     }
-
-
 }
