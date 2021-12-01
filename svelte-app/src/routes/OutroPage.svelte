@@ -36,25 +36,27 @@
                     music
 
                 </p>
-                <BlockQuote
-                        quote="“You have to understand this—there can’t be no other club like the L.Q. ... It was an oasis of
-                    creativity. … You couldn’t get up there fronting you were somebody else. If you were fronting, you
-                    would wait outside.”"
-                        attr="— KRS—One"
-                        desc="legendary MC and producer"
-                />
 
-                <p> </p>
-
-                <BlockQuote
-                        quote="“Music got conscious, music got boisterous. It was outspoken. It was no more time trying to pacify
-                    things. We wanted to really make some sense.”"
-                        attr="— Positive K"
-                        desc="MC and songwriter"
-                />
             </div>
         </div>
         <div class="panel-cell img">
+            <div>
+            <BlockQuote
+                    quote="“You have to understand this—there can’t be no other club like the L.Q. ... It was an oasis of
+                    creativity. … You couldn’t get up there fronting you were somebody else. If you were fronting, you
+                    would wait outside.”"
+                    attr="— KRS—One"
+                    desc="legendary MC and producer"
+            />
+                <div style="height: 100px;"></div>
+
+            <BlockQuote
+                    quote="“Music got conscious, music got boisterous. It was outspoken. It was no more time trying to pacify
+                    things. We wanted to really make some sense.”"
+                    attr="— Positive K"
+                    desc="MC and songwriter"
+            />
+                </div>
         </div>
 
     </div>

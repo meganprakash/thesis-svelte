@@ -6,6 +6,8 @@
     import {storyManager} from "../ts/StoryManager";
     import {onMount} from "svelte";
     import BlockQuote from "./components/BlockQuote.svelte";
+    import Icon from "svelte-awesome";
+    import {volumeUp} from "svelte-awesome/icons"
 
     onMount(() => {
         window.scrollTo(0, 0)
@@ -42,19 +44,22 @@
                     wanted to witness the hip-hop movement at its loudest.</p>
                 <p>That club was the Latin Quarter.
                 </p>
-                <BlockQuote
-                        attr="— Queen Latifah"
-                        desc="“Jersey” New Jersey Drive Vol.1 (Tommy Boy), 1995"
-                        quote='“I used to work at Burger King / But after takin’ orders /<br> I used to take the PATH /
-                                        to Latin Quarters ‘cross the waters."'/>
+
+                <p style="color: #ff8888; margin-top: 50px;"><Icon data={volumeUp}/><span style="margin-left: 9px;"><i>Turn on your sound for the best experience.</i></span></p>
                 <button class="btn" on:click={handleClick}>START</button>
             </div>
 
         </div>
         <div class="panel-cell img">
-            <div id="carousel">
+            <div id="photo-col">
                 <p> This is the photo carousel.
                 </p>
+
+                <BlockQuote
+                        attr="— Queen Latifah"
+                        desc="“Jersey” New Jersey Drive Vol.1 (Tommy Boy), 1995"
+                        quote='“I used to work at Burger King / But after takin’ orders /<br> I used to take the PATH /
+                                        to Latin Quarters ‘cross the waters."'/>
             </div>
         </div>
 
@@ -68,13 +73,8 @@
         padding-top: 50px;
     }
 
-    BlockQuote {
-        display: flex;
-    }
-
-    #carousel {
+    #photo-col {
         width: 100%;
-        background-color: black;
     }
 
     .container {
@@ -99,6 +99,8 @@
     .panel-cell.text {
         flex-basis: 450px;
         max-width: 650px;
+        position: relative;
+        top: -20px;
     }
 
     .panel-cell.img {
