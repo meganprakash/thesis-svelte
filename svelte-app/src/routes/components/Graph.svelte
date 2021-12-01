@@ -21,11 +21,12 @@
     import {npcManager} from "../../ts/NPCManager";
 
     const {userInitials, userColorHex} = personalizationStore
-
+    const {ticker} = npcManager
     const {currentStory, currentStoryStep, individualMode} = storyManager
     individualMode.set(true)
     $: console.log("[Graph.svelte] currentStory: ", $currentStory)
     $: if($individualMode == false) {npcManager.startNPCanimation()}
+    $: {$ticker; updateNPCAvatars()}
 
     const {GraphData} = storyContent
 
@@ -84,7 +85,6 @@
     let myAvatarPopper = null;
     let graphReady = false;
     let tooltipContainer = null;
-
 
     onMount(() => {
         console.log("Graph component mounted")
@@ -211,7 +211,13 @@
     // remove all NPC avatars if present, then generate and place new ones to match
     //   the current state from NPCManager
     function updateNPCAvatars() {
+        console.log("Graph.svelte: updateNPCAvatars() called")
 
+        // remove all popper elements
+
+        // go thru currentNPCState to see which edges have avatars
+        // make element for each edge and attach it with popper
+        // make avatar divs and add them to the correct element
 
         // styling active edges
 

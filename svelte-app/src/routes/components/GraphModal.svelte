@@ -1,13 +1,14 @@
 <script>
+    export let title;
     export let message;
 
     // https://github.com/flekschas/svelte-simple-modal
 </script>
 
 <main>
-<h1>Enter the virtual Latin Quarter</h1>
+<h1>{title}</h1>
 <p>
-    Hello! {message}
+    {message}
 </p>
 
 </main>

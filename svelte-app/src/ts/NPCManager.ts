@@ -25,17 +25,13 @@ class NPCManager {
         public interval = null
     ) {
         console.log("NPCManager constructed. currentNPCState = ", this.currentNPCState)
-        console.log("constructor ticker = ", get(this.ticker))
     }
 
     // every tick, move avatars by random chance. need to know the next step
     //  in each story per npc. getNextState() by story and current step I guess.
     // Graph.svelte will listen for the tick event and reflect the new state.
     private tick() {
-        console.log("Current NPC state: ", this.currentNPCState)
-        console.log("Current ticker = ", get(this.ticker))
         let newState = new Map(this.currentNPCState)
-        console.log("newState: ", newState)
 
         for( let [npcName, storyState] of newState) {
             // TODO random int
@@ -52,7 +48,6 @@ class NPCManager {
 
     // find the next step for this npc and return it
     private static getNextState(color:string, storyTitle:string, stepIdx: number): {color:string, storyTitle:string, stepIdx:number} {
-        console.log("NPCManager:getNextState()")
         let retTitle, retIdx
         let story = storyContent.StoryCollection.getStory(storyTitle)
 
