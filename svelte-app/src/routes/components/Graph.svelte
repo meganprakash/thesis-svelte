@@ -52,11 +52,10 @@
         background-color: #eee;
     }
     edge {
-        curve-style: bezier;
+        curve-style: haystack;
         color: white;
         width: 1px;
         font-size: 6;
-        target-arrow-shape: triangle;
         text-events: no;
     }
     .faded {
