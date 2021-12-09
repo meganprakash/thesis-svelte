@@ -23,17 +23,17 @@ class StoryContent {
         console.log("StoryContent constructed")
 
         const story1 = new StoryType.Story(
-            "Story 1",
-            "Hello! This is the first story",
+            "KRS-One battles Melle Mel and ushers in the Golden Era of Hip-Hop",
+            "the moment when the golden age took hold",
             [],
-            "static/GoStetsa.mp3",
+            "static/audio/Melle Mel - Pump Me Up.mp3",
             "static/foo.png",
             this.StoryCollection)
 
         story1.appendStepToStory(
             new StoryType.StoryStep(
-                "StoryStep 1-1",
-                "DJ Red Alert",
+                "Melle Mel is onstage challenging any of the younger MCs to a rap battle",
+                "Melle Mel",
                 "KRS-One",
                 "I'm at step 1-1",
                 "",

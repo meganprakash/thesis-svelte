@@ -18,7 +18,7 @@ class NPCManager {
         public currentNPCState: Map<string, {color:string, storyTitle:string, stepIdx:number}> = new Map([
             ["AA", {color: "#8a3ffc", storyTitle: "Story 1", stepIdx: 0}],
             ["BC", {color: "#33b1ff", storyTitle: "Story 2", stepIdx: 0}],
-            ["Q", {color: "#6fdc8c", storyTitle: "Story 1", stepIdx: 1}],
+            ["Q", {color: "#6fdc8c", storyTitle: "Story 1", stepIdx: 0}],
             ["NT", {color: "#ff7eb6", storyTitle: "Story 2", stepIdx: 1}]
         ]),
         public ticker: Writable<boolean> = writable(false),
@@ -34,10 +34,9 @@ class NPCManager {
         let newState = new Map(this.currentNPCState)
 
         for( let [npcName, storyState] of newState) {
-            // TODO random int
-
-            // if it's big enough, then advance npcName
-            newState.set(npcName, NPCManager.getNextState(storyState.color, storyState.storyTitle, storyState.stepIdx))
+            if (Math.random() > 0.7) {
+                newState.set(npcName, NPCManager.getNextState(storyState.color, storyState.storyTitle, storyState.stepIdx))
+            }
         }
 
         this.currentNPCState = newState
@@ -66,7 +65,8 @@ class NPCManager {
     }
 
     public startNPCanimation() {
-        this.interval = setInterval(() => this.tick(), 3000);
+        this.ticker.set(true);
+        this.interval = setInterval(() => this.tick(), 5000);
     }
 
     public stopNPCanimation() {

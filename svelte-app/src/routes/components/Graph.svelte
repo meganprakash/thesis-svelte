@@ -3,9 +3,10 @@
             <span id="dot"
                   style="background-color: {$userColorHex}">{$userInitials}</span>
 </div>
-<div id="tooltip-container"></div>
-
-<!-- TODO when global mode, programmatically create other avatar divs -->
+<div id="tooltip-container" transition:fade="{{delay: 100, duration: 200}}"></div>
+<div id="npc-container" transition:fade="{{delay: 100, duration: 200}}">
+    <!-- popper per edge that contains NPC avatars -->
+</div>
 
 <script lang="ts">
     /// <reference path="path/to/node.d.ts" />
@@ -26,9 +27,10 @@
     individualMode.set(true)
     $: console.log("[Graph.svelte] currentStory: ", $currentStory)
     $: if($individualMode == false) {npcManager.startNPCanimation()}
-    $: {$ticker; updateNPCAvatars()}
 
-    const {GraphData} = storyContent
+    $: {$ticker; if(!$individualMode) {updateNPCAvatars()}}
+
+    const {GraphData, StoryCollection} = storyContent
 
     // annoyingly, I couldn't get this to import with fs
     // I think I need node builtins and globals?
@@ -93,7 +95,7 @@
         myAvatar = document.getElementById("dot")
         myAvatar.style.display = "none"
         myAvatarPopper = createPopper(document.documentElement, myAvatar, {
-            placement: 'bottom'
+            placement: 'top'
         })
 
         tooltipContainer = document.getElementById("tooltip-container")
@@ -107,10 +109,10 @@
             elements: storyContent.GraphData,
             layout: {
                 name: 'cose',
-                idealEdgeLength: 20,
+                idealEdgeLength: 50,
                 animate:false
             },
-            zoom: 0.8,
+            zoom: 1,
             minZoom: 0.8,
             maxZoom: 3,
             userZoomingEnabled: false,
@@ -214,13 +216,57 @@
         console.log("Graph.svelte: updateNPCAvatars() called")
 
         // remove all popper elements
-
+        let container = document.getElementById("npc-container");
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
         // go thru currentNPCState to see which edges have avatars
-        // make element for each edge and attach it with popper
-        // make avatar divs and add them to the correct element
+        for( let [npc, state] of npcManager.currentNPCState) {
+            // need stepTitle to get the edge in the graph
+            let stepTitle =
+                storyContent.StoryCollection.Stories.get(state.storyTitle).StorySteps[state.stepIdx].Title
+            let edge = cy.edges().filter(function (edge) {
+                return edge.data('id') == stepTitle
+            })
+            if (!edge) {
+                console.log("No edge found for this NPC!!! stepTitle=", stepTitle)
+                return
+            }
 
-        // styling active edges
+            // make a popper div with id = 'pop-$stepTitle' if it doesn't exist yet
+            let divName = stepTitle.replace(/\W/g, '-') // replace non alphanumeric with -
+            let popDiv = document.getElementById("npc-"+divName);
+            let popper;
+            if (!popDiv) {
+                let d = document.createElement("div")
+                d.id = "npc-"+divName
+                container.appendChild(d)
+                popDiv = d
 
+                popper = createPopper(edge.popperRef(), popDiv, {
+                    placement: 'bottom'
+                })
+            } // else, popDiv exists and is already attached w a popper instance
+
+            // add the npc avatar
+            let avatar = document.createElement("span")
+            avatar.id = "dot-" + divName
+            avatar.className = "npc-dot"
+            avatar.style.backgroundColor = state.color
+            avatar.innerText = npc
+            popDiv.appendChild(avatar)
+
+        }
+
+        // TODO styling active edges
+    }
+
+    function removeFadeOut( el, speed ) {
+        el.style.transition = "opacity "+speed+"ms ease";
+        el.style.opacity = 0;
+        setTimeout(function() {
+            el.parentNode.removeChild(el);
+        }, speed);
     }
 
     // get DOM element for the user's avatar,
@@ -280,5 +326,20 @@
         align-items: center;
         justify-content: center;
         display: inline-flex;
+    }
+
+    :global .npc-dot {
+        float: right;
+        height: 28px;
+        width: 28px;
+        border-radius: 50%;
+        color: white;
+        font-family: var(--title-font);
+        font-size: 11pt;
+        align-items: center;
+        justify-content: center;
+        display: inline-flex;
+        opacity: 0.5;
+        filter: brightness(60%)
     }
 </style>

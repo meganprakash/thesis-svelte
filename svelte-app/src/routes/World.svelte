@@ -27,6 +27,7 @@ World.svelte is a page that contains the interaction graph and the modal showing
         'You’ll now see the full view of the club: the major MCs and DJs and the ways their paths intertwined. Hover over the connections in the map to browse the stories, and click on a story to explore it.\n' +
         '\n' +
         'When you’re done exploring and ready to leave the club, click EXIT THE CLUB.\n'
+    // TODO color the EXIT THE CLUB to match the button
 
     $: showModal = bind(GraphModal, {title: $individualMode ? individualTitle : globalTitle, message: $individualMode ? individualIntro : globalIntro})
 
@@ -39,9 +40,9 @@ World.svelte is a page that contains the interaction graph and the modal showing
     }
 
 </script>
-<main> <!-- make the modal fade in slower than the graph -->
+<main  out:fade="{{delay: 200, duration: 300}}"> <!-- make the modal fade in slower than the graph -->
 
-    <div id="story-container" in:fade="{{delay: 100, duration: 50}}">
+    <div id="story-container">
         <StoryPanel/>
 
         {#if !$individualMode}
@@ -72,15 +73,14 @@ World.svelte is a page that contains the interaction graph and the modal showing
         display: block;
         position: absolute;
         bottom: 20px;
-        align-self: center;
     }
 
     #done-btn {
-        background-color: #333;
-        color: #ddd;
+        background: none;
+        color: #ff8888 !important;
         font-weight: normal;
-        outline: 1px solid #ddd;
         width: 100%;
+        text-decoration: underline;
     }
 
     #graph-container {
