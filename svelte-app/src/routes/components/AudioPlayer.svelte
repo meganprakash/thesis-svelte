@@ -28,7 +28,7 @@
     <audio autoplay hidden src="{$currentAudioPath}" bind:paused bind:volume>
         <track kind="captions" />
     </audio>
-    <div class="inline"><Icon data={music} scale="1.5"/></div><div id="now-playing" class="inline">song name here!</div>
+    <div class="inline"><Icon data={music} scale="1.5"/></div><div id="now-playing" class="inline">now playing: {$currentAudioPath}</div>
 </div>
 
 <style>

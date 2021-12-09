@@ -180,7 +180,7 @@ class StoryContent {
         )
 
         const story4 = new StoryType.Story(
-            "Eric B. and Rakim enter the scene with \"Eric B. Is President\" ",
+            "Eric B. and Rakim enter the scene with \"Eric B. Is President\"",
             "Rakim brought his intricate lyricism and Islamic influences. Eric B & Rakim quickly left their mark on the culture",
             [],
             "static/audio/Eric B & Rakim - Eric B Is President.mp3",
@@ -291,7 +291,7 @@ class StoryContent {
             "static/foo.png",
             this.StoryCollection)
 
-        story5.appendStepToStory(
+        story6.appendStepToStory(
             new StoryType.StoryStep(
                 "Stetsasonic does a live performance with Bobby Simmons from the LQ",
                 "Stetsasonic",
@@ -302,7 +302,7 @@ class StoryContent {
             )
         )
 
-        story5.appendStepToStory(
+        story6.appendStepToStory(
             new StoryType.StoryStep(
                 "Go Stetsa is the anthem of the LQ",
                 "Stetsasonic",
@@ -313,7 +313,7 @@ class StoryContent {
             )
         )
 
-        story5.appendStepToStory(
+        story6.appendStepToStory(
             new StoryType.StoryStep(
                 "Stetsasonic influences conscious hip-hop",
                 "Stetsasonic",

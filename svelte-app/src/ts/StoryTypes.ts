@@ -28,6 +28,7 @@ export namespace StoryType {
         }
 
         public getStory(title:string): StoryType.Story {
+            console.log("[StoryCollection:getStory()] Getting story '", title, "'")
             return this.Stories.get(title)
         }
     }

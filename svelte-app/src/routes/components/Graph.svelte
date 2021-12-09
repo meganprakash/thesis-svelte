@@ -52,7 +52,7 @@
         background-color: #eee;
     }
     edge {
-        curve-style: haystack;
+        curve-style: bezier;
         color: white;
         width: 1px;
         font-size: 6;
@@ -107,9 +107,10 @@
 
             elements: storyContent.GraphData,
             layout: {
-                name: 'cose',
-                idealEdgeLength: 50,
-                animate:false
+                name: 'circle',
+                fit: true,
+                animate:false,
+                radius: 10
             },
             zoom: 1,
             minZoom: 0.8,
@@ -223,7 +224,7 @@
         for( let [npc, state] of npcManager.currentNPCState) {
             // need stepTitle to get the edge in the graph
             let stepTitle =
-                storyContent.StoryCollection.Stories.get(state.storyTitle).StorySteps[state.stepIdx].Title
+                storyContent.StoryCollection.getStory(state.storyTitle).StorySteps[state.stepIdx].Title
             let edge = cy.edges().filter(function (edge) {
                 return edge.data('id') == stepTitle
             })
@@ -338,7 +339,7 @@
         align-items: center;
         justify-content: center;
         display: inline-flex;
-        opacity: 0.5;
-        filter: brightness(60%)
+        opacity: 0.7;
+        filter: brightness(70%)
     }
 </style>

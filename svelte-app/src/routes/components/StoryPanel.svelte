@@ -13,9 +13,9 @@
 </script>
 
 {#if $currentStory}
-    <h1>Story {$currentStory.Title}</h1>
-    <p>the current story step is {$currentStoryStep.Title} with idx {$currentStoryStepIdx}</p>
-    <p>the DJ content of this story step is {$currentStoryStep.DJText}</p>
+    <h1>{$currentStory.Title}</h1>
+    <p>{$currentStoryStep.Title}</p>
+    <p>{$currentStoryStep.Text}</p>
     <button class="btn" on:click={next}>NEXT</button>
 {:else}
     <h1>No story selected</h1>
