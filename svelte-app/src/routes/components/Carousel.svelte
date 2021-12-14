@@ -94,7 +94,7 @@
 <style>
     main {
         height: 800px;
-        background-color: #16296b;
+        /*background-color: #16296b;*/
     }
 
     #select-btn {
@@ -108,7 +108,7 @@
     #slidy-container {
         display: inline-block;
         width: 100%;
-        background: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(17,17,17,1) 100%);
+        /*background: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(17,17,17,1) 100%);*/
         z-index: 2;
 
     }

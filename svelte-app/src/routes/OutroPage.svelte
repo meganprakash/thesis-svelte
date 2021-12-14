@@ -64,7 +64,8 @@
 
 <style>
     main {
-        background-color: var(--panel-bg);
+        background-image: url("../static/images/edit/bg-posters-02.jpg");
+        background-size: cover;
         min-height: 800px;
         padding-top: 50px;
     }

@@ -51,7 +51,8 @@
 
 <style>
     main {
-        background-color: var(--panel-bg);
+        background-image: url("../static/images/edit/bg-waiting-01.jpg");
+        background-size: cover;
         min-height: 800px;
         padding-top: 50px;
     }

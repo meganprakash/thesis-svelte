@@ -63,10 +63,21 @@ World.svelte is a page that contains the interaction graph and the modal showing
 
 <style>
     main {
-        background-color: var(--panel-bg);
+        background-image: url("../static/images/edit/bg-dance-01.jpg");
+        background-size: cover;
         display: flex;
         height: 80%;
         position: relative;
+    }
+
+    main::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.25);
     }
 
     #done {

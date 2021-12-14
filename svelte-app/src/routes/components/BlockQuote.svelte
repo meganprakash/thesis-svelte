@@ -21,7 +21,7 @@
     .quote {
         font-family: var(--allcaps-font);
         font-weight: bold;
-        font-size: 18px;
+        font-size: 20px;
         line-height: 200%;
         font-style: italic;
         color: var(--title-blue)
@@ -40,11 +40,11 @@
     .desc {
         font-family: var(--allcaps-font);
         font-size: 14px;
-        font-weight: bold;
+        font-weight: bolder;
         text-transform: uppercase;
         line-height: 150%;
         margin-top: 12px;
-        color: #2d70ba;
+        color: #3a79c1;
         font-style: italic;
     }
 

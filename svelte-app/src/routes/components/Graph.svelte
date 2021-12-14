@@ -126,15 +126,20 @@
 
         cy.style(graphStyle);
 
+        window.addEventListener('resize', function(){
+            cy.center()
+            cy.fit()
+        });
+
         ////////// graph element listeners ////////////
         cytoscape.use(popper);
 
         cy.elements().unbind('mouseover')
         cy.edges().on("mouseover", (e) => {
-            e.target.addClass("hover-edge")
-
             // if no story selected, then highlight the whole story path
             if ($currentStory == null) {
+                e.target.addClass("hover-edge")
+                console.log("[Cytoscape.js] mouseOver on ", e.target.name)
                 let storyTitle = e.target.data("story")
                 const storyNodes = cy.nodes().filter(function (node) {
                     return node.data('stories')[storyTitle] != undefined
@@ -151,6 +156,7 @@
         // on mouseout, remove the label, which is destroyed by Popper
         cy.edges().unbind("mouseout")
         cy.edges().bind("mouseout", (e) => {
+            console.log("[Cytoscape.js] mouseOut on ", e.target.name)
             cy.edges().removeClass("hover-edge")
             cy.nodes().removeClass("hover-node")
         })

@@ -4,12 +4,6 @@ import {storyContent} from "./StoryContent";
 // keep track of state for the NPC avatars
 
 class NPCManager {
-    // should this be a singleton? probably
-    // since the DOM avatars are being created and destroyed, NPCManager
-    //    should be a singleton keeping track of all the NPC states
-    //    instead of something like N avatar objects that have their
-    //    own managers
-
 
     // initial positions: pick a story to start
     // then set up callback for tick events every T milliseconds
@@ -70,7 +64,9 @@ class NPCManager {
     }
 
     public stopNPCanimation() {
-        clearInterval(this.interval)
+        if (this.interval) {
+            clearInterval(this.interval)
+        }
         console.log("stopNPCanimation()")
     }
 

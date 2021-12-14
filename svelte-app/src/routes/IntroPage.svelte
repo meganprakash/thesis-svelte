@@ -45,7 +45,7 @@
                 <p>That club was the Latin Quarter.
                 </p>
 
-                <p style="color: #ff8888; margin-top: 50px;"><Icon data={volumeUp}/><span style="margin-left: 9px;"><i>Turn on your sound for the best experience.</i></span></p>
+                <p style="color: #ff8888; margin-top: 30px; font-size: 14pt; font-weight: bold;"><Icon data={volumeUp}/><span style="margin-left: 9px;"><i>Turn on your sound for the best experience.</i></span></p>
                 <button class="btn" on:click={handleClick}>START</button>
             </div>
 
@@ -68,9 +68,12 @@
 
 <style>
     main {
-        background-color: var(--panel-bg);
+        /*background-color: var(--panel-bg);*/
         min-height: 800px;
         padding-top: 50px;
+
+        background-image: url("../static/images/edit/bg-crowd-01.jpg");
+        background-size: cover;
     }
 
     #photo-col {
@@ -78,6 +81,7 @@
     }
 
     .container {
+
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
