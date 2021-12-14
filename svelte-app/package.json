@@ -40,6 +40,7 @@
     "@smui/button": "^4.2.0",
     "@smui/card": "^4.2.0",
     "@types/node": "^16.1.0",
+    "async-mutex": "^0.3.2",
     "cytoscape": "^3.19.0",
     "cytoscape-popper": "^2.0.0",
     "rollup-plugin-node-globals": "^1.4.0",

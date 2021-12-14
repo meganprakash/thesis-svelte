@@ -20,6 +20,7 @@
     import {createPopper} from "@popperjs/core";
     import { fade } from 'svelte/transition';
     import {npcManager} from "../../ts/NPCManager";
+    import {Mutex, MutexInterface} from 'async-mutex';
 
     const {userInitials, userColorHex} = personalizationStore
     const {ticker} = npcManager
@@ -86,6 +87,8 @@
     let myAvatarPopper = null;
     let graphReady = false;
     let tooltipContainer = null;
+    let hoverStory = null; // ugh having a weird race condition w graph hover
+    const styleMx = new Mutex(); // Hovering on overlapping edges made the graph styling break. Idk
 
     onMount(() => {
         console.log("Graph component mounted")
@@ -138,27 +141,14 @@
         cy.edges().on("mouseover", (e) => {
             // if no story selected, then highlight the whole story path
             if ($currentStory == null) {
-                e.target.addClass("hover-edge")
-                console.log("[Cytoscape.js] mouseOver on ", e.target.name)
-                let storyTitle = e.target.data("story")
-                const storyNodes = cy.nodes().filter(function (node) {
-                    return node.data('stories')[storyTitle] != undefined
-                })
-                const storyEdges = cy.edges().filter(function (edge) {
-                    return edge.data("story") == storyTitle
-                })
-
-                storyNodes.addClass("hover-node")
-                storyEdges.addClass("hover-edge")
+                hoverStory = e.target.data("story")
             }
         })
 
         // on mouseout, remove the label, which is destroyed by Popper
         cy.edges().unbind("mouseout")
         cy.edges().bind("mouseout", (e) => {
-            console.log("[Cytoscape.js] mouseOut on ", e.target.name)
-            cy.edges().removeClass("hover-edge")
-            cy.nodes().removeClass("hover-node")
+            hoverStory = null
         })
 
         cy.unbind("tap");
@@ -186,6 +176,34 @@
         hideAvatar()
     } else if (cy && graphReady) {
         highlightStoryStep($currentStory, $currentStoryStep)
+    }
+
+    // when in global mode, hovering on an edge will highlight the whole story
+    // i had a weird race condition when I used addClass and removeClass, but also
+    //  I added all this mutex stuff so who knows what actually fixed it
+    $: if(hoverStory && cy && !$individualMode) {
+        styleMx.runExclusive(function() {
+            cy.edges().classes("")
+            cy.nodes().classes("")
+            console.log("[Graph.svelte] hoverStory = ", hoverStory)
+
+            const storyNodes = cy.nodes().filter(function (node) {
+                return node.data('stories')[hoverStory] != undefined
+            })
+            const storyEdges = cy.edges().filter(function (edge) {
+                return edge.data("story") == hoverStory
+            })
+
+            console.log("hoverStory issue: storyEdges = ", storyEdges.length)
+            storyNodes.classes("hover-node")
+            storyEdges.classes("hover-edge")
+        })
+    } else if (!hoverStory && cy && !$individualMode) {
+        styleMx.runExclusive(function() {
+            console.log("[Graph.svelte] hoverStory = ", hoverStory)
+            cy.edges().classes("")
+            cy.nodes().classes("")
+        })
     }
 
     ///// helpers //////
