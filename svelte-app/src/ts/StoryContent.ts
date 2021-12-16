@@ -19,6 +19,8 @@ class StoryContent {
     readonly StoryCollection = new StoryType.StoryCollection();
     readonly GraphData = [];
 
+    readonly AmbientIntroAudio = "./static/audio/instrumentals/Audio Two - Top Billin' (Instrumental).mp3"
+
     constructor() {
         console.log("StoryContent constructed")
 
@@ -26,8 +28,8 @@ class StoryContent {
             "KRS-One battles Melle Mel and ushers in the Golden Era of Hip-Hop",
             "the moment when the golden age took hold",
             [],
-            "static/audio/Melle Mel - Pump Me Up.mp3",
-            "static/foo.png",
+            "static/audio/instrumentals/Grandmaster Melle Mel & the Furious Five - Pump Me Up (Instrumental).mp3",
+            "static/images/edit/12_bdp_redalert.jpg",
             this.StoryCollection)
 
         story1.appendStepToStory(
@@ -36,7 +38,7 @@ class StoryContent {
                 "Melle Mel",
                 "KRS-One",
                 "I'm at step 1-1",
-                "static/audio/Melle Mel - Pump Me Up.mp3",
+                "static/audio/instrumentals/Grandmaster Melle Mel & the Furious Five - Pump Me Up (Instrumental).mp3",
                 ""
             )
         )
@@ -58,7 +60,7 @@ class StoryContent {
                 "KRS-One",
                 "Melle Mel",
                 "I'm at step 1-3",
-                "static/audio/Boogie Down Productions - Poetry.mp3",
+                "static/audio/instrumentals/Boogie Down Productions - Poetry (Instrumental).mp3",
                 ""
             )
         )
@@ -69,7 +71,7 @@ class StoryContent {
                 "KRS-One",
                 "DJ Scott La Rock",
                 "Though Melle also freestyled and protested, KRS-One had won the crowd over. Hip-hop fans craved the new sound and the new messages that the \"Golden Age\" brought",
-                "static/audio/Boogie Down Productions - Poetry.mp3",
+                "static/audio/instrumentals/Boogie Down Productions - Poetry (Instrumental).mp3",
                 ""
             )
         )
@@ -78,8 +80,8 @@ class StoryContent {
             "Audio Two's \"Top Billin'\" rocks the LQ",
             "Paradise convinces Red Alert to give the B-side a try",
             [],
-            "static/audio/Audio Two - Top Billin.mp3",
-            "static/foo.png",
+            "static/audio/instrumentals/Audio Two - Top Billin' (Instrumental).mp3",
+            "static/images/edit/AudioTwo_AlbumArt.jpeg",
             this.StoryCollection)
 
         story2.appendStepToStory(
@@ -88,7 +90,7 @@ class StoryContent {
                 "Audio Two",
                 "DJ Red Alert",
                 "Red Alert rejected it vehemently",
-                "static/audio/Audio Two - Make It Funky.mp3",
+                "static/audio/instrumentals/Audio Two - Top Billin' (Instrumental).mp3",
                 ""
             )
         )
@@ -99,7 +101,7 @@ class StoryContent {
                 "Audio Two",
                 "Paradise",
                 "They played it and immediately knew it would be a hit",
-                "static/audio/Audio Two - Top Billin.mp3",
+                "static/audio/Audio Two - Make It Funky.mp3",
                 ""
             )
         )
@@ -132,7 +134,7 @@ class StoryContent {
             "Scott La Rock and KRS-One become a force for \"conscious hip-hop\" and instantly change the game",
             [],
             "static/audio/Boogie Down Productions - South Bronx.mp3",
-            "static/foo.png",
+            "static/images/edit/17_scott_krsone.jpg",
             this.StoryCollection)
 
         story3.appendStepToStory(
@@ -141,7 +143,7 @@ class StoryContent {
                 "DJ Scott La Rock",
                 "KRS-One",
                 "text 1",
-                "static/audio/Boogie Down Productions - South Bronx.mp3",
+                "static/audio/instrumentals/Boogie Down Productions - South Bronx (Instrumental).mp3",
                 ""
             )
         )
@@ -152,7 +154,7 @@ class StoryContent {
                 "KRS-One",
                 "DJ Scott La Rock",
                 "text 2",
-                "static/audio/Boogie Down Productions - South Bronx.mp3",
+                "static/audio/instrumentals/Boogie Down Productions - South Bronx (Instrumental).mp3",
                 ""
             )
         )
@@ -183,8 +185,8 @@ class StoryContent {
             "Eric B. and Rakim enter the scene with \"Eric B. Is President\"",
             "Rakim brought his intricate lyricism and Islamic influences. Eric B & Rakim quickly left their mark on the culture",
             [],
-            "static/audio/Eric B & Rakim - Eric B Is President.mp3",
-            "static/foo.png",
+            "static/audio/instrumentals/Eric B. & Rakim - Eric B. Is President (instrumental).mp3",
+            "static/images/edit/10_ericb_rakim.jpg",
             this.StoryCollection)
 
         story4.appendStepToStory(
@@ -193,7 +195,7 @@ class StoryContent {
                 "Rakim",
                 "Eric B",
                 "text 1",
-                "static/audio/Eric B & Rakim - Eric B Is President.mp3",
+                "static/audio/instrumentals/Eric B. & Rakim - Eric B. Is President (instrumental).mp3",
                 ""
             )
         )
@@ -204,7 +206,7 @@ class StoryContent {
                 "Eric B",
                 "Rakim",
                 "text 2",
-                "static/audio/Eric B & Rakim - Eric B Is President.mp3",
+                "static/audio/instrumentals/Eric B. & Rakim - Eric B. Is President (instrumental).mp3",
                 ""
             )
         )
@@ -226,7 +228,7 @@ class StoryContent {
                 "Rakim",
                 "Eric B",
                 "text 4",
-                "static/audio/Eric B & Rakim - My Melody.mp3",
+                "static/audio/instrumentals/Rakim - Paid In Full (Instrumental).mp3",
                 ""
             )
         )
@@ -235,8 +237,8 @@ class StoryContent {
             "Public Enemy brings a new attitude to the LQ",
             "The club was shocked when they arrived with fake Uzis",
             [],
-            "static/audio/Public Enemy - Public Enemy No 1.mp3",
-            "static/foo.png",
+            "static/audio/instrumentals/Public Enemy - Public Enemy No. 1 (Instrumental).mp3",
+            "static/images/edit/07_publicenemy.jpg",
             this.StoryCollection)
 
         story5.appendStepToStory(
@@ -245,7 +247,7 @@ class StoryContent {
                 "Public Enemy",
                 "Paradise",
                 "Their suitcases are full of fake Uzi machine guns",
-                "static/audio/Public Enemy - Public Enemy No 1.mp3",
+                "static/audio/instrumentals/Public Enemy - Public Enemy No. 1 (Instrumental).mp3",
                 ""
             )
         )
@@ -287,8 +289,8 @@ class StoryContent {
             "Stetsasonic becomes \"the first Hip-Hop Band\"",
             "South Africa, \"Africans are dying for the gold we're wearing\"s",
             [],
-            "static/audio/Stetsasonic - Go Stetsa.mp3",
-            "static/foo.png",
+            "static/audio/instrumentals/Stetsasonic - Music for the Stetfully Insane.mp3",
+            "static/images/edit/14_stet.jpg",
             this.StoryCollection)
 
         story6.appendStepToStory(
@@ -297,7 +299,7 @@ class StoryContent {
                 "Stetsasonic",
                 "Bobby Simmons",
                 "text 1",
-                "static/audio/Stetsasonic - Go Stetsa.mp3",
+                "static/audio/instrumentals/Stetsasonic - Music for the Stetfully Insane.mp3",
                 ""
             )
         )
@@ -308,7 +310,7 @@ class StoryContent {
                 "Stetsasonic",
                 "Bobby Simmons",
                 "4 MCs onstage, \"hip hop band\"",
-                "static/audio/Stetsasonic - Go Stetsa.mp3",
+                "static/audio/instrumentals/Stetsasonic - Music for the Stetfully Insane.mp3",
                 ""
             )
         )
@@ -319,7 +321,7 @@ class StoryContent {
                 "Stetsasonic",
                 "Bobby Simmons",
                 "Stetsasonic influences conscious hip-hop",
-                "static/audio/Stetsasonic - Go Stetsa.mp3",
+                "static/audio/instrumentals/Stetsasonic - Music for the Stetfully Insane.mp3",
                 ""
             )
         )

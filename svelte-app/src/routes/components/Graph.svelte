@@ -181,7 +181,7 @@
     // when in global mode, hovering on an edge will highlight the whole story
     // i had a weird race condition when I used addClass and removeClass, but also
     //  I added all this mutex stuff so who knows what actually fixed it
-    $: if(hoverStory && cy && !$individualMode) {
+    $: if(hoverStory && !$currentStory && cy && !$individualMode) {
         styleMx.runExclusive(function() {
             cy.edges().classes("")
             cy.nodes().classes("")
@@ -198,7 +198,7 @@
             storyNodes.classes("hover-node")
             storyEdges.classes("hover-edge")
         })
-    } else if (!hoverStory && cy && !$individualMode) {
+    } else if (!hoverStory && !$currentStory && cy && !$individualMode) {
         styleMx.runExclusive(function() {
             console.log("[Graph.svelte] hoverStory = ", hoverStory)
             cy.edges().classes("")

@@ -8,9 +8,13 @@
     import BlockQuote from "./components/BlockQuote.svelte";
     import Icon from "svelte-awesome";
     import {volumeUp} from "svelte-awesome/icons"
+    import {storyContent} from "../ts/StoryContent";
+
+    const {currentAudioPath} = storyManager
 
     onMount(() => {
         window.scrollTo(0, 0)
+        $currentAudioPath = storyContent.AmbientIntroAudio
     })
 
     const {init} = personalizationStore

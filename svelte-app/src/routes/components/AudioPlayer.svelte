@@ -9,26 +9,38 @@
     import {onMount} from "svelte";
     import {storyManager} from "../../ts/StoryManager";
     import Icon from "svelte-awesome";
-    import {music} from "svelte-awesome/icons"
+    import {storyContent} from "../../ts/StoryContent";
+    import {faVolumeMute, faVolumeUp} from "@fortawesome/free-solid-svg-icons"
+
     const {currentAudioPath, audioPaused} = storyManager
-    $: console.log("currentAudioPath set to ", $currentAudioPath)
 
     let paused = $audioPaused
-    let volume = 0.5
+    let volume = 0.2
+
+    $: console.log("currentAudioPath set to ", $currentAudioPath, "and volume is ", volume)
 
     onMount(() => {
         console.log("AudioPlayer is mounted");
-        currentAudioPath.set("static/audio/GoStetsa.mp3")
-        console.log("Set GoStetsa as current audio")
+        currentAudioPath.set(storyContent.AmbientIntroAudio)
     })
+
+    function toggleAudio() {
+        volume === 0 ? volume = 0.2 : volume = 0;
+    }
 
     // add volume #, + and - buttons
 </script>
 <div id="audio-container">
     <audio autoplay hidden src="{$currentAudioPath}" bind:paused bind:volume>
-        <track kind="captions" />
+        <track kind="captions"/>
     </audio>
-    <div class="inline"><Icon data={music} scale="1.5"/></div><div id="now-playing" class="inline">now playing: {$currentAudioPath}</div>
+    <div class="inline" on:click={toggleAudio} style="cursor: pointer">
+        <Icon data={volume === 0 ? faVolumeMute : faVolumeUp} scale="1.5"/>
+    </div>
+    <div id="now-playing" class="inline">
+        {$currentAudioPath.substring(0, $currentAudioPath.lastIndexOf('.')).split("/").pop()}
+        <!-- this makes just the filename without the extension lol -->
+    </div>
 </div>
 
 <style>

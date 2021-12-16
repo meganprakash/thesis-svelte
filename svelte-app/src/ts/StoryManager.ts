@@ -1,7 +1,6 @@
 import {writable, Writable, get} from "svelte/store";
 import {storyContent} from "./StoryContent";
 import {StoryType} from "./StoryTypes";
-import {personalizationStore} from "./PersonalizationStore";
 
 /*
 
@@ -33,15 +32,14 @@ class StoryManager {
         this.currentStoryStep.set(story.StorySteps[0])
 
         console.log('[storyMananger.changeCurrentStory] currentStory: ', get(this.currentStory))
-        // this.currentAudioPath.set( $audio_path ) // TODO actually do this in audioplayer
+        this.currentAudioPath.set( story.StorySteps[0].AudioPath )
     }
 
     public clearCurrentStory() {
         this.currentStory.set(null)
         this.currentStoryStepIdx.set(0)
         this.currentStoryStep.set(null)
-
-        // this.currentAudioPath.set( $ambient_audio )
+        this.currentAudioPath.set( storyContent.AmbientIntroAudio  )
     }
 
     public nextStoryStep() {
@@ -50,10 +48,10 @@ class StoryManager {
         if (get(this.currentStoryStepIdx) < story.StorySteps.length - 1) {
             this.currentStoryStepIdx.update(n => n + 1)
             this.currentStoryStep.set(story.StorySteps[get(this.currentStoryStepIdx)])
+            this.currentAudioPath.set(story.StorySteps[get(this.currentStoryStepIdx)].AudioPath)
         } else {
-            this.currentStory.set(null)
-            this.currentStoryStepIdx.set(0)
-            this.currentStoryStep.set(null)
+            this.clearCurrentStory()
+            // are we leaving individual mode?
             if (get(this.individualMode) == true) {
                 this.individualMode.set(false)
             }
