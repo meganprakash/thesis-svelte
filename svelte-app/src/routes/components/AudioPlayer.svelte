@@ -21,7 +21,7 @@
 
     onMount(() => {
         console.log("AudioPlayer is mounted");
-        currentAudioPath.set(storyContent.AmbientIntroAudio)
+        $currentAudioPath= storyContent.AmbientIntroAudio
     })
 
     function toggleAudio() {

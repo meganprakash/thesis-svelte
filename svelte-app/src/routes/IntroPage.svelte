@@ -14,7 +14,7 @@
 
     onMount(() => {
         window.scrollTo(0, 0)
-        $currentAudioPath = storyContent.AmbientIntroAudio
+        // $currentAudioPath = storyContent.AmbientIntroAudio
     })
 
     const {init} = personalizationStore

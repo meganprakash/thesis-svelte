@@ -81,7 +81,7 @@ class StoryContent {
             "Paradise convinces Red Alert to give the B-side a try",
             [],
             "static/audio/instrumentals/Audio Two - Top Billin' (Instrumental).mp3",
-            "static/images/edit/AudioTwo_AlbumArt.jpeg",
+            "static/images/edit/AudioTwo_AlbumArt.jpg",
             this.StoryCollection)
 
         story2.appendStepToStory(
