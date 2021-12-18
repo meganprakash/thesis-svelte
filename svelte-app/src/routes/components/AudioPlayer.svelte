@@ -6,21 +6,19 @@
         the top-level App.svelte.
      */
 
-    import {onMount} from "svelte";
     import {storyManager} from "../../ts/StoryManager";
     import Icon from "svelte-awesome";
-    import {storyContent} from "../../ts/StoryContent";
     import {faVolumeMute, faVolumeUp} from "@fortawesome/free-solid-svg-icons"
 
     const {currentAudioPath, audioPaused} = storyManager
 
     let paused = $audioPaused
-    let volume = 0.3
+    let volume = 0.4
 
     $: console.log("currentAudioPath set to ", $currentAudioPath, "and volume is ", volume)
 
     function toggleAudio() {
-        volume === 0 ? volume = 0.2 : volume = 0;
+        volume === 0 ? volume = 0.4 : volume = 0;
     }
 
     // add volume #, + and - buttons
@@ -29,7 +27,7 @@
     <audio autoplay preload hidden src="{$currentAudioPath}" bind:paused bind:volume loop>
         <track kind="captions"/>
     </audio>
-    <div class="inline" on:click={toggleAudio} style="cursor: pointer">
+    <div class="inline" on:click={toggleAudio} style="cursor: pointer; visibility: {$currentAudioPath ? 'visible' : 'hidden'}">
         <Icon data={volume === 0 ? faVolumeMute : faVolumeUp} scale="1.5"/>
     </div>
     <div id="now-playing" class="inline">

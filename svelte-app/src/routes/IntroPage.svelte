@@ -40,12 +40,12 @@
                     and changed it forever.
                 </p>
                 <p>
-                    Hip-hop is a form of music and culture that began on the streets of inner city New York City. It's
-                    since grown into a worldwide cultural phenomenon, a multibillion-dollar industry, and a global
-                    medium for self-expression.
+                    Hip-hop is a form of music and culture that began on the streets of inner city New York. It's
+                    since grown into a worldwide cultural phenomenon, a multi-billion-dollar industry, and a global
+                    form of self-expression.
 
                 <p>In its early days, hip-hop music was only played late at night on
-                    underground radio stations. However, in 1985, a small nightclub in Times Square ignited hip-hop’s
+                    underground radio stations. In 1985, a small nightclub in Times Square ignited hip-hop’s
                     “Golden Era” by attracting the hottest MCs, DJs, dancers, and record labels, along with anyone who
                     wanted to witness the hip-hop movement at its loudest.</p>
                 <p>That club was the Latin Quarter.

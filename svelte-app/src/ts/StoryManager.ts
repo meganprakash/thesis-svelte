@@ -17,6 +17,7 @@ class StoryManager {
         public currentStoryStepIdx: Writable<number> = writable(0),
         public currentStoryStep: Writable<StoryType.StoryStep> = writable(null),
         public currentAudioPath: Writable<string> = writable(storyContent.AmbientIntroAudio),
+        public hoverStoryTitle: Writable<string> = writable(null),
         public audioPaused: Writable<boolean> = writable(true),
         public individualMode: Writable<boolean> = writable(true), // true: inactive edges hidden
     ) {

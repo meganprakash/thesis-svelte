@@ -1,9 +1,6 @@
 <script lang="ts">
 
     import {fade} from 'svelte/transition'
-    import {push} from 'svelte-spa-router'
-    import {personalizationStore} from '../ts/PersonalizationStore';
-    import {storyManager} from "../ts/StoryManager";
     import {onMount} from "svelte";
     import {npcManager} from "../ts/NPCManager";
     import BlockQuote from "./components/BlockQuote.svelte";
@@ -48,7 +45,7 @@
                     attr="— KRS—One"
                     desc="legendary MC and producer"
             />
-                <div style="height: 100px;"></div>
+                <div style="height: 30px;"></div>
 
             <BlockQuote
                     quote="“Music got conscious, music got boisterous. It was outspoken. It was no more time trying to pacify

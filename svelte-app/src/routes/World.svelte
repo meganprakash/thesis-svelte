@@ -35,21 +35,12 @@ World.svelte is a page that contains the interaction graph and the modal showing
         window.scrollTo(0, 0)
     })
 
-    function done() {
-        push('/end')
-    }
-
 </script>
 <main  out:fade="{{delay: 200, duration: 300}}"> <!-- make the modal fade in slower than the graph -->
 
     <div id="story-container">
         <StoryPanel/>
 
-        {#if !$individualMode}
-            <div id="done">
-                <button id="done-btn" class="btn" on:click={done}>EXIT THE CLUB</button>
-            </div>
-        {/if}
     </div>
     <div id="graph-container">
         <Graph/>
@@ -78,20 +69,6 @@ World.svelte is a page that contains the interaction graph and the modal showing
         bottom: 0;
         left: 0;
         background-color: rgba(0,0,0,0.25);
-    }
-
-    #done {
-        display: block;
-        position: absolute;
-        bottom: 20px;
-    }
-
-    #done-btn {
-        background: none;
-        color: #ff8888 !important;
-        font-weight: normal;
-        width: 100%;
-        text-decoration: underline;
     }
 
     #graph-container {

@@ -18,18 +18,25 @@
     import {StoryType} from "../../ts/StoryTypes";
     import {personalizationStore} from '../../ts/PersonalizationStore';
     import {createPopper} from "@popperjs/core";
-    import { fade } from 'svelte/transition';
+    import {fade} from 'svelte/transition';
     import {npcManager} from "../../ts/NPCManager";
-    import {Mutex, MutexInterface} from 'async-mutex';
+    import {Mutex} from 'async-mutex';
 
     const {userInitials, userColorHex} = personalizationStore
     const {ticker} = npcManager
-    const {currentStory, currentStoryStep, individualMode} = storyManager
+    const {currentStory, currentStoryStep, individualMode, hoverStoryTitle} = storyManager
     individualMode.set(true)
     $: console.log("[Graph.svelte] currentStory: ", $currentStory)
-    $: if($individualMode == false) {npcManager.startNPCanimation()}
+    $: if ($individualMode == false) {
+        npcManager.startNPCanimation()
+    }
 
-    $: {$ticker; if(!$individualMode) {updateNPCAvatars()}}
+    $: {
+        $ticker;
+        if (!$individualMode) {
+            updateNPCAvatars()
+        }
+    }
 
     const {GraphData, StoryCollection} = storyContent
 
@@ -74,11 +81,14 @@
         line-color: white;
         target-arrow-color: white;
     }
-    .current-step {
+    .current-step-edge {
         color: white;
         line-color: yellow;
         target-arrow-color: yellow;
         width: 2px;
+    }
+    .current-step-node {
+        background-color: yellow;
     }
     `
 
@@ -112,7 +122,7 @@
             layout: {
                 name: 'circle',
                 fit: true,
-                animate:false,
+                animate: false,
                 radius: 10
             },
             zoom: 1,
@@ -125,11 +135,15 @@
             autounselectify: true
         });
 
-        cy.ready(() => graphReady = true )
+
+        cy.ready(() => {
+            graphReady = true;
+            hideLoops()
+        })
 
         cy.style(graphStyle);
 
-        window.addEventListener('resize', function(){
+        window.addEventListener('resize', function () {
             cy.center()
             cy.fit()
         });
@@ -173,40 +187,70 @@
     //      and storystep
     $: if ($currentStory == null && cy) {
         cy.elements().classes('')
+        hideLoops()
         hideAvatar()
     } else if (cy && graphReady) {
         highlightStoryStep($currentStory, $currentStoryStep)
+        hideLoops()
     }
 
     // when in global mode, hovering on an edge will highlight the whole story
+    //    and set hoverStoryTitle in StoryManager (so that StoryPanel can display it)
     // i had a weird race condition when I used addClass and removeClass, but also
     //  I added all this mutex stuff so who knows what actually fixed it
-    $: if(hoverStory && !$currentStory && cy && !$individualMode) {
-        styleMx.runExclusive(function() {
-            cy.edges().classes("")
-            cy.nodes().classes("")
-            console.log("[Graph.svelte] hoverStory = ", hoverStory)
+    $: {
+        if (hoverStory && !$currentStory && cy && !$individualMode) {
+            $hoverStoryTitle = hoverStory
+            document.body.style.cursor = "pointer";
+            styleMx.runExclusive(function () {
+                cy.edges().classes("")
+                cy.nodes().classes("")
+                console.log("[Graph.svelte] hoverStory = ", hoverStory)
 
-            const storyNodes = cy.nodes().filter(function (node) {
-                return node.data('stories')[hoverStory] != undefined
-            })
-            const storyEdges = cy.edges().filter(function (edge) {
-                return edge.data("story") == hoverStory
-            })
+                const storyNodes = cy.nodes().filter(function (node) {
+                    return node.data('stories')[hoverStory] != undefined
+                })
+                const storyEdges = cy.edges().filter(function (edge) {
+                    return edge.data("story") == hoverStory
+                })
 
-            console.log("hoverStory issue: storyEdges = ", storyEdges.length)
-            storyNodes.classes("hover-node")
-            storyEdges.classes("hover-edge")
-        })
-    } else if (!hoverStory && !$currentStory && cy && !$individualMode) {
-        styleMx.runExclusive(function() {
-            console.log("[Graph.svelte] hoverStory = ", hoverStory)
-            cy.edges().classes("")
-            cy.nodes().classes("")
-        })
+                console.log("hoverStory issue: storyEdges = ", storyEdges.length)
+                storyNodes.classes("hover-node")
+                storyEdges.classes("hover-edge")
+                hideLoops()
+            })
+        } else if (!hoverStory && !$currentStory && cy && !$individualMode) {
+            $hoverStoryTitle = null
+            document.body.style.cursor = "default";
+            styleMx.runExclusive(function () {
+                console.log("[Graph.svelte] hoverStory = ", hoverStory)
+                cy.edges().classes("")
+                cy.nodes().classes("")
+                hideLoops()
+            })
+        } else {
+            document.body.style.cursor = "default";
+        }
     }
 
     ///// helpers //////
+
+    // hiding all self-loop edges, because they refer to story steps
+    //      that only have 1 person involved instead of a distinct source->target pair
+    //      this kind of has to be redone every time the graph is re-styled
+    function hideLoops() {
+        console.log("[Graph.svelte] Hiding loop edges")
+        let loops = cy.edges().filter(function (el) {
+            return el.source() == el.target()
+        })
+        if (loops) {
+            console.log("loops: ", loops.data["id"])
+            loops.classes("invisible")
+        }
+    }
+
+    // when a story is active, this makes sure the whole story graph is visible and
+    //  the current story step is highlighted
     function highlightStoryStep(story: StoryType.Story, step: StoryType.StoryStep) {
         console.log("[highlightStoryStep]: ", story, step)
         // fade all edges or make them disappear if individual mode
@@ -226,12 +270,17 @@
         activeEdges.classes("active-story-edge")
 
         // highlight the current storystep
-        const thisStep = cy.edges().filter(function (edge) {
+        const thisStepEdge = cy.edges().filter(function (edge) {
             return edge.data('id') == step.Title
         })
-        thisStep.classes("current-step")
+        thisStepEdge.connectedNodes().classes("current-step-node")
 
-        attachAvatar(thisStep)
+        if (thisStepEdge.isSimple()) { // not a loop
+            thisStepEdge.classes("current-step-edge")
+            attachAvatar(thisStepEdge)
+        } else {
+            attachAvatar(thisStepEdge.connectedNodes()[0])
+        }
     }
 
     // remove all NPC avatars if present, then generate and place new ones to match
@@ -245,7 +294,7 @@
             container.removeChild(container.firstChild);
         }
         // go thru currentNPCState to see which edges have avatars
-        for( let [npc, state] of npcManager.currentNPCState) {
+        for (let [npc, state] of npcManager.currentNPCState) {
             // need stepTitle to get the edge in the graph
             let stepTitle =
                 storyContent.StoryCollection.getStory(state.storyTitle).StorySteps[state.stepIdx].Title
@@ -259,11 +308,11 @@
 
             // make a popper div with id = 'pop-$stepTitle' if it doesn't exist yet
             let divName = stepTitle.replace(/\W/g, '-') // replace non alphanumeric with -
-            let popDiv = document.getElementById("npc-"+divName);
+            let popDiv = document.getElementById("npc-" + divName);
             let popper;
             if (!popDiv) {
                 let d = document.createElement("div")
-                d.id = "npc-"+divName
+                d.id = "npc-" + divName
                 container.appendChild(d)
                 popDiv = d
 
@@ -282,22 +331,22 @@
 
         }
 
-        // TODO styling active edges
+        // TODO styling active edges if desired
     }
 
-    function removeFadeOut( el, speed ) {
-        el.style.transition = "opacity "+speed+"ms ease";
+    function removeFadeOut(el, speed) {
+        el.style.transition = "opacity " + speed + "ms ease";
         el.style.opacity = 0;
-        setTimeout(function() {
+        setTimeout(function () {
             el.parentNode.removeChild(el);
         }, speed);
     }
 
     // get DOM element for the user's avatar,
     //      use Popper to stick it on the current edge
-    function attachAvatar(edge) {
+    function attachAvatar(el) {
         myAvatar.style.display = ""
-        myAvatarPopper.state.elements.reference = edge.popperRef()
+        myAvatarPopper.state.elements.reference = el.popperRef()
         myAvatarPopper.update()
     }
 

@@ -58,7 +58,7 @@ class StoryContent {
             new StoryType.StoryStep(
                 "KRS-One freestyles, then ends his freestyle asking the crowd, \"Who won?\"",
                 "KRS-One",
-                "Melle Mel",
+                "KRS-One",
                 "I'm at step 1-3",
                 "static/audio/instrumentals/Boogie Down Productions - Poetry (Instrumental).mp3",
                 ""
@@ -217,7 +217,7 @@ class StoryContent {
                 "DJ Red Alert",
                 "Eric B",
                 "text 3",
-                "static/audio/Eric B & Rakim - Eric B Is President.mp3",
+                "static/audio/instrumentals/Eric B. & Rakim - Eric B. Is President (instrumental).mp3",
                 ""
             )
         )
@@ -258,7 +258,7 @@ class StoryContent {
                 "Melle Mel",
                 "Public Enemy",
                 "text 2",
-                "static/audio/Public Enemy - Public Enemy No 1.mp3",
+                "static/audio/instrumentals/Public Enemy - Public Enemy No. 1 (Instrumental).mp3",
                 ""
             )
         )
@@ -269,7 +269,7 @@ class StoryContent {
                 "Public Enemy",
                 "Public Enemy",
                 "text 3",
-                "static/audio/Public Enemy - Public Enemy No 1.mp3",
+                "static/audio/instrumentals/Public Enemy - Public Enemy No. 1 (Instrumental).mp3",
                 ""
             )
         )
@@ -280,7 +280,7 @@ class StoryContent {
                 "Public Enemy",
                 "Melle Mel",
                 "text 3",
-                "static/audio/Public Enemy - Public Enemy No 1.mp3",
+                "static/audio/instrumentals/Public Enemy - Public Enemy No. 1 (Instrumental).mp3",
                 ""
             )
         )
@@ -350,30 +350,32 @@ class StoryContent {
                 ////// modify actor nodes data to reflect this storyStep ////////
                 // if actorData doesn't have the target actor, add them to the Map with
                 //      appropriate stories property value
-                if (!actorData.has(step.Target)) {
+                if (step.Target && !actorData.has(step.Target)) {
                     actorData.set(step.Target,
                         {id:step.Target, stories:{[storyTitle]: true}})
-                } else {
+                } else if (step.Target) {
                     actorData.get(step.Target)["stories"][storyTitle] = true;
                 }
 
-                if (!actorData.has(step.Source)) {
+                if (step.Source && !actorData.has(step.Source)) {
                     actorData.set(step.Source,
                         {id:step.Source, stories:{[storyTitle]: true}})
-                } else {
+                } else if (step.Source) {
                     actorData.get(step.Source)["stories"][storyTitle] = true;
                 }
 
                 ////// modify storystep edges data to reflect this storyStep /////////
-                if (storyStepData.has(step.Title)) {
-                    console.log("[generateGraphData] ERROR: storyStepData already has step with id = ", step.Title)
+                if (step.Target && step.Source) { // we need to draw an edge
+                    if (storyStepData.has(step.Title)) {
+                        console.log("[generateGraphData] ERROR: storyStepData already has step with id = ", step.Title)
+                    }
+                    storyStepData.set(step.Title, {
+                        id: step.Title,
+                        source: step.Source,
+                        target: step.Target,
+                        story: storyTitle,
+                    })
                 }
-                storyStepData.set(step.Title, {
-                    id:step.Title,
-                    source:step.Source,
-                    target:step.Target,
-                    story:storyTitle,
-                })
 
             }
         }
