@@ -35,14 +35,16 @@
         <div class="panel-cell text">
             <div id="main-text">
                 <p>
-                    You’ve made it to the virtual Latin Quarter nightclub! This is an online representation of the
+                    <b>You’ve made it to the virtual Latin Quarter nightclub!</b> This is an online representation of the
                     birthplace of modern hip-hop, where you can see and hear the legendary moments that shaped hip-hop
                     and changed it forever.
                 </p>
                 <p>
-                    Hip-hop is a form of music and culture that began on the streets of inner city New York City and has
+                    Hip-hop is a form of music and culture that began on the streets of inner city New York City. It's
                     since grown into a worldwide cultural phenomenon, a multibillion-dollar industry, and a global
-                    medium for self-expression. <p>In its early days, hip-hop music was only played late at night on
+                    medium for self-expression.
+
+                <p>In its early days, hip-hop music was only played late at night on
                     underground radio stations. However, in 1985, a small nightclub in Times Square ignited hip-hop’s
                     “Golden Era” by attracting the hottest MCs, DJs, dancers, and record labels, along with anyone who
                     wanted to witness the hip-hop movement at its loudest.</p>
