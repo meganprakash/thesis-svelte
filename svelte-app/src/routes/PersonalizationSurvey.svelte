@@ -5,9 +5,15 @@
     import {personalizationStore} from '../ts/PersonalizationStore';
     import {onMount} from "svelte";
     import BlockQuote from "./components/BlockQuote.svelte";
+    import {storyContent} from "../ts/StoryContent";
+    import {storyManager} from "../ts/StoryManager";
+
+    const {currentAudioPath} = storyManager
 
     onMount(() => {
         window.scrollTo(0, 0)
+        $currentAudioPath = "foo"
+        $currentAudioPath = storyContent.AmbientIntroAudio
     })
 
     const {submitted, userRole, userColorHex, userInitials} = personalizationStore

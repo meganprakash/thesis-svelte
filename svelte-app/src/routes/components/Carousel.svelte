@@ -6,7 +6,7 @@
     const {individualStoryChoice} = storyManager
 
     // For each story, get title, image, summary, audio from StoryContent
-    // Put it into 'mcMoments' format for Slidy, add $currentAudio control
+    // Limited to the first 3 stories from StoryContent
     // Set the $currentStory assignment
 
     let name = 'Slidy',
@@ -15,7 +15,7 @@
     console.log(storyManager.getMoments())
 
     const slidy = {
-        slides: storyManager.getMoments(),
+        slides: storyManager.getMoments().slice(3),
         timeout: 1000,
         index: 0,
         wrap: {
@@ -23,7 +23,7 @@
             width: '100%',
             height: '100%',
             padding: '0',
-            align: 'start',
+            align: 'middle',
             alignmargin: 0,
         },
         slide: {
@@ -65,7 +65,7 @@
 <!-- <link rel="preload" as="audio" href="https://cdn.com/small-file.mp4"> -->
 
 <div id="slidy-container">
-    <h2>Browse the moments, then choose one to explore.</h2><br>
+    <h2 style="text-align: center">Browse the moments, then choose one to explore.</h2><br>
     <Slidy {...slidy} bind:index let:item key={(item)=>("slide + " + item.Title)}>
         <div class="slide">
             <img alt="{item.Title}" src="{item.ImagePath}"/>
@@ -94,7 +94,6 @@
 <style>
     main {
         height: 800px;
-        /*background-color: #16296b;*/
     }
 
     #select-btn {
@@ -110,7 +109,6 @@
         width: 100%;
         /*background: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(17,17,17,1) 100%);*/
         z-index: 2;
-
     }
 
     .slide {
@@ -118,7 +116,7 @@
         display: flex;
         flex-flow: column;
         text-align: center;
-        align-content: left;
+        align-content: center;
         height: 100%;
         border-radius: 1rem;
     }
@@ -140,6 +138,7 @@
 
     :global(.slidy-dots li button) {
         background-color: var(--button-blue) !important;
+        outline: 1px solid white;
     }
 
     :global(.slidy-dots li.active button) {
@@ -147,26 +146,26 @@
     }
 
     :global(#slidy button.arrow-right) {
-        background-color: var(--button-hover) !important;
+        background-color: var(--header) !important;
         border-radius: 50% !important;
         color: white;
         font-weight: bold;
         font-family: var(--text-font);
         font-size: 25pt;
-        -webkit-box-shadow: 0px 0px 14px 12px #111;
-        box-shadow: 0px 0px 14px 12px #111;
+        -webkit-box-shadow: 0px 0px 9px 9px #111;
+        box-shadow: 0px 0px 9px 9px #111;
     }
 
 
     :global(#slidy button.arrow-left) {
-        background-color: var(--button-hover) !important;
+        background-color: var(--header) !important;
         border-radius: 50% !important;
         color: white;
         font-weight: bold;
         font-family: var(--text-font);
         font-size: 25pt;
-        -webkit-box-shadow: 0px 0px 14px 12px #111;
-        box-shadow: 0px 0px 14px 12px #111;
+        -webkit-box-shadow: 0px 0px 9px 9px #111;
+        box-shadow: 0px 0px 9px 9px #111;
     }
 
     .spinner {

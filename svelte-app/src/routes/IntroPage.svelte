@@ -14,7 +14,7 @@
 
     onMount(() => {
         window.scrollTo(0, 0)
-        // $currentAudioPath = storyContent.AmbientIntroAudio
+        $currentAudioPath = ""
     })
 
     const {init} = personalizationStore
@@ -56,8 +56,7 @@
         </div>
         <div class="panel-cell img">
             <div id="photo-col">
-                <p> This is the photo carousel.
-                </p>
+                <img src="./static/images/edit/04_lyte_latifah_medium.jpg" alt="MC Lyte and Queen Latifah outside the Latin Quarter">
 
                 <BlockQuote
                         attr="— Queen Latifah"
