@@ -39,7 +39,7 @@ class StoryContent {
                 "KRS-One",
                 "I'm at step 1-1",
                 "static/audio/instrumentals/Grandmaster Melle Mel & the Furious Five - Pump Me Up (Instrumental).mp3",
-                ""
+                "static/foo.png"
             )
         )
 

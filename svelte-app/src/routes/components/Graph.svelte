@@ -1,4 +1,4 @@
-<div id="cytoscape" transition:fade="{{delay: 100, duration: 300}}"></div>
+
 <div id="dot-container" transition:fade="{{delay: 350, duration: 300}}">
             <span id="dot"
                   style="background-color: {$userColorHex}">{$userInitials}</span>
@@ -7,6 +7,8 @@
 <div id="npc-container" transition:fade="{{delay: 100, duration: 200}}">
     <!-- popper per edge that contains NPC avatars -->
 </div>
+
+<div id="cytoscape" transition:fade="{{delay: 100, duration: 300}}"></div>
 
 <script lang="ts">
     /// <reference path="path/to/node.d.ts" />
@@ -316,7 +318,15 @@
                 container.appendChild(d)
                 popDiv = d
 
-                popper = createPopper(edge.popperRef(), popDiv, {
+                let ref
+
+                if (edge.isSimple()) { // not a loop
+                    ref = edge.popperRef()
+                } else {
+                    ref = edge.connectedNodes()[0].popperRef()
+                }
+
+                popper = createPopper(ref, popDiv, {
                     placement: 'bottom'
                 })
             } // else, popDiv exists and is already attached w a popper instance
@@ -382,12 +392,6 @@
         display: block;
     }
 
-    #dot-container {
-        display: inline-block;
-        align-items: start;
-        height: 100%;
-    }
-
     #dot {
         float: right;
         height: 35px;
@@ -413,6 +417,6 @@
         justify-content: center;
         display: inline-flex;
         opacity: 0.7;
-        filter: brightness(70%)
+        filter: brightness(80%)
     }
 </style>

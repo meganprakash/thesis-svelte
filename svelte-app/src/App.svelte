@@ -33,7 +33,7 @@
 
 <style>
 	:global body { /* applies to <body> containing the svelte components */
-		background-color: var(--panel-bg);
+		background-color: var(--header-bg);
         margin: 0;
         padding: 0;
 	}

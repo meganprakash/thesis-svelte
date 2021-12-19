@@ -23,6 +23,10 @@
 {#if $currentStory}
     <h1>{$currentStory.Title}</h1>
     <p>{$currentStoryStep.Title}</p>
+    {#if $currentStoryStep.ImagePath}
+        <img src={$currentStoryStep.ImagePath} alt="header image" style="width: 100%; height:auto;">
+    {/if}
+    <!-- img IF ImagePath, audio IF AudioSnippetPath. audio has a play listener to pause the ambient -->
     <p>{$currentStoryStep.Text}</p>
     <button class="btn" on:click={next}>NEXT</button>
 {:else}
@@ -30,7 +34,7 @@
     {#if $hoverStoryTitle}
         <p>{storyContent.StoryCollection.getStory($hoverStoryTitle).Summary}</p>
     {/if}
-    <p>Hover over the connections in the graph to browse stories. Click any story to explore it.</p>
+    <p><i>Hover over the connections in the graph to browse stories. Click any story to explore it.</i></p>
 {/if}
 
 {#if !$individualMode}
@@ -54,16 +58,15 @@
     #done {
         display: block;
         padding: 0;
+        width: 100%;
+        text-align: center;
     }
 
     #done-btn {
         background: none;
         color: #ff8888 !important;
         font-weight: normal;
-        width: 100%;
         text-decoration: underline;
-        padding: 0;
-        margin: 20px;
     }
 
 

@@ -17,7 +17,6 @@
 
 <style>
 	main {
-		height: 70px;
 		border-top: 1px var(--header) solid;
 		position: relative;
 		background-color: var(--header-bg);
@@ -30,6 +29,7 @@
 		line-height: 120%;
 		font-size: 10pt;
 		padding-top: 30px;
+		padding-bottom: 30px;
 		text-align: center;
 	}
 </style>

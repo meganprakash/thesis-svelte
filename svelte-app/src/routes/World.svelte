@@ -81,7 +81,7 @@ World.svelte is a page that contains the interaction graph and the modal showing
         width: 40%;
         height: 70%;
         min-width: 300px;
-        max-width: 450px;
+        max-width: 650px;
         display: inline-block;
         vertical-align: middle;
         background-color: var(--modal-bg);
