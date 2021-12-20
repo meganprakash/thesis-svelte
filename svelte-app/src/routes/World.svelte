@@ -18,16 +18,14 @@ World.svelte is a page that contains the interaction graph and the modal showing
     const {individualMode} = storyManager
 
     const individualTitle = 'Entering the virtual Latin Quarter'
-    const individualIntro = 'This is the virtual Latin Quarter club, where you will read about the historical moment and watch how the connections play out. On the left, you’ll see the story, while on the right you’ll see the bird’s eye view of the club and the path that the story takes.\n' +
-        '\n' +
-        'Click “Next” to proceed through the story.\n'
+    const individualIntro = 'This is the virtual Latin Quarter club, where you will walk through the moment you chose and watch how the connections play out. ' +
+        '<p>On the left is the story, and on the right is the path that the story takes.</p>' +
+        '<p>' +
+        'Click <b>NEXT</b> to proceed through the story.</p>'
     const globalTitle = 'Bird\'s eye view of the club'
-    const globalIntro = 'The Latin Quarter wasn’t a single timeline of stories; it was a space of constant connection and creation. The stories were simultaneous and interwoven.\n' +
-        '\n' +
-        'You’ll now see the full view of the club: the major MCs and DJs and the ways their paths intertwined. Hover over the connections in the map to browse the stories, and click on a story to explore it.\n' +
-        '\n' +
-        'When you’re done exploring and ready to leave the club, click EXIT THE CLUB.\n'
-    // TODO color the EXIT THE CLUB to match the button
+    const globalIntro = 'The Latin Quarter wasn’t a single timeline of stories; it was a space of constant connection and creation.' +
+        '<p>You’ll now see the full view of the club: the major MCs and DJs and the ways their paths intertwined. Hover over the connections in the map to browse the stories. Click on a story to explore it.</p>' +
+        '<p>When you’re done exploring and ready to leave the club, click <b>EXIT THE CLUB</b>.</p>'
 
     $: showModal = bind(GraphModal, {title: $individualMode ? individualTitle : globalTitle, message: $individualMode ? individualIntro : globalIntro})
 

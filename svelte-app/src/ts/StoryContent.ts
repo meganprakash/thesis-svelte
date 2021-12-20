@@ -39,6 +39,7 @@ class StoryContent {
                 "KRS-One",
                 "I'm at step 1-1",
                 "static/audio/instrumentals/Grandmaster Melle Mel & the Furious Five - Pump Me Up (Instrumental).mp3",
+                "",
                 "static/foo.png"
             )
         )
@@ -50,6 +51,7 @@ class StoryContent {
                 "KRS-One",
                 "I'm a at step 1-2",
                 "static/audio/Melle Mel - Pump Me Up.mp3",
+                "",
                 ""
             )
         )
@@ -61,6 +63,7 @@ class StoryContent {
                 "KRS-One",
                 "I'm at step 1-3",
                 "static/audio/instrumentals/Boogie Down Productions - Poetry (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -72,6 +75,7 @@ class StoryContent {
                 "DJ Scott La Rock",
                 "Though Melle also freestyled and protested, KRS-One had won the crowd over. Hip-hop fans craved the new sound and the new messages that the \"Golden Age\" brought",
                 "static/audio/instrumentals/Boogie Down Productions - Poetry (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -91,6 +95,7 @@ class StoryContent {
                 "DJ Red Alert",
                 "Red Alert rejected it vehemently",
                 "static/audio/instrumentals/Audio Two - Top Billin' (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -102,6 +107,7 @@ class StoryContent {
                 "Paradise",
                 "They played it and immediately knew it would be a hit",
                 "static/audio/Audio Two - Make It Funky.mp3",
+                "",
                 ""
             )
         )
@@ -113,6 +119,7 @@ class StoryContent {
                 "DJ Red Alert",
                 "text",
                 "static/audio/Audio Two - Top Billin.mp3",
+                "",
                 ""
             )
         )
@@ -125,6 +132,7 @@ class StoryContent {
                 "Audio Two",
                 "He played it 3 times in a row",
                 "static/audio/Audio Two - Top Billin.mp3",
+                "",
                 ""
             )
         )
@@ -144,6 +152,7 @@ class StoryContent {
                 "KRS-One",
                 "text 1",
                 "static/audio/instrumentals/Boogie Down Productions - South Bronx (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -155,6 +164,7 @@ class StoryContent {
                 "DJ Scott La Rock",
                 "text 2",
                 "static/audio/instrumentals/Boogie Down Productions - South Bronx (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -166,6 +176,7 @@ class StoryContent {
                 "DJ Scott La Rock",
                 "text 3",
                 "static/audio/Boogie Down Productions - South Bronx.mp3",
+                "",
                 ""
             )
         )
@@ -177,6 +188,7 @@ class StoryContent {
                 "KRS-One",
                 "text 3",
                 "static/audio/Boogie Down Productions - South Bronx.mp3",
+                "",
                 ""
             )
         )
@@ -196,6 +208,7 @@ class StoryContent {
                 "Eric B",
                 "text 1",
                 "static/audio/instrumentals/Eric B. & Rakim - Eric B. Is President (instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -207,6 +220,7 @@ class StoryContent {
                 "Rakim",
                 "text 2",
                 "static/audio/instrumentals/Eric B. & Rakim - Eric B. Is President (instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -218,6 +232,7 @@ class StoryContent {
                 "Eric B",
                 "text 3",
                 "static/audio/instrumentals/Eric B. & Rakim - Eric B. Is President (instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -229,6 +244,7 @@ class StoryContent {
                 "Eric B",
                 "text 4",
                 "static/audio/instrumentals/Rakim - Paid In Full (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -248,6 +264,7 @@ class StoryContent {
                 "Paradise",
                 "Their suitcases are full of fake Uzi machine guns",
                 "static/audio/instrumentals/Public Enemy - Public Enemy No. 1 (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -259,6 +276,7 @@ class StoryContent {
                 "Public Enemy",
                 "text 2",
                 "static/audio/instrumentals/Public Enemy - Public Enemy No. 1 (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -270,6 +288,7 @@ class StoryContent {
                 "Public Enemy",
                 "text 3",
                 "static/audio/instrumentals/Public Enemy - Public Enemy No. 1 (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -281,6 +300,7 @@ class StoryContent {
                 "Melle Mel",
                 "text 3",
                 "static/audio/instrumentals/Public Enemy - Public Enemy No. 1 (Instrumental).mp3",
+                "",
                 ""
             )
         )
@@ -300,6 +320,7 @@ class StoryContent {
                 "Bobby Simmons",
                 "text 1",
                 "static/audio/instrumentals/Stetsasonic - Music for the Stetfully Insane.mp3",
+                "",
                 ""
             )
         )
@@ -311,6 +332,7 @@ class StoryContent {
                 "Bobby Simmons",
                 "4 MCs onstage, \"hip hop band\"",
                 "static/audio/instrumentals/Stetsasonic - Music for the Stetfully Insane.mp3",
+                "static/audio/snippets/Stetsasonic - Go Stetsa I.mp3",
                 ""
             )
         )
@@ -322,10 +344,10 @@ class StoryContent {
                 "Bobby Simmons",
                 "Stetsasonic influences conscious hip-hop",
                 "static/audio/instrumentals/Stetsasonic - Music for the Stetfully Insane.mp3",
+                "",
                 ""
             )
         )
-
 
         console.log("[StoryContent()] StoryData = ", this.StoryCollection)
         this.GraphData = this.generateGraphData();

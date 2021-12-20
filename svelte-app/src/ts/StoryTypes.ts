@@ -59,16 +59,18 @@ export namespace StoryType {
         Source: string
         Target: string
         Text: string
-        AudioPath: string
+        AmbientAudioPath: string
+        AudioSnippetPath: string
         ImagePath: string
 
 
-        constructor(Title: string, Source: string, Target: string, Text: string, AudioPath: string, ImagePath: string) {
+        constructor(Title: string, Source: string, Target: string, Text: string, AmbientAudioPath: string, AudioSnippetPath: string, ImagePath: string) {
             this.Title = Title;
             this.Source = Source;
             this.Target = Target;
             this.Text = Text;
-            this.AudioPath = AudioPath;
+            this.AmbientAudioPath = AmbientAudioPath;
+            this.AudioSnippetPath = AudioSnippetPath;
             this.ImagePath = ImagePath;
         }
     }

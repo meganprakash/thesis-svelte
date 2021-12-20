@@ -8,7 +8,7 @@
 <main>
 <h1>{title}</h1>
 <p>
-    {message}
+    {@html message}
 </p>
 
 </main>

@@ -70,7 +70,7 @@
         <div class="slide">
             <img alt="{item.Title}" src="{item.ImagePath}"/>
             <article>
-                <h2>{item.Title}</h2>
+                <div class="carousel-title">{item.Title}</div>
                 <p>
                     {item.Summary}
                 </p>
@@ -94,6 +94,15 @@
 <style>
     main {
         height: 800px;
+    }
+
+    .carousel-title {
+        font-family: var(--title-font);
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 150%;
+        text-align: center;
+        color: white;
     }
 
     #select-btn {

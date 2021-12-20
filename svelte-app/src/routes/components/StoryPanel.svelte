@@ -4,30 +4,56 @@
     import {storyContent} from "../../ts/StoryContent";
     import {push} from "svelte-spa-router";
 
-    const {currentStory, currentStoryStep, currentStoryStepIdx, hoverStoryTitle, individualMode} = storyManager
+    const {
+        currentStory,
+        currentStoryStep,
+        currentStoryStepIdx,
+        audioPaused,
+        hoverStoryTitle,
+        individualMode
+    } = storyManager
+
+    let snippetPaused = true
 
     $: console.log("[StoryPanel] currentStory is now ", $currentStory)
     $: console.log("[StoryPanel] currentStoryStepIdx is now ", $currentStoryStepIdx)
+    $: console.log("[StoryPanel] audioPaused is now ", $audioPaused)
 
     function next() {
         storyManager.nextStoryStep();
     }
 
+    function playSnippet() {
+        $audioPaused = true
+        snippetPaused = false;
+    }
+
+    function endSnippet() {
+        $audioPaused = false
+    }
 
     function done() {
         push('/end')
     }
 
 </script>
-
 {#if $currentStory}
     <h1>{$currentStory.Title}</h1>
-    <p>{$currentStoryStep.Title}</p>
+    <h3>{$currentStoryStep.Title}</h3>
     {#if $currentStoryStep.ImagePath}
         <img src={$currentStoryStep.ImagePath} alt="header image" style="width: 100%; height:auto;">
     {/if}
     <!-- img IF ImagePath, audio IF AudioSnippetPath. audio has a play listener to pause the ambient -->
     <p>{$currentStoryStep.Text}</p>
+    {#if $currentStoryStep.AudioSnippetPath}
+        <p>
+            <audio controls preload src="{$currentStoryStep.AudioSnippetPath}" bind:paused={snippetPaused}
+                   on:play={playSnippet} on:pause={endSnippet} on:ended={endSnippet} >
+                <track kind="captions">
+            </audio>
+        </p>
+    {/if}
+
     <button class="btn" on:click={next}>NEXT</button>
 {:else}
     <h1>{$hoverStoryTitle ? $hoverStoryTitle : "No story selected"}</h1>
@@ -43,12 +69,19 @@
     </div>
 {/if}
 
-
 <style>
+
     h1 {
         padding: 0;
         margin: 0;
         font-size: 28px;
+    }
+
+    h3 {
+        font-family: var(--title-font);
+        font-size: 21px;
+        font-weight: bolder;
+        color: white;
     }
 
     button {
@@ -56,6 +89,7 @@
     }
 
     #done {
+        margin-top: auto;
         display: block;
         padding: 0;
         width: 100%;
