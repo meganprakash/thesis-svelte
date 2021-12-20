@@ -9,11 +9,18 @@
     import {storyManager} from "../../ts/StoryManager";
     import Icon from "svelte-awesome";
     import {faVolumeMute, faVolumeUp, faPause} from "@fortawesome/free-solid-svg-icons"
+    import {onMount} from "svelte";
     const {currentAudioPath, audioPaused} = storyManager
 
     $: paused = $audioPaused
 
     let volume = 0.4
+
+    // need to change audioPaused on load because the reactive paused = $audioPaused binding
+    //      only works once $audioPaused changes
+    onMount(() => {
+        $audioPaused = true
+    })
 
     $: console.log("currentAudioPath set to ", $currentAudioPath, "and volume is ", volume)
     $: console.log("[AudioPlayer.svelte] $audioPaused = ", $audioPaused)
@@ -25,7 +32,8 @@
 
 </script>
 <div id="audio-container">
-    <audio autoplay preload hidden src="{$currentAudioPath}" bind:paused bind:volume loop>
+    <audio autoplay preload hidden src="{$currentAudioPath}" bind:volume bind:paused loop
+    on:playable={$audioPaused = false}>
         <track kind="captions"/>
     </audio>
     <div class="inline" on:click={toggleAudio}

@@ -24,8 +24,8 @@
     }
 
     function playSnippet() {
-        $audioPaused = true
         snippetPaused = false;
+        $audioPaused = true
     }
 
     function endSnippet() {
@@ -48,7 +48,7 @@
     {#if $currentStoryStep.AudioSnippetPath}
         <p>
             <audio controls preload src="{$currentStoryStep.AudioSnippetPath}" bind:paused={snippetPaused}
-                   on:play={playSnippet} on:pause={endSnippet} on:ended={endSnippet} >
+                   on:play={playSnippet} on:pause={endSnippet} on:ended={endSnippet}>
                 <track kind="captions">
             </audio>
         </p>
