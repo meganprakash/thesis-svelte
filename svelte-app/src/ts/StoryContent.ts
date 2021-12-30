@@ -161,7 +161,7 @@ class StoryContent {
                 "trying to convince the LQ to play one of Audio Two's tracks. Paradise Gray, the host of the LQ agrees to listen to their record in hopes of finding something Red Alert would " +
                 "be willing to play. When he flips the record over and plays the B-side \"Top Billin',\" he hears an instant hit.",
                 "static/audio/instrumentals/Audio Two - Top Billin' (Instrumental).mp3",
-                "static/audio/instrumentals/Audio Two - Top Billin'.mp3",
+                "static/audio/snippets/Audio Two - Top Billin'.mp3",
                 ""
             )
         )

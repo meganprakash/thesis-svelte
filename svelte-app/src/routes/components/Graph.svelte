@@ -465,7 +465,6 @@
         justify-content: center;
         display: inline-flex;
         opacity: 0.9;
-        filter: brightness(80%);
-        z-index: 1000;
+        filter: brightness(85%);
     }
 </style>
