@@ -26,7 +26,10 @@ World.svelte is a page that contains the interaction graph and the modal showing
         '<p>You’ll now see the full view of the club: the major MCs and DJs and the ways their paths intertwined. Hover over the connections in the map to browse the stories. Click on a story to explore it.</p>' +
         '<p>When you’re done exploring and ready to leave the club, click <b>EXIT THE CLUB</b>.</p>'
 
-    $: showModal = bind(GraphModal, {styleContent: {padding: "0"}, title: $individualMode ? individualTitle : globalTitle, message: $individualMode ? individualIntro : globalIntro})
+    $: showModal = bind(GraphModal,
+        { title: $individualMode ? individualTitle : globalTitle,
+            message: $individualMode ? individualIntro : globalIntro
+        })
 
     onMount(() => {
         window.scrollTo(0, 0)
@@ -104,6 +107,10 @@ World.svelte is a page that contains the interaction graph and the modal showing
         background-color: #555;
         border-radius: 10px;
         border: 1px solid #999;
+    }
+
+    :global .content {
+        padding: 0 !important; /* I couldn't get this to work as a prop for the Modal component ... to fix the weird styling in prod, ugh*/
     }
 
 </style>
