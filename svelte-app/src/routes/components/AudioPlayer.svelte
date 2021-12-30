@@ -10,7 +10,6 @@
     import Icon from "svelte-awesome";
     import {faVolumeMute, faVolumeUp, faPause} from "@fortawesome/free-solid-svg-icons"
     import {onMount} from "svelte";
-    import tippy from 'tippy.js';
     const {currentAudioPath, audioPaused} = storyManager
 
     $: paused = $audioPaused
@@ -21,10 +20,6 @@
     //      only works once $audioPaused changes
     onMount(() => {
         $audioPaused = true
-    })
-
-    tippy('#icon-div', {
-        content: 'Toggle background music',
     })
 
     $: console.log("currentAudioPath set to ", $currentAudioPath, "and volume is ", volume)
