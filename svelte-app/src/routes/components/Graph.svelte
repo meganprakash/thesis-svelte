@@ -1,4 +1,3 @@
-
 <div id="dot-container" transition:fade="{{delay: 350, duration: 300}}">
             <span id="dot"
                   style="background-color: {$userColorHex}">{$userInitials}</span>
@@ -46,23 +45,27 @@
     // I think I need node builtins and globals?
     let graphStyle = `
     node {
-        background-color: green;
         label: data(id);
         text-transform: uppercase;
         color: white;
-        width: 8px;
-        height: 8px;
-        font-size: 5;
+        width: 20px;
+        height: 20px;
+        font-size: 6;
         text-events: no;
+        background-fit: cover;
+        border-width: 0px;
     }
     .active-story-node {
-        background-color: #ddd;
+        border-width: 1px;
+        border-color: #ddd;
     }
     .hover-node {
-        background-color: #eee;
+        border-width: 1px;
+        border-color: #eee;
     }
     edge {
         curve-style: bezier;
+        line-color: #777;
         color: white;
         width: 1px;
         font-size: 6;
@@ -77,7 +80,8 @@
         events: no;
     }
     .active-story-edge {
-        color: white;
+        line-color: #ddd;
+        opacity: 1;
     }
     .hover-edge {
         line-color: white;
@@ -90,7 +94,10 @@
         width: 2px;
     }
     .current-step-node {
-        background-color: yellow;
+        border-width: 2px;
+        border-color: yellow;
+        height: 35px;
+        width: 35px;
     }
     `
 
@@ -109,7 +116,7 @@
         myAvatar = document.getElementById("dot")
         myAvatar.style.display = "none"
         myAvatarPopper = createPopper(document.documentElement, myAvatar, {
-            placement: 'top'
+            placement: 'left'
         })
 
         tooltipContainer = document.getElementById("tooltip-container")
@@ -125,11 +132,11 @@
                 name: 'circle',
                 fit: true,
                 animate: false,
-                radius: 10
+                radius: 90
             },
             zoom: 1,
-            minZoom: 0.8,
-            maxZoom: 3,
+            minZoom: 1,
+            maxZoom: 20,
             userZoomingEnabled: false,
             userPanningEnabled: false,
             boxSelectionEnabled: false,
@@ -137,13 +144,19 @@
             autounselectify: true
         });
 
-
         cy.ready(() => {
             graphReady = true;
             hideLoops()
         })
 
         cy.style(graphStyle);
+
+        cy.style()
+            .selector('node')
+            .style({
+                'background-image': function( ele ){ return String("./static/images/heads/" + ele.data('id').split(' ').join('-') + ".jpg")}
+            })
+            .update()
 
         window.addEventListener('resize', function () {
             cy.center()
@@ -183,6 +196,10 @@
             }
         });
 
+        cy.on('pan zoom resize', () => {
+            myAvatarPopper.update()
+        });
+
     } // startCy()
 
     // reactive styling for the graph to highlight the active story
@@ -191,6 +208,18 @@
         cy.elements().classes('')
         hideLoops()
         hideAvatar()
+        // reset graph view
+        cy.animate({
+            fit: {
+                eles: cy.eles,
+                padding: 80
+            }
+        }, {
+            duration: 600
+        },
+            {
+                easing: "ease-out-quart"
+            });
     } else if (cy && graphReady) {
         highlightStoryStep($currentStory, $currentStoryStep)
         hideLoops()
@@ -283,6 +312,19 @@
         } else {
             attachAvatar(thisStepEdge.connectedNodes()[0])
         }
+
+        // animate zoom to the edge
+
+        cy.animate({
+                center: {
+                    eles: thisStepEdge,
+                }
+            }, {
+                duration: 600
+            },
+            {
+                easing: "ease-out-quart"
+            });
     }
 
     // remove all NPC avatars if present, then generate and place new ones to match
@@ -327,8 +369,12 @@
                 }
 
                 popper = createPopper(ref, popDiv, {
-                    placement: 'bottom'
+                    placement: 'right'
                 })
+
+                cy.on('pan zoom resize', () => {
+                    popper.update()
+                });
             } // else, popDiv exists and is already attached w a popper instance
 
             // add the npc avatar
@@ -389,7 +435,8 @@
     #cytoscape {
         width: 100%;
         height: 100%;
-        display: block;
+        display: inline-block;
+        z-index: 1;
     }
 
     #dot {
@@ -403,6 +450,7 @@
         align-items: center;
         justify-content: center;
         display: inline-flex;
+        z-index: 1000;
     }
 
     :global .npc-dot {
@@ -416,7 +464,8 @@
         align-items: center;
         justify-content: center;
         display: inline-flex;
-        opacity: 0.7;
-        filter: brightness(80%)
+        opacity: 0.9;
+        filter: brightness(80%);
+        z-index: 1000;
     }
 </style>

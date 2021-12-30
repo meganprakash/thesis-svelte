@@ -8,7 +8,6 @@
     import BlockQuote from "./components/BlockQuote.svelte";
     import Icon from "svelte-awesome";
     import {volumeUp} from "svelte-awesome/icons"
-    import {storyContent} from "../ts/StoryContent";
 
     const {currentAudioPath} = storyManager
 

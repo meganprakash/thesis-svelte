@@ -19,16 +19,6 @@
     const {submitted, userRole, userColorHex, userInitials} = personalizationStore
 
     const color = '#263336'
-    const barColor = '#388ca8'
-    const sliderLabels = ["Not at all", "A little bit", "Somewhat", "Very", "Extremely"];
-
-    // maybe weight some higher? like origin of hip hop
-    let prompts = [
-        {item: 'hip hop music', v: [2]},
-        {item: 'hip hop culture', v: [2]},
-        {item: 'the origin of hip-hop', v: [2]}
-    ]
-
     // accessible color palette
     let colors = [
         "#8a3ffc",
@@ -64,11 +54,18 @@
             <div id="main-text">
                 <p>
                     Hip-hop culture is a collective creation, and the Latin Quarter was the epitome of this philosophy.
-                    Every Friday and Saturday night, partiers and performers convened in Times Square
+                    Every Friday and Saturday night, the New York hip-hop community took the train to Times Square to
+                    party at the LQ.
                 </p>
                 <p>
-                    There are MCs, DJs, dancers, the crowd, fashion....
-                    In this online experience, you’ll see a birds-eye view of some of the biggest moments of this era
+                    The club’s host and entertainment manager Paradise Gray turned the LQ into a magnet for hip-hop dancers,
+                    musicians, celebrities, record labels, and fans. When the LQ community ignited
+                    the “Golden Era,” it created a movement that affected more than just music. Hip-hop dance
+                    developed as an art form on the floor of the LQ. Community values were shaped by what MCs were saying.
+                    Social issues were pushed into mainstream public consciousness.
+                </p>
+                <p>
+                    In this online experience, you’ll see a birds-eye view of some of the biggest moments of the Golden Area
                     and be able to retrace the steps of hip-hop greats.
                 </p>
                 <BlockQuote
@@ -105,7 +102,7 @@
                            title="Up to three letters" placeholder="Enter your initials">
 
                 </div>
-                <button class="btn" on:click={handleNext} disabled="{initialsChoice.length == 0}">NEXT</button>
+                <button class="btn" on:click={handleNext} disabled="{initialsChoice.length === 0}">NEXT</button>
             </div>
 
         </div>

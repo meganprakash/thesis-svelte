@@ -28,12 +28,12 @@
         <div class="panel-cell text">
             <div id="main-text">
                 <p>
-                    Here are some of the legendary moments from LQ history, where hip-hop luminaries connected, collaborated, and clashed. Each one is a moment that lives on to this day as people tell and retell the stories, and as hip-hop artists continue to be influenced by these legendary performances.
-</p><p>
-                    In this experience, we’re going to focus on the interactions between MCs and DJs, who created the music that pounded through the LQ.
-                It is this pairing that determined the mood of the LQ, where the entire club reacted to what the MCs and DJs were saying. The Latin Quarter was renowned for its crowd—in fact, it was the ultimate gatekeeper of artists’ success.
-
-                </p>
+                    Here are some of the legendary moments from LQ history, where hip-hop luminaries connected, collaborated, and clashed. Each one is a moment that lives on to this day as people retell the stories and as hip-hop artists continue to be influenced by these performances.
+                </p> <p>
+                    In this experience, we’re going to focus on the interactions between MCs and DJs, who created the music that pounded through the LQ and ignited major cultural shifts in hip-hop music. A hip-hop MC is a vocalist who raps over music and interacts with the crowd at a show. On the other hand, a DJ arranges and mixes music that can anchor the vocal performances. DJs tend to be the major tastemakers who choose what songs are on the radio or are played for the crowd at a club.
+            </p><p>
+                    The Latin Quarter was renowned for its DJs and its crowd—in fact, the LQ crowd was the ultimate gatekeeper of artists’ success.
+            </p>
                 <BlockQuote
                     quote="“It was a very tough crowd to please; many legends and weak newcomers alike have been booed off the stage without mercy.”"
                     attr="— Paradise Gray"

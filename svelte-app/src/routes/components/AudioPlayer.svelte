@@ -10,11 +10,12 @@
     import Icon from "svelte-awesome";
     import {faVolumeMute, faVolumeUp, faPause} from "@fortawesome/free-solid-svg-icons"
     import {onMount} from "svelte";
+    import tippy from 'tippy.js';
     const {currentAudioPath, audioPaused} = storyManager
 
     $: paused = $audioPaused
 
-    let volume = 0.4
+    let volume = 0.2
 
     // need to change audioPaused on load because the reactive paused = $audioPaused binding
     //      only works once $audioPaused changes
@@ -22,12 +23,16 @@
         $audioPaused = true
     })
 
+    tippy('#icon-div', {
+        content: 'Toggle background music',
+    })
+
     $: console.log("currentAudioPath set to ", $currentAudioPath, "and volume is ", volume)
     $: console.log("[AudioPlayer.svelte] $audioPaused = ", $audioPaused)
     $: console.log("[AudioPlayer.svelte] this.paused = ", paused)
 
     function toggleAudio() {
-        volume === 0 ? volume = 0.4 : volume = 0;
+        volume === 0 ? volume = 0.2 : volume = 0;
     }
 
 </script>
@@ -36,7 +41,7 @@
     on:playable={$audioPaused = false}>
         <track kind="captions"/>
     </audio>
-    <div class="inline" on:click={toggleAudio}
+    <div class="inline" id="icon-div" on:click={toggleAudio}
          style="cursor: pointer; visibility: {$currentAudioPath ? 'visible' : 'hidden'}">
         <Icon data={function icon() {
                 if ($audioPaused) {

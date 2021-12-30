@@ -13,7 +13,6 @@ World.svelte is a page that contains the interaction graph and the modal showing
     import GraphModal from "./components/GraphModal.svelte";
     import {bind} from 'svelte-simple-modal';
     import {storyManager} from "../ts/StoryManager";
-    import {push} from "svelte-spa-router";
 
     const {individualMode} = storyManager
 
@@ -77,9 +76,10 @@ World.svelte is a page that contains the interaction graph and the modal showing
 
     #story-container {
         width: 40%;
-        height: 70%;
-        min-width: 300px;
-        max-width: 650px;
+        height: auto;
+        overflow-y: scroll;
+        min-width: 500px;
+        max-width: 950px;
         display: inline-block;
         vertical-align: middle;
         background-color: var(--modal-bg);
@@ -90,5 +90,20 @@ World.svelte is a page that contains the interaction graph and the modal showing
         position: relative;
     }
 
+    /* Chrome, Edge, and Safari */
+    #story-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    #story-container::-webkit-scrollbar-track {
+        background: var(--modal-bg);
+        border: 1px solid #555;
+    }
+
+    #story-container::-webkit-scrollbar-thumb {
+        background-color: #555;
+        border-radius: 10px;
+        border: 1px solid #999;
+    }
 
 </style>

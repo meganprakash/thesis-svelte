@@ -10,10 +10,10 @@ class NPCManager {
     constructor(
         // key: name of NPC, val: {color, story.Title, storyStep.Title}
         public currentNPCState: Map<string, {color:string, storyTitle:string, stepIdx:number}> = new Map([
-            ["AA", {color: "#8a3ffc", storyTitle: "Stetsasonic becomes \"the first Hip-Hop Band\"", stepIdx: 0}],
-            ["BC", {color: "#33b1ff", storyTitle: "Public Enemy brings a new attitude to the LQ", stepIdx: 0}],
-            ["Q", {color: "#6fdc8c", storyTitle: "Eric B. and Rakim enter the scene with \"Eric B. Is President\"", stepIdx: 0}],
-            ["NT", {color: "#ff7eb6", storyTitle: "Boogie Down Productions breaks through with \"South Bronx\"", stepIdx: 1}]
+            ["AA", {color: "#8a3ffc", storyTitle: "Stetsasonic puts a new twist on hip-hop performance", stepIdx: 0}],
+            ["BC", {color: "#33b1ff", storyTitle: "KRS-One battles Melle Mel and ushers in the Golden Era of hip-hop", stepIdx: 0}],
+            ["Q", {color: "#6fdc8c", storyTitle: "Audio Two's \"Top Billin'\" rocks the LQ", stepIdx: 2}],
+            ["NT", {color: "#ff7eb6", storyTitle: "Eric B. & Rakim enter the scene with \"My Melody\"", stepIdx: 1}]
         ]),
         public ticker: Writable<boolean> = writable(false),
         public interval = null

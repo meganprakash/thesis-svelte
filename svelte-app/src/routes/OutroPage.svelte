@@ -22,16 +22,10 @@
         <div class="panel-cell text">
             <div id="main-text">
                 <p>
-                    Point out inconsistencies from the metaphor -- e.g. this wasn’t like a single day in the club. It
-                    captures major earth-shaking moments from the club’s x-year history
-                    These moments have influenced hip-hop to this day and will continue to echo far into the future
-                    Hip hop remains a living, breathing collaboration between artists who bring their authentic selves
+                    The moments you explored have influenced hip-hop to this day, and their effects will continue to echo far into the future. Since the days of the LQ, the arts of hip-hop beatmaking, rapping, dance, and fashion have crossed every continent.
                 </p>
                 <p>
-                    The last chapter of book has lots of useful things
-                    Also meeting of the minds to point out conscious hip hop and the legends who did more than influence
-                    music
-
+                    As in the original Golden Era, people worldwide use hip-hop to speak their minds and represent themselves. Though trends may come and go, hip-hop remains a living, breathing culture that is woven from community.
                 </p>
 
             </div>

@@ -15,7 +15,7 @@
     console.log(storyManager.getMoments())
 
     const slidy = {
-        slides: storyManager.getMoments().slice(3),
+        slides: storyManager.getMoments(),
         timeout: 1000,
         index: 0,
         wrap: {

@@ -38,23 +38,26 @@
 
 </script>
 {#if $currentStory}
-    <h1>{$currentStory.Title}</h1>
+    <h1 class="min">{$currentStory.Title}</h1>
     <h3>{$currentStoryStep.Title}</h3>
-    {#if $currentStoryStep.ImagePath}
-        <img src={$currentStoryStep.ImagePath} alt="header image" style="width: 100%; height:auto;">
-    {/if}
     <!-- img IF ImagePath, audio IF AudioSnippetPath. audio has a play listener to pause the ambient -->
     <p>{$currentStoryStep.Text}</p>
     {#if $currentStoryStep.AudioSnippetPath}
-        <p>
+        <p class="audio-title">{$currentStoryStep.AudioSnippetPath.substring(0, $currentStoryStep.AudioSnippetPath.lastIndexOf('.')).split("/").pop()}
+    </p>
+            <p>
             <audio controls preload src="{$currentStoryStep.AudioSnippetPath}" bind:paused={snippetPaused}
                    on:play={playSnippet} on:pause={endSnippet} on:ended={endSnippet}>
                 <track kind="captions">
             </audio>
-        </p>
+            </p>
     {/if}
-
     <button class="btn" on:click={next}>NEXT</button>
+
+
+    {#if $currentStoryStep.ImagePath}
+        <img src={$currentStoryStep.ImagePath} alt="header image" style="width: 100%; height:auto;">
+    {/if}
 {:else}
     <h1>{$hoverStoryTitle ? $hoverStoryTitle : "No story selected"}</h1>
     {#if $hoverStoryTitle}
@@ -71,21 +74,43 @@
 
 <style>
 
+    * {
+        white-space: pre-line;
+    }
+
     h1 {
         padding: 0;
-        margin: 0;
+        margin: 0 0 45px;
         font-size: 28px;
+    }
+
+    h1.min {
+        font-size: 16px;
+        color: var(--title-blue);
+        font-style: italic;
     }
 
     h3 {
         font-family: var(--title-font);
-        font-size: 21px;
+        font-size: 26px;
+        font-weight: normal;
+        margin: 0 0 30px;
+        color: white;
+    }
+
+    .audio-title {
+        font-family: var(--allcaps-font);
+        text-transform: uppercase;
+        font-size: 16px;
         font-weight: bolder;
         color: white;
+        padding-top: 30px;
+        margin-bottom: 0;
     }
 
     button {
         z-index: 100;
+        margin-top: 10px;
     }
 
     #done {
