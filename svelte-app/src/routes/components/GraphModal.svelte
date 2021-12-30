@@ -16,7 +16,7 @@
 <style>
     main {
         background-color: #333;
-        padding: 20px;
+        /* padding: 20px; */
     }
 
     h1 {
