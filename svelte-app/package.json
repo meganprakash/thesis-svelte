@@ -50,6 +50,7 @@
     "sirv-cli": "^1.0.0",
     "svelte-awesome": "^2.4.2",
     "svelte-slidy": "^2.7.1",
-    "svelte-spa-router": "^3.2.0"
+    "svelte-spa-router": "^3.2.0",
+    "tippy.js": "^6.3.7"
   }
 }
