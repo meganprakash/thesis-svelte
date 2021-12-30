@@ -24,7 +24,7 @@
     import {Mutex} from 'async-mutex';
 
     const {userInitials, userColorHex} = personalizationStore
-    const {ticker} = npcManager
+    const {currentNPCState} = npcManager
     const {currentStory, currentStoryStep, individualMode, hoverStoryTitle} = storyManager
     individualMode.set(true)
     $: console.log("[Graph.svelte] currentStory: ", $currentStory)
@@ -33,7 +33,7 @@
     }
 
     $: {
-        $ticker;
+        $currentNPCState;
         if (!$individualMode) {
             updateNPCAvatars()
         }
@@ -338,7 +338,7 @@
             container.removeChild(container.firstChild);
         }
         // go thru currentNPCState to see which edges have avatars
-        for (let [npc, state] of npcManager.currentNPCState) {
+        for (let [npc, state] of $currentNPCState) {
             // need stepTitle to get the edge in the graph
             let stepTitle =
                 storyContent.StoryCollection.getStory(state.storyTitle).StorySteps[state.stepIdx].Title

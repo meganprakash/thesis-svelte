@@ -9,13 +9,14 @@ class NPCManager {
     // then set up callback for tick events every T milliseconds
     constructor(
         // key: name of NPC, val: {color, story.Title, storyStep.Title}
-        public currentNPCState: Map<string, {color:string, storyTitle:string, stepIdx:number}> = new Map([
+        // Graph.svelte listens
+        public currentNPCState: Writable<Map<string, {color:string, storyTitle:string, stepIdx:number}>> = writable(new Map([
             ["AA", {color: "#8a3ffc", storyTitle: "Stetsasonic puts a new twist on hip-hop performance", stepIdx: 0}],
             ["BC", {color: "#33b1ff", storyTitle: "KRS-One battles Melle Mel and ushers in the Golden Era of hip-hop", stepIdx: 0}],
             ["Q", {color: "#6fdc8c", storyTitle: "Audio Two's \"Top Billin'\" rocks the LQ", stepIdx: 2}],
             ["NT", {color: "#ff7eb6", storyTitle: "Eric B. & Rakim enter the scene with \"My Melody\"", stepIdx: 1}]
-        ]),
-        public ticker: Writable<boolean> = writable(false),
+        ])),
+        // public ticker: Writable<boolean> = writable(false),
         public interval = null
     ) {
         console.log("NPCManager constructed. currentNPCState = ", this.currentNPCState)
@@ -25,7 +26,7 @@ class NPCManager {
     //  in each story per npc. getNextState() by story and current step I guess.
     // Graph.svelte will listen for the tick event and reflect the new state.
     private tick() {
-        let newState = new Map(this.currentNPCState)
+        let newState = new Map(get(this.currentNPCState))
 
         for( let [npcName, storyState] of newState) {
             if (Math.random() > 0.95) {
@@ -33,10 +34,10 @@ class NPCManager {
             }
         }
 
-        this.currentNPCState = newState
-        this.ticker.update(n => !n); // Graph.svelte listens
-        console.log("updated ticker = ", get(this.ticker))
-        console.log("updated currentNPCState = ", this.currentNPCState)
+        this.currentNPCState.set(newState)
+        // this.ticker.update(n => !n);
+        // console.log("updated ticker = ", get(this.ticker))
+        console.log("updated currentNPCState = ", get(this.currentNPCState))
     }
 
     // find the next step for this npc and return it
@@ -59,7 +60,7 @@ class NPCManager {
     }
 
     public startNPCanimation() {
-        this.ticker.set(true);
+        // this.ticker.set(true);
         this.interval = setInterval(() => this.tick(), 2000);
     }
 

@@ -66,6 +66,17 @@ class StoryManager {
         }
     }
 
+    public prevStoryStep() {
+        let story = get(this.currentStory)
+        if (get(this.currentStoryStepIdx) > 0) { // not first step
+            this.currentStoryStepIdx.update(n => n - 1)
+            this.currentStoryStep.set(story.StorySteps[get(this.currentStoryStepIdx)])
+            this.currentAudioPath.set(story.StorySteps[get(this.currentStoryStepIdx)].AmbientAudioPath)
+            this.audioPaused.set(false)
+        }
+        // if not first step, won't go back (also storypanel won't show back button)
+    }
+
     public getMoments(): StoryType.Moment[] {
         // for each story, get the id, printable title, photo, summary by role, audio
         let moments = [] as StoryType.Moment[]

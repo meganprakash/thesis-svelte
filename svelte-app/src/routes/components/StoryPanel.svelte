@@ -23,6 +23,10 @@
         storyManager.nextStoryStep();
     }
 
+    function back() {
+        storyManager.prevStoryStep();
+    }
+
     function playSnippet() {
         snippetPaused = false;
         $audioPaused = true
@@ -52,7 +56,10 @@
             </audio>
             </p>
     {/if}
-    <button class="btn" on:click={next}>NEXT</button>
+    {#if $currentStoryStepIdx > 0}
+        <button class="btn" on:click={back}>BACK</button>
+    {/if}
+    <button class="btn" on:click={next} style="position: relative; float:right;">NEXT</button>
 
 
     {#if $currentStoryStep.ImagePath}
