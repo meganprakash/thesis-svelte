@@ -43,7 +43,7 @@ class StoryContent {
                 "accepts the challenge and is ready to prove his worth on the biggest hip-hop stage of the time.",
                 "static/audio/instrumentals/Grandmaster Melle Mel & the Furious Five - Pump Me Up (Instrumental).mp3",
                 "",
-                "static/images/edit/03_melle.jpg"
+                ""
             )
         )
 
@@ -52,7 +52,7 @@ class StoryContent {
                 "Paradise helps KRS-One onstage",
                 "Paradise Gray",
                 "KRS-One",
-                "Paradise Gray, the host of the LQ, hands the mic to KRS-One, the MC of the group Boogie Down Productions. \n\n Later, KRS-One " +
+                "Paradise Gray, the host of the LQ, hands the mic to KRS-One. \n\n Later, KRS-One " +
                 "described his surprise at the challenge: \"Mele Mel was my idol. He did 'The Message,' a song that " +
                 "inspired my career, and now he was challenging me. The one you look up to is now in your face with " +
                 "a beef.\"",
@@ -70,7 +70,10 @@ class StoryContent {
                 "KRS-One takes the mic and raps his freestyle, filling it with his characteristic complex rhymes " +
                 "and alluding to themes of knowledge and social consciousness. KRS-One's confidence and individuality " +
                 "captivates the crowd. He ends his freestyle by asking the crowd, \"Who won?\" and without even hearing " +
-                "Mele Mel's response, the crowd screams their approval.",
+                "Mele Mel's response, the crowd screams their approval. \n\n KRS-One is the MC of the group " +
+                "Boogie Down Productions, and \"Poetry\" is one of their 1987 songs from their debut album. In \"Poetry\", " +
+                "KRS-One refers to himself as a teacher of a new form of hip-hop: a superior one with meaningful, complex, " +
+                "and innovative lyrics that benefit society.",
                 "static/audio/instrumentals/Boogie Down Productions - Poetry (Instrumental).mp3",
                 "static/audio/snippets/Boogie Down Productions - Poetry.mp3",
                 ""
@@ -100,8 +103,10 @@ class StoryContent {
                 "KRS-One's defeat of Mele Mel is the conclusive moment that marked the beginning of hip-hop's " +
                 "\"Golden Age,\" where the old-school gave way to the individuality and creativity of the new-school. " +
                 "KRS-One himself continues to inspire younger generations of socially-conscious MCs with his conscious " +
-                "rap style that explicitly discusses history, police brutality, and systemic racism. He also collaborates with" +
-                "other Golden-Era artists, including fellow legend Rakim.",
+                "rap style that explicitly discusses history, police brutality, and systemic racism. He also collaborates with " +
+                "other Golden-Era artists, including fellow legend Rakim. \n\n In \"You Must Learn\", a later Boogie Down Productions " +
+                "song, KRS-One points out that children only learn about white historical figures in school, while notable Black figures are " +
+                "absent. He says firmly that this imbalance continues to subjugate Black Americans.",
                 "static/audio/instrumentals/Boogie Down Productions - Poetry (Instrumental).mp3",
                 "static/audio/snippets/Boogie Down Productions - You Must Learn.mp3",
                 ""
@@ -256,7 +261,9 @@ class StoryContent {
                 "creative artists of the future, and Rakim is a crucial part of this evolution. To this day, his " +
                 "lyrics are exemplary and intricate, and he is a living legend that holds the title \"the God MC\" " +
                 "to many. \n\n Artists like 50 Cent, Nas, Epik High, and Jay-Z have sampled and referenced Eric B. and " +
-                "Rakim, often specifically mentioning \"Eric B. Is President\" and \"My Melody.\"",
+                "Rakim, often specifically mentioning \"Eric B. Is President\" and \"My Melody.\" \n\n Rakim's 1997 song " +
+                "\"It's Been A Long Time,\" nearly a decade after his Latin Quarter debut, " +
+                "asserts his legendary status in hip-hop and is delivered in his signature style.",
                 "static/audio/instrumentals/Eric B. & Rakim - Eric B. Is President (instrumental).mp3",
                 "static/audio/snippets/Rakim - It's Been A Long Time.mp3",
                 ""

@@ -36,6 +36,8 @@
 		background-color: var(--header-bg);
         margin: 0;
         padding: 0;
+        min-width: 1000px;
+        overflow: scroll;
 	}
 
     :root {
