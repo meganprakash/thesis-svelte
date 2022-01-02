@@ -6,7 +6,7 @@
 		<img src="static/footer/UHHM_logo_small.png" alt="universal hip hop museum logo" style="float: left; margin-left: 40px;">
 		© 2021, Megan Prakash.
 		<img src="static/footer/CAVS_logo_small.png" alt="MIT center for advanced virtuality logo" style="float: right;margin-right: 80px;">
-		<br> email: mit-virtuality-lq@mit.edu
+		<br> email: virtuality-hiphop@mit.edu
 		<br>
 		<a href="https://accessibility.mit.edu/" style="color:#FF614FFF; text-decoration: underline; font-weight: bold">accessibility.mit.edu</a>
 

@@ -319,7 +319,7 @@ class StoryContent {
                 "adds South African civil rights to the discourse in the larger hip-hop community. \n\n Their 1987 " +
                 "song \"A.F.R.I.C.A.\" makes a strong statement against apartheid at a time when it wasn't widely " +
                 "discussed in the Western world, let alone in hip-hop. With the song, Stetsasonic becomes one of the " +
-                "first artists to focus on politics and social activism, eventually collaborating with fellow activist artists like" +
+                "first artists to focus on politics and social activism, eventually collaborating with fellow activist artists like " +
                 "KRS-One.",
                 "static/audio/instrumentals/Stetsasonic - Music for the Stetfully Insane.mp3",
                 "static/audio/snippets/Stetsasonic - A.F.R.I.C.A..mp3",
