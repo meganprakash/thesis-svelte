@@ -24,6 +24,7 @@ World.svelte is a page that contains the interaction graph and the modal showing
     const globalTitle = 'Bird\'s eye view of the club'
     const globalIntro = 'The Latin Quarter wasn’t a single timeline of stories; it was a space of constant connection and creation.' +
         '<p>You’ll now see the full view of the club: the major MCs and DJs and the ways their paths intertwined. Hover over the connections in the map to browse the stories. Click on a story to explore it.</p>' +
+        '<p>There might be other visitors here! If so, you\'ll see their avatars.</p>' +
         '<p>When you’re done exploring and ready to leave the club, click <b>EXIT THE CLUB</b>.</p>'
 
     $: showModal = bind(GraphModal,
